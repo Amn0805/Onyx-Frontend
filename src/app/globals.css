@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  /* font-family: var(--font-raleway); */
+  font-family: var(--font-century-gothic);
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #bac3c833;
+}
+
+.poppins {
+  font-family: var(--font-poppins);
+}
+
+.text-grad {
+  background: linear-gradient(90deg, #000000 23%, #1a6978 100%);
+  background-clip: text;
+  color: transparent;
+  height: 1.4em;
+}
+
+.btn-container {
+  @apply flex gap-2 md:gap-8 justify-center;
+}
+
+.btn-pill {
+  @apply px-8 py-2 lg:px-10 lg:py-4 3xl:px-20 3xl:py-8 rounded-full poppins lg:text-sm  3xl:text-2xl min-w-[210px] 3xl:min-w-[320px] shadow-2xl transition-colors;
+}
+
+.btn-theme {
+  @apply bg-[#114046] text-white border border-[#114046];
+}
+
+.heading {
+  @apply text-3xl md:text-5xl 3xl:text-7xl;
+}
+
+.sub-heading {
+  @apply text-2xl md:text-4xl 3xl:text-6xl;
+}
+
+.para {
+  @apply lg:text-lg xl:text-xl 3xl:text-3xl poppins font-light;
+}
+
+.text-small {
+  @apply text-xs lg:text-base xl:text-lg 3xl:text-xl poppins font-light;
+}
+
+.text-x-small {
+  @apply text-xs xl:text-sm 3xl:text-base poppins font-light;
+}
