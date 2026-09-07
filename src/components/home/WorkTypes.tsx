@@ -2,116 +2,93 @@ import { blurDataURL } from "@/constants";
 import Image from "next/image";
 import React from "react";
 
+// 16:9 up to lg, full viewport height above it. Below lg the viewport is far
+// taller than 16:9, so forcing 100vh there is what crops these landscape
+// images at the sides.
+const BLOCK = "relative w-full aspect-video lg:aspect-auto lg:min-h-screen";
+
 export default function WorkTypes() {
   return (
-    <>
-      <section className="flex flex-col text-white">
-        <div className="relative w-full min-h-screen bg-white">
-          <Image
-            src={workItems[0].imageSrc}
-            alt="image"
-            placeholder="blur"
-            blurDataURL={blurDataURL}
-            fill
-            className="object-cover"
-          />
-          <div className="absolute inset-0 flex items-center justify-center lg:gap-6 text-white flex-col text-center">
-            <h3
-              className="text-lg md:text-3xl 3xl:text-[2vw] absolute bottom-2 text-center 3xl:bottom-[1vw] cursor-pointer"
-            >
-              {workItems[0].title}
-            </h3>
-          </div>
+    <section className="flex flex-col text-white">
+      <div className={BLOCK}>
+        <Image
+          src={workItems[0].imageSrc}
+          alt={workItems[0].alt}
+          placeholder="blur"
+          blurDataURL={blurDataURL}
+          fill
+          sizes="100vw"
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 flex items-end justify-center">
+          <h3 className="text-lg md:text-3xl 3xl:text-[2vw] pb-2 3xl:pb-[1vw] text-center">
+            {workItems[0].title}
+          </h3>
         </div>
+      </div>
 
-        <div className="flex flex-col lg:flex-row">
-          <div className="relative aspect-video w-full lg:w-1/2 group">
+      {/* Two half-width panels on desktop. Each keeps 16:9 at every width —
+          they are already half the screen, so they never needed full height. */}
+      <div className="flex flex-col lg:flex-row">
+        {[workItems[1], workItems[2]].map((item) => (
+          <div key={item.title} className="relative aspect-video w-full lg:w-1/2">
             <Image
-              src={workItems[1].imageSrc}
-              alt={workItems[1].alt}
+              src={item.imageSrc}
+              alt={item.alt}
               placeholder="blur"
               blurDataURL={blurDataURL}
               fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
             />
-            <div className="bg-black h-full w-full absolute top-0 bg-opacity-20 flex items-center justify-center  lg:gap-6 text-white flex-col text-center transition-all duration-500 ease-in-out">
-              <h3
-                className={`text-lg md:text-3xl 3xl:text-[2vw] absolute bottom-2 left-3 3xl:bottom-[1vw] 3xl:left-8 hover:texst-[#41c2db] cursor-pointer`}
-              >
-                {workItems[1].title}
+            <div className="absolute inset-0 bg-black/20 flex items-end">
+              <h3 className="text-lg md:text-3xl 3xl:text-[2vw] pb-2 pl-3 3xl:pb-[1vw] 3xl:pl-8">
+                {item.title}
               </h3>
             </div>
           </div>
-          <div className="relative aspect-video w-full lg:w-1/2 group">
-            <Image
-              src={workItems[2].imageSrc}
-              alt={workItems[2].alt}
-              placeholder="blur"
-              blurDataURL={blurDataURL}
-              fill
-              className="object-cover"
-            />
-            <div className="bg-black h-full w-full absolute top-0 bg-opacity-20 flex items-center justify-center  lg:gap-6 text-white flex-col text-center transition-all duration-500 ease-in-out">
-              <h3
-                className={`text-nowrap text-lg md:text-3xl 3xl:text-[2vw] absolute bottom-2 left-3 3xl:bottom-[1vw] 3xl:left-8  cursor-pointer`}
-              >
-                {workItems[2].title}
-              </h3>
-            </div>
-          </div>
+        ))}
+      </div>
+
+      <div className={BLOCK}>
+        <video
+          muted
+          loop
+          autoPlay
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover"
+          src={workItems[3].imageSrc}
+        />
+        <div className="absolute inset-0 bg-gray-200/20 flex items-end justify-center">
+          <h3 className="text-lg md:text-3xl 3xl:text-[2vw] pb-2 lg:pb-6 3xl:pb-[1.3vw] text-center">
+            {workItems[3].title}
+          </h3>
         </div>
-        <div className="relative w-full group">
-          <video
-            muted
-            loop
-            className="h-[100vh] w-full object-cover aspect-video"
-            autoPlay
-            src={workItems[3].imageSrc}
-          />
-          <div className="bg-gray-200 h-full w-full absolute top-0 bg-opacity-20 flex items-center justify-center  lg:gap-6 text-white flex-col text-center transition-all duration-500 ease-in-out">
-            <h3
-              className={`text-lg md:text-3xl 3xl:text-[2vw] absolute bottom-2 lg:bottom-6 translate-x-[50%-20px] 3xl:bottom-[1.3vw] 3xl:translate-x-[50%-20px] cursor-pointer`}
-            >
-              {workItems[3].title}
-            </h3>
-          </div>
-        </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }
 
 const workItems = [
   {
     title: "3D MODELING",
-    description:
-      "Pirate ipsum arrgh bounty warp jack. Scurvy o'nine measured dock belay hearties. Warp chains.",
     imageSrc: "/home/M2.svg",
-    alt: "work1",
-    buttonText: "See Work",
+    alt: "3D architectural model",
   },
   {
     title: "INTERIOR VISUALIZATION",
-    description:
-      "Pirate ipsum arrgh bounty warp jack. Scurvy o'nine measured dock belay hearties. Warp chains.",
     imageSrc: "/home/interior-visualization.svg",
-    alt: "interior visualization",
-    buttonText: "See Work",
+    alt: "Interior visualization",
   },
   {
     title: "EXTERIOR VISUALIZATION",
-    description:
-      "Pirate ipsum arrgh bounty warp jack. Scurvy o'nine measured dock belay hearties. Warp chains.",
     imageSrc: "/home/exterior-visualization.svg",
-    alt: "exterior visualization",
-    buttonText: "See Work",
+    alt: "Exterior visualization",
   },
   {
     title: "Architectural Walkthrough",
-    description:
-      "Pirate ipsum arrgh bounty warp jack. Scurvy o'nine measured dock belay hearties. Warp chains.",
     imageSrc: "/home/ArchitecturalAnimation1.mp4",
-    alt: "architectural walkthrough",
-    buttonText: "See Work",
+    alt: "Architectural walkthrough animation",
   },
 ];

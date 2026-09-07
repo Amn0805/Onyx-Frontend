@@ -22,7 +22,7 @@ async function OurTeam() {
 
   return (
     <section className="flex flex-col p-4  lg:p-20">
-      <h2 className="heading text-center">Our Team</h2>
+      <h2 className="heading text-center">HANDS BEHIND ONYX</h2>
 
       {/* Profile Group Section */}
       <div className="flex items-center gap-2 my-8 rounded-[0.78vw] border border-black w-fit px-4 py-2 3xl:px-6 3xl:py-4 mx-auto hover:text-white hover:bg-[#114046] hover:border-[#114046] cursor-pointer transition-colors">

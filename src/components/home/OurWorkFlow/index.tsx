@@ -1,58 +1,101 @@
 "use client";
+// Accordion list — one row open at a time, expanding to fit its image and copy.
+// Replaces the hover-to-swap-image version; the interaction is now click, so
+// it works on touch devices too.
+
 import { useState } from "react";
-import { list } from "./StaticData";
 import Image from "next/image";
+import { list } from "./StaticData";
 import { blurDataURL } from "@/constants";
 
 export default function OurWorkFlow() {
-  const [image, setImage] = useState<string>("/home/work-flow/1.webp");
-
-  const handleMouseEnter = (newImage: string) => {
-    setImage(newImage);
-  };
-
-  const handleMouseLeave = () => {
-    setImage("/home/work-flow/1.webp");
-  };
+  const [active, setActive] = useState(0);
 
   return (
-    <div className="flex flex-col gap-10 3xl:gap-20 p-2 lg:p-10">
-      <h2 className="text-center md:text-start heading 3xl:px-40 3xl:pt-20">Our Work Flow</h2>
-      <div className="flex justify-between gap-10 3xl:px-40 3xl:py-20">
-        <div className="flex lg:w-[75%] relative">
-          <div className="absolute left-4 top-1/2 -translate-y-1/2 3xl:left-9 bg-[#114046] sm:h-[80%] lg:h-[85%] 3xl:h-[95%] lg:w-2" />
-          <div className="flex flex-col justify-between gap-8 lg:gap-20 3xl:gap-64">
-            {list.map((item, index) => (
-              <div
-                key={index}
-                onMouseEnter={() => handleMouseEnter(item.img)}
-                onMouseLeave={handleMouseLeave}
-                className="flex cursor-pointer gap-4 3xl:gap-8 group"
+    <section className="p-5 md:p-10 3xl:p-24">
+      <h2 className="heading text-center md:text-start mb-10 md:mb-16 3xl:mb-32">
+        Our Work Flow
+      </h2>
+
+      <div className="border-t border-black/10">
+        {list.map((item, index) => {
+          const isOpen = index === active;
+
+          return (
+            <div key={item.number} className="border-b border-black/10">
+              <button
+                type="button"
+                onClick={() => setActive(index)}
+                aria-expanded={isOpen}
+                className="w-full flex items-center gap-6 md:gap-12 3xl:gap-24 py-6 md:py-8 3xl:py-16 text-left group"
               >
-                <p
-                  className={`para self-center bg-[#114046] z-10 aspect-square h-8 w-8 lg:h-10 lg:w-10 3xl:h-20 3xl:w-20 text-white lg:text-[#114046] group-hover:text-white group-hover:scale-125 transition  duration-300 ease-in-out flex items-center justify-center rounded-full`}
+                <span className="text-x-small text-[#7D7D7D] shrink-0">
+                  {item.number} /
+                </span>
+
+                <span
+                  className={`sub-heading flex-1 transition-colors duration-300 ${
+                    isOpen ? "text-[#114046]" : "group-hover:text-[#114046]"
+                  }`}
                 >
-                  {item.number}
-                </p>
-                <p className="group-hover:text-lg lg:text-lg xl:text-lg xl:group-hover:text-xl 3xl:text-3xl poppins 3xl:group-hover:text-4xl transition-all duration-300 ease-in-out poppins font-light">
-                  {item.text}
-                </p>
+                  {item.title}
+                </span>
+
+                <span
+                  aria-hidden="true"
+                  className={`text-2xl 3xl:text-5xl text-[#114046] shrink-0 transition-transform duration-500 ${
+                    isOpen ? "rotate-45" : ""
+                  }`}
+                >
+                  +
+                </span>
+              </button>
+
+              {/* grid-rows trick: animates from 0 to auto, which max-height
+                  cannot do without guessing a fixed value. */}
+              <div
+                className={`grid transition-all duration-500 ease-in-out ${
+                  isOpen
+                    ? "grid-rows-[1fr] opacity-100"
+                    : "grid-rows-[0fr] opacity-0"
+                }`}
+              >
+                <div className="overflow-hidden">
+                  <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 3xl:gap-32 pb-10 md:pb-16 3xl:pb-24 lg:pl-24 3xl:pl-48">
+                    <div className="lg:w-2/5 flex flex-col justify-between gap-8">
+                      <p className="text-small text-[#7D7D7D]">{item.text}</p>
+
+                      <div className="flex flex-wrap gap-2 3xl:gap-4">
+                        {item.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-x-small bg-[#bac3c833] text-[#114046] px-3 py-1 3xl:px-6 3xl:py-3"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                                        <div className="lg:w-3/5 flex justify-end">
+                      <Image
+                        src={item.img}
+                        alt={item.alt}
+                        width={1600}
+                        height={1200}
+                        sizes="(max-width: 1024px) 100vw, 60vw"
+                        className="w-auto h-auto max-h-[300px] md:max-h-[380px] 3xl:max-h-[700px] object-contain"
+                        placeholder="blur"
+                        blurDataURL={blurDataURL}
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
-            ))}
-          </div>
-        </div>
-        <div className="hidden lg:flex justify-end w-1/4 h-[80vh] 2xl:h-[75vh] relative">
-          <Image
-            placeholder="blur"
-            blurDataURL={blurDataURL}
-            className="w-full object-cover"
-            src={image}
-            alt="workflow image"
-            fill
-            priority
-          />
-        </div>
+            </div>
+          );
+        })}
       </div>
-    </div>
+    </section>
   );
 }

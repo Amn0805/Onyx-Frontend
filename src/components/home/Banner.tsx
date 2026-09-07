@@ -25,7 +25,6 @@ export default function Banner() {
           </button>
         </Link>
       </div>
-      <Image src="/logo/logo1-text-only-theme.svg" alt="logo" width={200} height={200} className="absolute 3xl:w-[1100px] 2xl:w-[700px]    right-2 md:right-10 bottom-4 md:bottom-10" unoptimized />
     </div>
   );
 }
