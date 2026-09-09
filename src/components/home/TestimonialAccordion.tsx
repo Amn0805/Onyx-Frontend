@@ -55,7 +55,7 @@ export default function TestimonialAccordion({
               <div
                 key={pageIdx}
                 aria-hidden={pageIdx !== page}
-                className="w-full shrink-0 flex flex-col lg:flex-row gap-2 3xl:gap-4 h-[600px] lg:h-[70vh] 3xl:h-[900px]"
+               className="w-full shrink-0 flex flex-col lg:flex-row gap-2 3xl:gap-4 h-[600px] lg:h-[60vh] 3xl:h-[55vh]"
               >
                 {pageItems.map((item, i) => {
                   const isActive = i === active;
@@ -71,7 +71,7 @@ export default function TestimonialAccordion({
                       aria-label={`Read ${item.name}'s review`}
                       aria-expanded={isActive}
                       className={`relative overflow-hidden text-left transition-all duration-700 ease-in-out ${
-                        isActive ? "grow-[5]" : "grow hover:grow-[1.4]"
+                      isActive ? "grow-[3]" : "grow hover:grow-[1.4]"
                       }`}
                       style={{ flexBasis: 0 }}
                     >
