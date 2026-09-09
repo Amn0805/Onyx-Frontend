@@ -23,7 +23,7 @@ export default async function ClientReviews() {
     name: t.name,
     designation: t.designation,
     review: t.review,
-    imgUrl: urlFor(t.img).width(900).height(1200).fit("crop").auto("format").url(),
+   imgUrl: urlFor(t.img).width(1400).height(1400).fit("crop").auto("format").url(),
     logoUrl: urlFor(t.logo).width(400).auto("format").url(),
   }));
 

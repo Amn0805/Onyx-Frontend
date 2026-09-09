@@ -2,43 +2,52 @@ export interface ListItem {
   number: string;
   title: string;
   text: string;
-  /** Short labels shown under the description when the row is open. */
-  tags: string[];
-  img: string;
-  alt: string;
+  /** Empty for now — a 4:3 placeholder renders until a path is set. */
+  img?: string;
+  alt?: string;
 }
 
 export const list: ListItem[] = [
   {
     number: "01",
-    title: "Brief & Drawings",
-    text: "You provide architectural drawings, material references and lighting preferences. We confirm scope and flag anything ambiguous before work begins.",
-    tags: ["CAD Files", "References", "Scope"],
-    img: "/home/work-flow/1.webp",
-    alt: "Architectural drawings and material references under review",
+    title: "Concept Development",
+    text: "We start with your vision. Drawings, references and requirements are reviewed together so the direction is agreed before any work begins.",
+    img: "/placeholders/step-01.svg",
+    alt: "",
   },
   {
     number: "02",
-    title: "Modelling & Scene Setup",
-    text: "Your concept becomes a detailed 3D model, with accurate lighting, textures and camera angles set up to build a realistic composition.",
-    tags: ["3D Model", "Lighting", "Cameras"],
-    img: "/home/work-flow/2.webp",
-    alt: "A 3D architectural model being built and lit",
+    title: "Case Study & Research",
+    text: "We study the site, the materials and comparable projects, so the visualization is grounded in how the space will actually be built and used.",
+    img: "/placeholders/step-02.svg",
+    alt: "",
   },
   {
     number: "03",
-    title: "Draft & Revisions",
-    text: "We share an initial render for your feedback. Texture adjustments, lighting tweaks and design refinements are made until the frame is right.",
-    tags: ["Draft Render", "Feedback", "Refinement"],
-    img: "/home/work-flow/3.webp",
-    alt: "A draft render being reviewed and refined",
+    title: "Initial Draft",
+    text: "The scene is modelled and lit, and a first draft is produced for review — composition, camera and mood established early.",
+    img: "/placeholders/step-03.svg",
+    alt: "",
   },
   {
     number: "04",
+    title: "Comments & Feedback",
+    text: "You review the draft and mark up anything that needs attention. Nothing moves forward until the direction is confirmed.",
+    img: "/placeholders/step-04.svg",
+    alt: "",
+  },
+  {
+    number: "05",
+    title: "Feedback Implementation",
+    text: "Materials, lighting and detail are refined against your notes, with revisions carried out until the frame is right.",
+    img: "/home/work-flow/1.webp",
+    alt: "",
+  },
+  {
+    number: "06",
     title: "Final Delivery",
     text: "High-resolution images delivered in your preferred format, ready for presentations, marketing or client proposals.",
-    tags: ["High Resolution", "Any Format", "Full Rights"],
-    img: "/home/work-flow/4.webp",
-    alt: "Final high-resolution renders delivered to the client",
+    img: "/home/work-flow/2.webp",
+    alt: "",
   },
 ];

@@ -22,7 +22,7 @@ const stats = [
   { target: 1100, suffix: "+", label: "Projects Completed" },
   { target: 156, suffix: "", label: "Clients Won" },
   { target: 98, suffix: "%", label: "Repeat & Preferred" },
-  { target: 9, suffix: " Years", label: "Practice" },
+  { target: 9, suffix: "+ Years", label: "Practice" },
 ];
 
 /** Also shown in the section heading, so it lives in one place. */
@@ -44,7 +44,7 @@ const Statistics = async () => {
 
       {/* Logo marquee — five per row, alternating direction. Adding logos in
           Sanity creates new rows automatically; nothing here changes. */}
-      <div className="my-10 xl:my-20 3xl:my-[5vw] flex flex-col gap-10 3xl:gap-20">
+                    <div className="my-10 xl:my-20 3xl:my-[5vw] flex flex-col gap-8 3xl:gap-16">
         {rows.map((row, rowIdx) => (
           <div key={rowIdx} className="overflow-x-hidden">
             <div
@@ -60,7 +60,7 @@ const Statistics = async () => {
               {[...row, ...row].map((item, idx) => (
                 <div
                   key={idx}
-                  className="h-[130px] md:h-[160px] 3xl:h-[300px] aspect-[3/2] relative flex items-center shrink-0"
+               className="h-[60px] md:h-[75px] 3xl:h-[140px] aspect-[3/1] relative flex items-center shrink-0"
                 >
                   <Image
                     src={item.logo}

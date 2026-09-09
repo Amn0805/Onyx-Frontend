@@ -102,18 +102,17 @@ export default function TestimonialAccordion({
                           and derive its own height — object-contain would fit it
                           inside instead, which caps the size and lets it drift
                           vertically. Adjust the w-* values to resize. */}
-                                           <div
-                        className={`absolute -top-10 right-4 3xl:-top-16 3xl:right-10 w-40 md:w-56 3xl:w-[32rem] transition-opacity duration-500 ${
+                                                                                  <div
+                        className={`absolute top-4 right-4 3xl:top-10 3xl:right-10 w-40 md:w-56 3xl:w-[32rem] aspect-[3/1] transition-opacity duration-500 ${
                           isActive ? "opacity-100 delay-200" : "opacity-0"
                         }`}
                       >
                         <Image
                           src={item.logoUrl}
                           alt=""
-                          width={640}
-                          height={200}
+                          fill
                           sizes="512px"
-                          className="w-full h-auto brightness-0 invert"
+                          className="object-contain object-right-top brightness-0 invert"
                         />
                       </div>
 

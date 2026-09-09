@@ -1,100 +1,53 @@
-"use client";
-// Accordion list — one row open at a time, expanding to fit its image and copy.
-// Replaces the hover-to-swap-image version; the interaction is now click, so
-// it works on touch devices too.
+// Card grid — six steps, three per row on desktop. Server component: no state,
+// no client JS. The previous hover-to-swap-image version needed both.
 
-import { useState } from "react";
 import Image from "next/image";
 import { list } from "./StaticData";
 import { blurDataURL } from "@/constants";
 
 export default function OurWorkFlow() {
-  const [active, setActive] = useState(0);
-
   return (
     <section className="p-5 md:p-10 3xl:p-24">
-      <h2 className="heading text-center md:text-start mb-10 md:mb-16 3xl:mb-32">
-        Our Work Flow
-      </h2>
+      <div className="text-center max-w-3xl 3xl:max-w-6xl mx-auto">
+        <h2 className="heading">Process from Vision to Reality</h2>
+        <p className="text-small text-[#7D7D7D] mt-6 3xl:mt-12">
+          From first brief to final delivery, every stage is reviewed with you
+          before it moves forward.
+        </p>
+      </div>
 
-      <div className="border-t border-black/10">
-        {list.map((item, index) => {
-          const isOpen = index === active;
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 3xl:gap-10 mt-12 md:mt-20 3xl:mt-32">
+        {list.map((item) => (
+          <article
+            key={item.number}
+            className="bg-[#bac3c833] p-6 3xl:p-12 flex flex-col"
+          >
+            <div className="flex items-start justify-between gap-4">
+              <span className="sub-heading text-[#114046]">{item.number}</span>
 
-          return (
-            <div key={item.number} className="border-b border-black/10">
-              <button
-                type="button"
-                onClick={() => setActive(index)}
-                aria-expanded={isOpen}
-                className="w-full flex items-center gap-6 md:gap-12 3xl:gap-24 py-6 md:py-8 3xl:py-16 text-left group"
-              >
-                <span className="text-x-small text-[#7D7D7D] shrink-0">
-                  {item.number} /
-                </span>
-
-                <span
-                  className={`sub-heading flex-1 transition-colors duration-300 ${
-                    isOpen ? "text-[#114046]" : "group-hover:text-[#114046]"
-                  }`}
-                >
-                  {item.title}
-                </span>
-
-                <span
-                  aria-hidden="true"
-                  className={`text-2xl 3xl:text-5xl text-[#114046] shrink-0 transition-transform duration-500 ${
-                    isOpen ? "rotate-45" : ""
-                  }`}
-                >
-                  +
-                </span>
-              </button>
-
-              {/* grid-rows trick: animates from 0 to auto, which max-height
-                  cannot do without guessing a fixed value. */}
-              <div
-                className={`grid transition-all duration-500 ease-in-out ${
-                  isOpen
-                    ? "grid-rows-[1fr] opacity-100"
-                    : "grid-rows-[0fr] opacity-0"
-                }`}
-              >
-                <div className="overflow-hidden">
-                  <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 3xl:gap-32 pb-10 md:pb-16 3xl:pb-24 lg:pl-24 3xl:pl-48">
-                    <div className="lg:w-2/5 flex flex-col justify-between gap-8">
-                      <p className="text-small text-[#7D7D7D]">{item.text}</p>
-
-                      <div className="flex flex-wrap gap-2 3xl:gap-4">
-                        {item.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="text-x-small bg-[#bac3c833] text-[#114046] px-3 py-1 3xl:px-6 3xl:py-3"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                                        <div className="lg:w-3/5 flex justify-end">
-                      <Image
-                        src={item.img}
-                        alt={item.alt}
-                        width={1600}
-                        height={1200}
-                        sizes="(max-width: 1024px) 100vw, 60vw"
-                        className="w-auto h-auto max-h-[300px] md:max-h-[380px] 3xl:max-h-[700px] object-contain"
-                        placeholder="blur"
-                        blurDataURL={blurDataURL}
-                      />
-                    </div>
-                  </div>
-                </div>
+              {/* 4:3 slot, fixed at every breakpoint. A placeholder holds the
+                  space until an image path is added to StaticData. */}
+                            <div className="relative w-1/2 aspect-[7/8] bg-[#114046]/10 shrink-0">
+                {item.img && (
+                  <Image
+                    src={item.img}
+                    alt={item.alt ?? ""}
+                    fill
+                    sizes="(max-width: 768px) 50vw, 20vw"
+                    className="object-cover"
+                    placeholder="blur"
+                    blurDataURL={blurDataURL}
+                  />
+                )}
               </div>
             </div>
-          );
-        })}
+
+            <h3 className="sub-heading mt-8 3xl:mt-16">{item.title}</h3>
+            <p className="text-small text-[#7D7D7D] mt-4 3xl:mt-8">
+              {item.text}
+            </p>
+          </article>
+        ))}
       </div>
     </section>
   );
