@@ -43,9 +43,9 @@ const WORDMARK_SIZE = `${(110 / WORDMARK.length).toFixed(1)}vw`;
 export default function LowerFooter() {
   return (
     <footer className="bg-black text-white poppins overflow-hidden">
-      <div className="px-[6vw] pt-16 3xl:pt-32 pb-8 3xl:pb-16 flex flex-col lg:flex-row gap-12 lg:gap-16 3xl:gap-32 justify-between">
+           <div className="px-[6vw] pt-16 3xl:pt-32 pb-8 3xl:pb-16 flex flex-col lg:flex-row gap-12 lg:gap-16 3xl:gap-32 justify-between">
         {/* Logo + address */}
-        <div className="flex flex-col gap-5 3xl:gap-10 max-lg:items-center max-lg:text-center">
+        <div className="flex flex-col gap-4 3xl:gap-8 max-lg:items-center max-lg:text-center">
           <Link href="/" className="w-fit">
             <Image
               placeholder="blur"
@@ -54,11 +54,11 @@ export default function LowerFooter() {
               alt="Onyx Renders"
               width={120}
               height={50}
-              className="w-20 3xl:w-40 h-auto"
+               className="w-10 3xl:w-20 h-auto"
             />
           </Link>
 
-          <address className="not-italic text-sm 3xl:text-2xl text-[#BCBCBC] leading-relaxed">
+          <address className="not-italic text-xs 3xl:text-base text-[#BCBCBC] leading-relaxed">
             <Link href={MAPS_URL} target="_blank" className="hover:text-white transition-colors block">
               5900 Balcones Drive, Suite 100
               <br />
@@ -67,55 +67,55 @@ export default function LowerFooter() {
 
             <Link
               href="mailto:info@onyxrenders.com"
-              className="flex items-center gap-2 mt-4 3xl:mt-8 hover:text-white transition-colors max-lg:justify-center"
+              className="flex items-center gap-2 mt-3 3xl:mt-6 hover:text-white transition-colors max-lg:justify-center"
             >
-              <Mail className="w-4 3xl:w-8 shrink-0" /> info@onyxrenders.com
+              <Mail className="w-3 3xl:w-5 shrink-0" /> info@onyxrenders.com
             </Link>
             <span className="flex items-center gap-2 mt-2 3xl:mt-4 max-lg:justify-center">
-              <Phone className="w-4 3xl:w-8 shrink-0" /> +1 512 325 5121
+              <Phone className="w-3 3xl:w-5 shrink-0" /> +1 512 325 5121
             </span>
           </address>
         </div>
 
         {/* Link columns */}
         <div className="flex flex-wrap gap-10 md:gap-16 3xl:gap-32 max-lg:justify-center max-lg:text-center">
-          <nav className="flex flex-col gap-3 3xl:gap-6">
-            <h2 className="text-sm 3xl:text-2xl font-medium">Studio</h2>
+          <nav className="flex flex-col gap-2 3xl:gap-4">
+            <h2 className="text-xs 3xl:text-base font-medium">Studio</h2>
             {studioLinks.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
-                className="text-sm 3xl:text-2xl text-[#BCBCBC] hover:text-white transition-colors"
+                className="text-xs 3xl:text-base text-[#BCBCBC] hover:text-white transition-colors"
               >
                 {link.label}
               </Link>
             ))}
           </nav>
 
-          <nav className="flex flex-col gap-3 3xl:gap-6">
-            <h2 className="text-sm 3xl:text-2xl font-medium">Legal</h2>
+          <nav className="flex flex-col gap-2 3xl:gap-4">
+            <h2 className="text-xs 3xl:text-base font-medium">Legal</h2>
             {legalLinks.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
-                className="text-sm 3xl:text-2xl text-[#BCBCBC] hover:text-white transition-colors"
+                className="text-xs 3xl:text-base text-[#BCBCBC] hover:text-white transition-colors"
               >
                 {link.label}
               </Link>
             ))}
           </nav>
 
-          <nav className="flex flex-col gap-3 3xl:gap-6">
-            <h2 className="text-sm 3xl:text-2xl font-medium">Social</h2>
+          <nav className="flex flex-col gap-2 3xl:gap-4">
+            <h2 className="text-xs 3xl:text-base font-medium">Social</h2>
             {socialLinks.map(({ label, href, Icon }) => (
               <Link
                 key={label}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 3xl:gap-4 text-sm 3xl:text-2xl text-[#BCBCBC] hover:text-white transition-colors max-lg:justify-center"
+                className="flex items-center gap-2 3xl:gap-3 text-xs 3xl:text-base text-[#BCBCBC] hover:text-white transition-colors max-lg:justify-center"
               >
-                <Icon className="w-4 3xl:w-8 shrink-0" />
+                <Icon className="w-3 3xl:w-5 shrink-0" />
                 {label}
               </Link>
             ))}

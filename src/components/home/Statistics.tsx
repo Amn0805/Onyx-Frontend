@@ -7,15 +7,25 @@ import { getLogos } from "@/lib/sanity";
 
 type Logo = { logo: string };
 
-const LOGOS_PER_ROW = 5;
+const ROW_COUNT = 3;
 
-/** Splits the logos into fixed-size rows; the last row may be shorter. */
-function chunk<T>(items: T[], size: number): T[][] {
+/**
+ * Distributes the logos across a fixed number of rows, spreading any remainder
+ * one per row. With 35 logos that gives 12 / 12 / 11 rather than 12 / 12 / 12
+ * and a stranded row of one, which would loop visibly.
+ */
+function distribute<T>(items: T[], rowCount: number): T[][] {
   const rows: T[][] = [];
-  for (let i = 0; i < items.length; i += size) {
-    rows.push(items.slice(i, i + size));
+  const base = Math.floor(items.length / rowCount);
+  const remainder = items.length % rowCount;
+
+  let cursor = 0;
+  for (let i = 0; i < rowCount; i++) {
+    const size = base + (i < remainder ? 1 : 0);
+    rows.push(items.slice(cursor, cursor + size));
+    cursor += size;
   }
-  return rows;
+  return rows.filter((row) => row.length > 0);
 }
 
 const stats = [
@@ -30,7 +40,7 @@ const CLIENT_COUNT = 156;
 
 const Statistics = async () => {
   const logos: Logo[] = await getLogos();
-  const rows = chunk(logos, LOGOS_PER_ROW);
+  const rows = distribute(logos, ROW_COUNT);
 
   return (
     <div className="py-10 xl:pt-[7%] xl:py-0 overflow-x-hidden">
@@ -42,31 +52,30 @@ const Statistics = async () => {
         </h2>
       </div>
 
-      {/* Logo marquee — five per row, alternating direction. Adding logos in
-          Sanity creates new rows automatically; nothing here changes. */}
-                    <div className="my-10 xl:my-20 3xl:my-[5vw] flex flex-col gap-8 3xl:gap-16">
+      {/* Three rows, alternating direction. Each row is tripled so the
+          -33.333% translate resets to an identical position. At ~12 cards per
+          row the strip is far wider than any viewport, so the clone stays
+          off-screen and no logo is ever visible twice at once. */}
+      <div className="my-10 xl:my-20 3xl:my-[5vw] flex flex-col gap-6 3xl:gap-12">
         {rows.map((row, rowIdx) => (
           <div key={rowIdx} className="overflow-x-hidden">
             <div
               style={{
-                animationDuration: "30s",
-                // Reuses the existing keyframe; every other row runs backwards
-                // so the rows don't read as one block sliding together.
+                animationDuration: "80s",
                 animationDirection: rowIdx % 2 === 1 ? "reverse" : "normal",
               }}
-              className={`flex w-fit items-center gap-10 3xl:gap-20 ${styles.slider}`}
+              className={`flex w-fit items-center gap-6 3xl:gap-12 ${styles.slider}`}
             >
-              {/* Duplicated so the -50% translate loops without a gap. */}
-              {[...row, ...row].map((item, idx) => (
+              {[...row, ...row, ...row].map((item, idx) => (
                 <div
                   key={idx}
-               className="h-[60px] md:h-[75px] 3xl:h-[140px] aspect-[3/1] relative flex items-center shrink-0"
+                  className="h-[90px] md:h-[110px] 3xl:h-[190px] aspect-square relative flex items-center shrink-0"
                 >
                   <Image
                     src={item.logo}
                     alt=""
-                    className="object-cover"
-                    sizes="(max-width: 768px) 40vw, 20vw"
+                    className="object-contain"
+                    sizes="(max-width: 768px) 30vw, 12vw"
                     priority={rowIdx === 0}
                     fill
                   />

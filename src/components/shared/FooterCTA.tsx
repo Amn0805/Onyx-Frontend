@@ -21,7 +21,7 @@ export default function FooterCTA() {
 
       {/* Keeps the heading readable over any crop of the photograph. */}
             {/* Keeps the heading readable over any crop of the photograph. */}
-      <div aria-hidden="true" className="absolute inset-0 bg-black/55" />
+      <div aria-hidden="true" className="absolute inset-0 bg-black/70" />
 
       {/* Fades the lower edge into LowerFooter's black background so the two
           sections read as one. */}

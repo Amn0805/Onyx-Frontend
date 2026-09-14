@@ -1,45 +1,50 @@
 "use client";
 import React, { useState } from "react";
-import { UpArrow } from "@/icons";
 
 function FAQ({ question, answer }: { question: string; answer: string }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div
-      className={`flex items-start justify-between w-full gap-4 pb-2 lg:p-4 cursor-pointer ${
-        isOpen ? "border-b" : ""
-      } border-gray-300`}
+      className="w-full border border-black/15 hover:border-[#114046]/40 transition-colors cursor-pointer"
       onClick={() => setIsOpen(!isOpen)}
     >
-      <div className="flex flex-col gap-5">
+      <div className="flex items-center justify-between gap-6 p-6 md:p-8 3xl:p-16">
         <h5
-          className={`transition-all duration-300 para ${
-            isOpen
-              ? "text-[#114046] lg:text-xl xl:text-2xl 3xl:text-4xl"
-              : "text-black"
+          className={`para transition-colors duration-300 ${
+            isOpen ? "text-[#114046]" : "text-black"
           }`}
         >
           {question}
         </h5>
-        <div
-          className={`transition-[max-height] duration-500 ease-in-out overflow-hidden ${
-            isOpen ? "max-h-40" : "max-h-0"
+
+        {/* Circular +, rotating to × when open. */}
+        <span
+          aria-hidden="true"
+          className={`shrink-0 flex items-center justify-center rounded-full bg-black/5 w-8 h-8 3xl:w-16 3xl:h-16 text-lg 3xl:text-3xl leading-none transition-transform duration-300 ${
+            isOpen ? "rotate-45 text-[#114046]" : "rotate-0"
           }`}
         >
-          <p className="para text-[#00000080] leading-tight lg:p-2">
+          +
+        </span>
+      </div>
+
+      {/* grid-rows animates from 0 to the content's true height. The previous
+          max-h-40 silently clipped any answer taller than 160px — several of
+          these run well past that. */}
+      <div
+        className={`grid transition-all duration-500 ease-in-out ${
+          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <p className="text-small text-[#00000080] px-6 md:px-8 3xl:px-16 pb-6 md:pb-8 3xl:pb-16 leading-relaxed">
             {answer}
           </p>
         </div>
       </div>
-      <span
-        className={`transform transition-transform duration-300 mt-5 ${
-          isOpen ? "rotate-180" : "rotate-0"
-        }`}
-      >
-        <UpArrow />
-      </span>
     </div>
   );
 }
+
 export default FAQ;

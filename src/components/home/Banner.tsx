@@ -1,6 +1,5 @@
 "use client"
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Banner() {
@@ -14,6 +13,14 @@ export default function Banner() {
         playsInline
         className="absolute inset-0 w-full h-full object-cover bg-gray-200"
       />
+
+      {/* Darkens the footage so the headline holds against any frame. Weighted
+          toward the bottom, where the text and button sit. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/70"
+      />
+
       <div className="relative h-full flex flex-col items-start justify-end gap-5 bottom-5 3xl:bottom-10 3xl:mb-32 3xl:gap-6 left-2 3xl:ml-32">
         <h1 className="font-medium 3xl:font-semibold max-md:text-xl max-md:font-semibold text-4xl 3xl:text-8xl text-white w-[80%] leading-normal 3xl:leading-[125px] max-lg:leading-snug">
           Delivering Photorealistic 3D Renderings That Surpass Traditional Representations With Unmatched Detail and Precision.
