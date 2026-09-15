@@ -30,7 +30,7 @@ export default async function ClientReviews() {
   return (
     <section className="p-5 md:p-10 3xl:p-24 flex flex-col gap-6 3xl:gap-20 overflow-x-hidden">
       <h2 className="heading text-center">
-        See What Our Clients Have to Say For Us
+        Words from Our Esteemed Partners
       </h2>
 
       <div className="flex items-center gap-2 rounded-[0.78vw] poppins cursor-pointer border border-black hover:border-[#114046] hover:text-white hover:bg-[#114046] w-fit px-4 py-2 3xl:px-6 3xl:py-4 mx-auto transition-colors">

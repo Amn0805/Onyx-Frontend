@@ -56,7 +56,7 @@ const Statistics = async () => {
           -33.333% translate resets to an identical position. At ~12 cards per
           row the strip is far wider than any viewport, so the clone stays
           off-screen and no logo is ever visible twice at once. */}
-      <div className="my-10 xl:my-20 3xl:my-[5vw] flex flex-col gap-6 3xl:gap-12">
+      <div className="my-10 xl:my-20 3xl:my-[5vw] flex flex-col gap-3 3xl:gap-12">
         {rows.map((row, rowIdx) => (
           <div key={rowIdx} className="overflow-x-hidden">
             <div
