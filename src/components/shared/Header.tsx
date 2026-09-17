@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import MobileMenu from "./nav/MobileMenu";
 import ServicesMegaMenu from "./nav/ServicesMegaMenu";
+import CardsMenu from "./nav/CardsMenu";
 import { navItems } from "./nav/navigation";
 
 /** Same threshold ScrollToTop already uses. */
@@ -13,7 +14,8 @@ const SCROLL_THRESHOLD = 30;
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
+  // Label of the open menu, or null. One value, so opening one closes another.
+  const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
@@ -26,52 +28,70 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close the mega menu when a navigation completes.
   useEffect(() => {
-    setServicesOpen(false);
+    setOpenMenu(null);
   }, [pathname]);
 
-  // Solid while scrolled or while the menu is open, so links stay readable
-  // against the white panel.
-  const solid = scrolled || servicesOpen;
+  const solid = scrolled || openMenu !== null;
+  const close = () => setOpenMenu(null);
 
   return (
     <header
-      onMouseLeave={() => setServicesOpen(false)}
-      className={`fixed top-0 left-0 w-full z-40 text-small 3xl:text-4xl 4xl:text-5xl transition-colors duration-300 ${solid
-        ? "bg-[#F1F3F4] text-black shadow-sm"
-        : `bg-transparent ${isHomePage ? "text-white" : "text-black"}`
-        }`}
+      onMouseLeave={close}
+      className={`fixed top-0 left-0 w-full z-40 text-small transition-colors duration-300 ${
+        solid
+          ? "bg-[#F1F3F4] text-black shadow-sm"
+          : `bg-transparent ${isHomePage ? "text-white" : "text-black"}`
+      }`}
     >
-      <div className="flex justify-between items-center h-12 lg:h-16 3xl:h-28 4xl:h-40 px-4 md:px-8 3xl:px-16 4xl:px-24">
-        {/* Logo */}
-        <Link href="/" className="relative z-10">
+          <div className="flex justify-between items-center h-12 lg:h-16 3xl:h-28 4xl:h-40 px-4 md:px-8 3xl:px-16 4xl:px-24">
+        {/* Logo + wordmark */}
+        <Link href="/" className="relative z-10 flex items-center gap-3 3xl:gap-6">
           <Image
             placeholder="blur"
             blurDataURL={blurDataURL}
-            src="/logo/logo-without-text-theme.svg"
-            alt="logo"
+            src={solid || !isHomePage ? "/logo/logo-without-text-theme.svg" : "/logo/logo-without-text-white.svg"}
+            alt="Onyx Renders"
             width={40}
             height={40}
-            className="w-8 h-8 lg:w-11 lg:h-11 3xl:w-20 3xl:h-20 4xl:w-32 4xl:h-32"
+            className="w-8 h-8 lg:w-11 lg:h-11 3xl:w-20 3xl:h-20"
             unoptimized
           />
+          <span className="hidden sm:block text-small tracking-[0.15em] uppercase">
+            Onyx Renders
+          </span>
         </Link>
 
         {/* Desktop navigation */}
-        <nav className="hidden lg:flex items-stretch gap-6 lg:gap-10 3xl:gap-20 4xl:gap-28 h-full">
-          {navItems.map((item) =>
-            item.megaMenu ? (
+        <nav className="hidden lg:flex items-stretch gap-6 xl:gap-8 3xl:gap-16 h-full">
+          {navItems.map((item) => {
+            if (!item.menu) {
+              return (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className="flex items-center hover:text-[#114046] transition-colors"
+                >
+                  {item.label}
+                </Link>
+              );
+            }
+
+            const isMenuOpen = openMenu === item.label;
+
+            return (
               <div
                 key={item.label}
-                onMouseEnter={() => setServicesOpen(true)}
+                onMouseEnter={() => setOpenMenu(item.label)}
                 className="flex items-center h-full"
               >
                 <button
                   type="button"
-                  aria-expanded={servicesOpen}
-                  onClick={() => setServicesOpen((prev) => !prev)}
-                  className="inline-flex items-center gap-1 hover:text-[#114046]"
+                  aria-expanded={isMenuOpen}
+                  onClick={() => setOpenMenu(isMenuOpen ? null : item.label)}
+                  className={`inline-flex items-center gap-1 transition-colors hover:text-[#114046] ${
+                    isMenuOpen ? "text-[#114046] underline underline-offset-8" : ""
+                  }`}
                 >
                   {item.label}
                   <svg
@@ -84,24 +104,32 @@ export default function Header() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     aria-hidden="true"
-                    className={`transition-transform duration-200 3xl:w-6 3xl:h-6 4xl:w-9 4xl:h-9 ${servicesOpen ? "rotate-180" : ""
-                      }`}
+                    className={`transition-transform duration-200 3xl:w-5 3xl:h-5 ${
+                      isMenuOpen ? "rotate-180" : ""
+                    }`}
                   >
                     <path d="M2.5 4.5L6 8L9.5 4.5" />
                   </svg>
                 </button>
               </div>
-            ) : (
-              <Link
-                key={item.label}
-                href={item.href ?? "/"}
-                className="flex items-center hover:text-[#114046]"
-              >
-                {item.label}
-              </Link>
-            )
-          )}
+            );
+          })}
         </nav>
+
+        {/* Sign in + CTA */}
+        <div className="hidden lg:flex items-center gap-6 3xl:gap-12">
+          <Link
+            href="/dashboard/login"
+            className="hover:text-[#114046] transition-colors"
+          >
+            Sign in
+          </Link>
+          <Link href="/studio/#scheduleCall">
+            <button className="bg-[#114046] text-white px-5 py-3 3xl:px-10 3xl:py-6 hover:bg-[#0e3035] transition-colors">
+              Get a free quote
+            </button>
+          </Link>
+        </div>
 
         {/* Mobile toggle */}
         <button
@@ -109,14 +137,21 @@ export default function Header() {
           onClick={() => setIsOpen(true)}
           aria-label="Open menu"
         >
-          =
+          ☰
         </button>
       </div>
 
-      {/* Desktop mega menu — kept inside the header so hover is continuous */}
-      {servicesOpen && (
+      {/* Dropdowns — inside the header so hover stays continuous */}
+      {openMenu && (
         <div className="hidden lg:block">
-          <ServicesMegaMenu onNavigate={() => setServicesOpen(false)} />
+          {navItems.map((item) => {
+            if (openMenu !== item.label || !item.menu) return null;
+            return item.menu === "services" ? (
+              <ServicesMegaMenu key={item.label} onNavigate={close} />
+            ) : (
+              <CardsMenu key={item.label} cards={item.cards} onNavigate={close} />
+            );
+          })}
         </div>
       )}
 
