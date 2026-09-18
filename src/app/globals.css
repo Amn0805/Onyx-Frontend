@@ -14,8 +14,11 @@ body {
   background-color: #bac3c833;
 }
 
+/* Poppins retired — every `poppins` class now resolves to Century Gothic.
+   The class usages are left in place rather than removed across 25 files;
+   they can be cleaned up gradually. */
 .poppins {
-  font-family: var(--font-poppins);
+  font-family: var(--font-century-gothic);
 }
 
 .text-grad {
@@ -46,13 +49,17 @@ body {
 }
 
 .para {
-  @apply lg:text-lg xl:text-xl 3xl:text-3xl poppins font-light;
+  @apply lg:text-lg xl:text-xl 3xl:text-3xl font-light;
 }
 
 .text-small {
-  @apply text-xs lg:text-base xl:text-lg 3xl:text-xl poppins font-light;
+  @apply text-xs lg:text-base xl:text-lg 3xl:text-xl font-light;
 }
 
 .text-x-small {
-  @apply text-xs xl:text-sm 3xl:text-base poppins font-light;
+  @apply text-xs xl:text-sm 3xl:text-base font-light;
+}
+
+.text-small-bold {
+  @apply text-xs lg:text-base xl:text-lg 3xl:text-xl font-bold;
 }

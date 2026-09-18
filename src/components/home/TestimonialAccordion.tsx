@@ -13,7 +13,7 @@ export interface TestimonialCard {
   logoUrl: string;
 }
 
-const VISIBLE = 5;
+const VISIBLE = 6;
 
 /** Splits reviews into pages of five; the last page may be shorter. */
 function paginate<T>(items: T[], size: number): T[][] {

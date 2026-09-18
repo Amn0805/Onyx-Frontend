@@ -7,3 +7,4 @@ export { default as Input } from "./form/Input";
 export { default as Services } from "./Services";
 export { default as Map } from "./Map";
 export { default as ScheduleCall } from "./ScheduleCall";
+export { default as ProcessSteps } from "./ProcessSteps";

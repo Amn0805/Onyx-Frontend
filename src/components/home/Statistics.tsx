@@ -43,7 +43,7 @@ const Statistics = async () => {
   const rows = distribute(logos, ROW_COUNT);
 
   return (
-    <div className="py-10 xl:pt-[7%] xl:py-0 overflow-x-hidden">
+    <div className="py-10 xl:pt-[8%] xl:py-0 overflow-x-hidden">
       <div className="w-11/12 mx-auto">
         <h2 className="heading text-center">
           A Studio Built on Excellence - Trusted by{" "}

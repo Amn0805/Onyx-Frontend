@@ -4,30 +4,42 @@ import React from "react";
 import OurWorkFlow from "@/components/home/OurWorkFlow";
 import {
   Banner,
-  WorkTypes,
+  SplitReveal,
+  WhoWeHelp,
   OurVision,
+  WhyItMatters,
+  ServicesOverview,
+  CaseStudies,
+  WhyUs,
   FAQs,
   ClientReviews,
   Statistics,
   CallToAction,
+  TestimonialVideo,
 } from "@/components/home";
 import { Footer, FooterCTA } from "@/components/shared";
-import { FeedbackVideo } from "@/components/shared/Video";
+import { fetchFeedbackVideo } from "@/lib/sanity";
 import HomeSEO from "@/components/seo/HomeSEO";
 
-export default function page() {
+export default async function page() {
+  const videoLink = await fetchFeedbackVideo();
+
   return (
     <>
       <HomeSEO />
       <Banner />
-      <WorkTypes />
+      <SplitReveal />
+      <WhoWeHelp />
       <OurVision />
       <Statistics />
-      <ClientReviews />
+      <WhyItMatters />
+      <ServicesOverview />
+      <CaseStudies />
+      <WhyUs />
       <OurWorkFlow />
-      <CallToAction />
-      <FAQs />
-      <FeedbackVideo />
+      <ClientReviews />
+      <TestimonialVideo embedUrl={videoLink?.[0]?.videoUrl} />
+         <FAQs />
       <FooterCTA />
     </>
   );
