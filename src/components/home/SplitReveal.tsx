@@ -9,8 +9,8 @@ import Link from "next/link";
 import { useCallback, useRef, useState } from "react";
 import { blurDataURL } from "@/constants";
 
-const BEFORE_IMAGE = "/home/interior-visualization.svg";
-const AFTER_IMAGE = "/home/exterior-visualization.svg";
+const BEFORE_IMAGE = "/home/before.webp";
+const AFTER_IMAGE = "/home/after.webp";
 
 const points = ["Quote within 24 hours", "Revisions included", "NDA on request"];
 
@@ -44,9 +44,9 @@ export default function SplitReveal() {
       <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-24 xl:gap-32 3xl:gap-48">
         {/* Copy */}
         <div className="w-full lg:w-[45%]">
-          <h2 className="heading flex flex-col gap-3 md:gap-5 3xl:gap-10 [word-spacing:0.25em] tracking-wide">
+            <h2 className="heading flex flex-col gap-3 md:gap-5 3xl:gap-10 [word-spacing:0.25em] tracking-wide">
             <span>See it Before it&apos;s</span>
-            <span>Built.</span>
+            <span className="heading-bold text-[#4a5f66]">Built.</span>
           </h2>
 
           <p className="text-small text-[#7D7D7D] mt-10 md:mt-14 3xl:mt-24 max-w-md 3xl:max-w-2xl">

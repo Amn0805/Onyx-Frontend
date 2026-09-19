@@ -32,7 +32,7 @@ export default function ProcessSteps({
 }) {
   return (
         <section className="px-6 md:px-16 lg:px-20 3xl:px-32 pt-4 md:pt-8 pb-16 md:pb-24 3xl:pb-40">
-      {(heading || intro) && (
+        {(heading || intro) && (
         <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-24 xl:gap-32 3xl:gap-48 mb-12 md:mb-20 3xl:mb-32">
           {heading &&             <h2
               className="sub-heading lg:w-1/2 tracking-wide"

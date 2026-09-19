@@ -1,53 +1,114 @@
 // src/components/home/WhyItMatters.tsx
 //
-// Statement plus three problem columns. Server component — no state, no images.
+// Statement plus three problem columns, each with one image.
+// Server component — no state.
+//
+// Every spacing, type and rule value carries a 3xl variant at roughly double
+// its desktop value, so 4K shows the same proportions at twice the size.
+
+import Image from "next/image";
+import { blurDataURL } from "@/constants";
 
 interface Problem {
+  number: string;
   title: string;
   body: string;
+  image: string;
+  caption: string;
 }
 
 const problems: Problem[] = [
   {
+    number: "01",
     title: "Buyers delay",
     body: "Off-plan units sit unsold when investors can't picture the finished project.",
+    image: "/home/exterior-visualization.svg",
+    caption: "Images create confidence",
   },
   {
+    number: "02",
     title: "Pitches fall flat",
     body: "Strong designs lose approvals and competitions to ones that are presented better.",
+    image: "/home/M2.svg",
+    caption: "The same design presented better",
   },
   {
+    number: "03",
     title: "Changes get expensive",
     body: "Clients spot what they dislike after it's built, when fixing it is costly.",
+    image: "/home/interior-visualization.svg",
+    caption: "Changes cost more",
   },
 ];
 
 export default function WhyItMatters() {
   return (
-       <section className="px-6 md:px-16 lg:px-20 3xl:px-32 pt-4 md:pt-8 pb-16 md:pb-24 3xl:pb-40">
-      {/* Heading left, supporting line right and lower, as in the reference. */}
-       <div className="flex flex-col lg:flex-row lg:items-end gap-8 lg:gap-12 xl:gap-16 3xl:gap-24">
-    <h2 className="heading lg:w-[55%] flex flex-col gap-2 md:gap-4 3xl:gap-8 [word-spacing:0.15em] whitespace-nowrap">
-          <span>Drawings don&apos;t sell. Images</span>
-          <span>do.</span>
+    <section className="px-6 md:px-16 lg:px-20 3xl:px-32 pt-4 md:pt-8 pb-16 md:pb-24 3xl:pb-40">
+      {/* A vertical rule separates the statement from the supporting line. */}
+      <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-12 xl:gap-16 3xl:gap-24">
+               <h2 className="heading lg:w-[55%] flex flex-col gap-2 md:gap-4 3xl:gap-8 [word-spacing:0.15em]">
+          <span>
+            Drawings don&apos;t sell.{" "}
+            <span className="heading-bold text-[#4a5f66]">Images</span>
+          </span>
+          <span className="heading-bold text-[#4a5f66]">do.</span>
         </h2>
-        
-               <p className="text-small text-[#7D7D7D] lg:w-[48%]">
-          Most people can&apos;t read a floor plan. When they can&apos;t picture the 
-          <br />
-         result, they hesitate, and hesitation costs you.
-        </p>
+
+        <div className="lg:w-[45%] lg:border-l lg:border-black/15 lg:pl-12 xl:pl-16 3xl:pl-24">
+          <p className="text-small text-[#7D7D7D]">
+            Most people can&apos;t read a floor plan. When they can&apos;t
+            picture the result, they hesitate, and hesitation costs you.
+          </p>
+        </div>
       </div>
 
-      <hr className="border-[#114046] mt-12 md:mt-16 3xl:mt-28" />
+      <hr className="border-black/15 mt-12 md:mt-16 3xl:mt-28" />
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 3xl:gap-24 mt-12 md:mt-16 3xl:mt-28">
-        {problems.map((problem) => (
-          <div key={problem.title}>
-            <h3 className="text-small-bold">{problem.title}</h3>
-            <p className="text-small text-[#7D7D7D] mt-4 3xl:mt-8">
-              {problem.body}
-            </p>
+      {/* divide-x puts a rule between columns without a wrapper per column. */}
+      <div className="grid grid-cols-1 md:grid-cols-3 md:divide-x divide-black/15 mt-12 md:mt-16 3xl:mt-28">
+        {problems.map((problem, i) => (
+          <div
+            key={problem.title}
+            className={`flex flex-col pb-10 md:pb-0 ${
+              i === 0
+                ? "md:pr-8 3xl:md:pr-16"
+                : i === problems.length - 1
+                ? "md:pl-8 3xl:md:pl-16"
+                : "md:px-8 3xl:md:px-16"
+            }`}
+          >
+            <div className="flex items-start gap-5 3xl:gap-10">
+              <span
+                aria-hidden="true"
+                className="sub-heading text-black/20 leading-none shrink-0"
+              >
+                {problem.number}
+              </span>
+
+              <div className="border-l border-black/15 pl-5 3xl:pl-10">
+                <h3 className="text-small-bold">{problem.title}</h3>
+                <p className="text-small text-[#7D7D7D] mt-2 3xl:mt-4">
+                  {problem.body}
+                </p>
+              </div>
+            </div>
+
+            <figure className="mt-auto pt-8 3xl:pt-16">
+              <div className="relative w-full aspect-video overflow-hidden bg-[#bac3c833]">
+                <Image
+                  src={problem.image}
+                  alt=""
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover"
+                  placeholder="blur"
+                  blurDataURL={blurDataURL}
+                />
+              </div>
+              <figcaption className="text-x-small uppercase tracking-[0.15em] text-[#7D7D7D] text-center mt-3 3xl:mt-6">
+                {problem.caption}
+              </figcaption>
+            </figure>
           </div>
         ))}
       </div>

@@ -10,4 +10,4 @@ export { default as OurVision } from "./OurVision";
 export { default as ServicesOverview } from "./ServicesOverview";
 export { default as CaseStudies } from "./CaseStudies";
 export { default as WhyUs } from "./WhyUs";
-export { default as TestimonialVideo } from "./TestimonialVideo";
+

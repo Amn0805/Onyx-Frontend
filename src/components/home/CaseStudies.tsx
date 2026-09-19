@@ -67,9 +67,9 @@ export default function CaseStudies() {
   return (
     <section className="px-6 md:px-16 lg:px-20 3xl:px-32 py-16 md:py-24 3xl:py-40">
       <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-16 3xl:gap-32">
-        <h2 className="sub-heading lg:w-1/2 flex flex-col gap-2 md:gap-4">
+          <h2 className="sub-heading lg:w-1/2 flex flex-col gap-2 md:gap-4 [word-spacing:0.25em] tracking-wide">
           <span>Work that moved projects</span>
-          <span>forward</span>
+          <span className="heading-bold text-[#4a5f66]">forward</span>
         </h2>
 
         <p className="text-small text-[#7D7D7D] lg:w-1/2 max-w-md 3xl:max-w-2xl">

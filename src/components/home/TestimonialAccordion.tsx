@@ -13,9 +13,9 @@ export interface TestimonialCard {
   logoUrl: string;
 }
 
-const VISIBLE = 6;
+const VISIBLE = 5;
 
-/** Splits reviews into pages of five; the last page may be shorter. */
+/** Splits reviews into pages; the last page may be shorter. */
 function paginate<T>(items: T[], size: number): T[][] {
   const pages: T[][] = [];
   for (let i = 0; i < items.length; i += size) {
@@ -55,7 +55,7 @@ export default function TestimonialAccordion({
               <div
                 key={pageIdx}
                 aria-hidden={pageIdx !== page}
-               className="w-full shrink-0 flex flex-col lg:flex-row gap-2 3xl:gap-4 h-[600px] lg:h-[60vh] 3xl:h-[55vh]"
+                className="w-full shrink-0 flex flex-col lg:flex-row gap-2 3xl:gap-4 h-[700px] lg:h-[75vh] 3xl:h-[1000px]"
               >
                 {pageItems.map((item, i) => {
                   const isActive = i === active;
@@ -71,7 +71,7 @@ export default function TestimonialAccordion({
                       aria-label={`Read ${item.name}'s review`}
                       aria-expanded={isActive}
                       className={`relative overflow-hidden text-left transition-all duration-700 ease-in-out ${
-                      isActive ? "grow-[3]" : "grow hover:grow-[1.4]"
+                        isActive ? "grow-[3]" : "grow hover:grow-[1.4]"
                       }`}
                       style={{ flexBasis: 0 }}
                     >
@@ -82,7 +82,7 @@ export default function TestimonialAccordion({
                         sizes="(max-width: 1024px) 100vw, 50vw"
                         placeholder="blur"
                         blurDataURL={blurDataURL}
-                         className={`object-cover object-[50%15%] transition-all duration-700 ${
+                        className={`object-cover object-[50%_15%] transition-all duration-700 ${
                           isActive ? "grayscale-0" : "grayscale"
                         }`}
                       />
@@ -97,38 +97,32 @@ export default function TestimonialAccordion({
                         }`}
                       />
 
-                      {/* Pinned to the panel corner, outside the padded column
-                          below. w-full + h-auto lets the logo fill the box width
-                          and derive its own height — object-contain would fit it
-                          inside instead, which caps the size and lets it drift
-                          vertically. Adjust the w-* values to resize. */}
-                                                                                  <div
-                        className={`absolute top-4 right-4 3xl:top-10 3xl:right-10 w-40 md:w-56 3xl:w-[32rem] aspect-[3/1] transition-opacity duration-500 ${
-                          isActive ? "opacity-100 delay-200" : "opacity-0"
-                        }`}
-                      >
-                        <Image
-                          src={item.logoUrl}
-                          alt=""
-                          fill
-                          sizes="512px"
-                          className="object-contain object-right-top brightness-0 invert"
-                        />
-                      </div>
-
                       <div
                         className={`absolute inset-0 flex flex-col justify-between p-5 3xl:p-12 text-white transition-opacity duration-500 ${
                           isActive ? "opacity-100 delay-200" : "opacity-0"
                         }`}
                       >
-                        {/* Right padding keeps the name clear of the logo. */}
-                        <div className="pr-44 md:pr-60 3xl:pr-[34rem]">
-                          <h3 className="text-x-small uppercase tracking-wider">
-                            {item.name}
-                          </h3>
-                          <p className="text-x-small text-white/60 mt-1 3xl:mt-3">
-                            {item.designation}
-                          </p>
+                        {/* Name and logo share one row, so their top edges
+                            align rather than being positioned separately. */}
+                        <div className="flex items-start justify-between gap-6 3xl:gap-12">
+                          <div>
+                            <h3 className="text-x-small uppercase tracking-wider">
+                              {item.name}
+                            </h3>
+                            <p className="text-x-small text-white/60 mt-1 3xl:mt-3">
+                              {item.designation}
+                            </p>
+                          </div>
+
+                          <div className="relative w-32 md:w-44 3xl:w-[26rem] aspect-[3/1] shrink-0">
+                            <Image
+                              src={item.logoUrl}
+                              alt=""
+                              fill
+                              sizes="416px"
+                              className="object-contain object-right-top brightness-0 invert"
+                            />
+                          </div>
                         </div>
 
                         <div>

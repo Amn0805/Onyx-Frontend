@@ -14,16 +14,12 @@ import {
   FAQs,
   ClientReviews,
   Statistics,
-  CallToAction,
-  TestimonialVideo,
 } from "@/components/home";
-import { Footer, FooterCTA } from "@/components/shared";
-import { fetchFeedbackVideo } from "@/lib/sanity";
+import { FooterCTA } from "@/components/shared";
+import { FeedbackVideo } from "@/components/shared/Video";
 import HomeSEO from "@/components/seo/HomeSEO";
 
-export default async function page() {
-  const videoLink = await fetchFeedbackVideo();
-
+export default function page() {
   return (
     <>
       <HomeSEO />
@@ -38,8 +34,8 @@ export default async function page() {
       <WhyUs />
       <OurWorkFlow />
       <ClientReviews />
-      <TestimonialVideo embedUrl={videoLink?.[0]?.videoUrl} />
-         <FAQs />
+      <FeedbackVideo />
+      <FAQs />
       <FooterCTA />
     </>
   );

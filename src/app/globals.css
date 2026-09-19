@@ -44,6 +44,13 @@ body {
   @apply text-3xl md:text-5xl 3xl:text-7xl;
 }
 
+.heading-bold {
+  @apply text-3xl md:text-5xl 3xl:text-7xl font-bold;
+}
+
+.sub-heading-bold {
+  @apply text-2xl md:text-4xl 3xl:text-6xl font-bold;
+}
 .sub-heading {
   @apply text-2xl md:text-4xl 3xl:text-6xl;
 }

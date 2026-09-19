@@ -21,12 +21,15 @@ export default function ServicesOverview() {
   return (
     <section className="bg-[#114046] text-white px-6 md:px-16 lg:px-20 3xl:px-32 py-16 md:py-24 3xl:py-40">
       <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-16 3xl:gap-32">
-        <h2 className="sub-heading lg:w-1/2 flex flex-col gap-6 md:gap-4 tracking-wide">
-          <span>Every visual you need, from</span>
-          <span>one studio</span>
+               <h2 className="heading lg:w-[55%] flex flex-col gap-2 md:gap-4 3xl:gap-8 [word-spacing:0.15em]">
+          <span>
+            Every visual you need,{" "}
+            <span className="heading-bold text-white">from</span>
+          </span>
+          <span className="heading-bold text-white">one studio</span>
         </h2>
 
-        <p className="text-small text-white/70 lg:w-1/2 max-w-md 3xl:max-w-2xl pt-8 tracking-wide">
+        <p className="text-small text-white/70 lg:w-1/2 max-w-md 3xl:max-w-2xl pt-4 tracking-wide">
           {services.length} services in four groups. Pick one, or combine them
           into a full launch package.
         </p>
