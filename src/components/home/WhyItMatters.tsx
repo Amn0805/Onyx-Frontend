@@ -54,8 +54,8 @@ export default function WhyItMatters() {
           <span className="heading-bold text-[#4a5f66]">do.</span>
         </h2>
 
-        <div className="lg:w-[45%] lg:border-l lg:border-black/15 lg:pl-12 xl:pl-16 3xl:pl-24">
-          <p className="text-small text-[#7D7D7D]">
+        <div className="lg:w-[45%] lg:border-l lg:border-black/15 lg:pl-12 xl:pl-16 3xl:pl-30">
+          <p className="text-lg text-[#7D7D7D]">
             Most people can&apos;t read a floor plan. When they can&apos;t
             picture the result, they hesitate, and hesitation costs you.
           </p>
