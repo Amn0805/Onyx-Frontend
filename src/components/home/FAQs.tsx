@@ -7,9 +7,17 @@ function FAQs() {
       {/* Heading left, questions right. items-stretch lets both columns share
           a height so the heading can centre itself against the list. */}
       <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 3xl:gap-40 items-stretch">
-        <div className="w-full lg:w-2/5 flex flex-col justify-center">
-          <h2 className="heading max-lg:text-center">Have Any Doubt?</h2>
-        </div>
+        <div className="w-full lg:w-3/5 flex flex-col justify-center">
+  <h2 className="heading max-lg:text-center">
+    <span>
+      Everything you need{" "}
+    </span>
+    to
+    <span className="ml-4 heading-bold text-[#4a5f66]">
+      know.
+    </span>
+  </h2>
+</div>
 
         <div className="w-full lg:w-3/5 flex flex-col gap-5 3xl:gap-10">
           {FAQData.map((item, index) => (
