@@ -13,11 +13,7 @@ import Link from "next/link";
 import { blurDataURL } from "@/constants";
 import {
   ArrowRight,
-  Building2,
-  Compass,
   GraduationCap,
-  Home,
-  Sofa,
 } from "lucide-react";
 
 interface Audience {
@@ -27,7 +23,6 @@ interface Audience {
   href: string;
   image: string;
   /** Badge, top-right of the image. */
-  Badge: typeof Building2;
   tint: string;
 }
 
@@ -38,7 +33,6 @@ const audiences: Audience[] = [
     outcome: "Visuals that sell units",
     href: "/who-we-help/developers",
     image: "/home/who we help/developers.webp",
-    Badge: Building2,
     tint: "#114046",
   },
   {
@@ -47,7 +41,6 @@ const audiences: Audience[] = [
     outcome: "Images that win projects",
     href: "/who-we-help/architects",
     image: "/home/who we help/architects.webp",
-    Badge: Compass,
     tint: "#2f5d3a",
   },
   {
@@ -56,7 +49,6 @@ const audiences: Audience[] = [
     outcome: "Faster client approvals",
     href: "/who-we-help/interior-designers",
     image: "/home/who we help/interior.webp",
-    Badge: Sofa,
     tint: "#7a5230",
   },
   {
@@ -65,7 +57,6 @@ const audiences: Audience[] = [
     outcome: "Decide with confidence",
     href: "/who-we-help/homeowners",
     image: "/home/who we help/homeowner.webp",
-    Badge: Home,
     tint: "#2b4a7a",
   },
 ];
@@ -74,9 +65,9 @@ export default function WhoWeHelp() {
   return (
     <section className="px-6 md:px-16 lg:px-20 3xl:px-40 pt-0 pb-16 md:pb-24 3xl:pb-48">
       <div className="flex flex-wrap items-baseline justify-between gap-4 3xl:gap-8">
-        <h2 className="sub-heading">
-          What are you <span className="heading-bold text-[#4a5f66]">working</span>{" "}
-          <span >on?</span>
+               <h2 className="text-3xl md:text-5xl 3xl:text-[3.4vw] tracking-wide [word-spacing:0.025em]">
+          What are you{" "}
+          <span className="font-bold text-[#4a5f66]">working</span> on?
         </h2>
 
         <Link
@@ -89,7 +80,7 @@ export default function WhoWeHelp() {
       </div>
 
       <div className="mt-8 md:mt-12 3xl:mt-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 3xl:gap-8">
-        {audiences.map(({ Badge, ...audience }) => (
+        {audiences.map(({  ...audience }) => (
           <Link
             key={audience.href}
             href={audience.href}
@@ -105,13 +96,6 @@ export default function WhoWeHelp() {
                 placeholder="blur"
                 blurDataURL={blurDataURL}
               />
-
-              <span
-                className="absolute top-3 right-3 3xl:top-6 3xl:right-6 w-10 h-10 3xl:w-20 3xl:h-20 rounded-full flex items-center justify-center"
-                style={{ backgroundColor: audience.tint }}
-              >
-                <Badge className="w-5 h-5 3xl:w-10 3xl:h-10 text-white" />
-              </span>
             </div>
 
                 <div className="p-5 3xl:p-10 flex flex-col flex-1">

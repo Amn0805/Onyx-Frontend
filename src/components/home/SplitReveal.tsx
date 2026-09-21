@@ -131,7 +131,7 @@ export default function SplitReveal() {
             Designed. Modeled. Rendered. Sold.
           </p>
 
-                   <p className="text-xs lg:text-base xl:text-lg 3xl:text-[1.1vw] 3xl:leading-[1.75] font-light text-[#4A4A4A] text-justify hyphens-auto mt-6 md:mt-8 3xl:mt-[2.2vw] max-w-md 3xl:max-w-[31vw]">
+           <p className="text-xs lg:text-base xl:text-lg 3xl:text-[1.1vw] 3xl:leading-[1.75] font-light text-[#4A4A4A] text-justify hyphens-auto mt-6 md:mt-8 3xl:mt-[2.2vw] max-w-md 3xl:max-w-[31vw]">
             Photorealistic renders, animations, and immersive experiences that
             win approvals, impress clients, and sell projects off-plan, backed
             by a design and BIM team that knows how buildings are made.

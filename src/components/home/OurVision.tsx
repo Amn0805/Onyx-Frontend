@@ -19,7 +19,7 @@ export default function OurVision() {
       />
 
       {/* Darkens the photograph so the statement stays readable over any crop. */}
-      <div aria-hidden="true" className="absolute inset-0 bg-black/50" />
+      <div aria-hidden="true" className="absolute inset-0 bg-black/40" />
 
       {/* Still centred, then shifted up and right from that position.
           The offsets only apply from lg — on smaller screens there isn't
