@@ -116,7 +116,7 @@ export default function SplitReveal() {
       <div className="flex flex-col lg:flex-row lg:items-center gap-12 lg:gap-24 xl:gap-32 3xl:gap-[6vw]">
         {/* Copy */}
         <div className="w-full lg:w-[45%]">
-          <h2 className="text-3xl md:text-5xl 3xl:text-[3.4vw] flex flex-col gap-3 md:gap-5 3xl:gap-[1vw] [word-spacing:0.25em] tracking-wide">
+          <h2 className="text-3xl md:text-5xl 3xl:text-[3.4vw] flex flex-col gap-3 md:gap-5 3xl:gap-[1vw] [word-spacing:0.025em] tracking-wide">
             <span>
               From first{" "}
               <span className="font-bold text-[#4a5f66]">Sketch</span> to
@@ -127,11 +127,11 @@ export default function SplitReveal() {
           </h2>
 
           {/* Tight to the heading, so it reads as part of the same statement. */}
-          <p className="text-xs xl:text-sm 3xl:text-[0.97vw] font-light text-[#4a5f66] tracking-[0.25em] uppercase mt-4 md:mt-5 3xl:mt-[1.4vw]">
+                   <p className="text-x-small text-[#4a5f66] tracking-[0.25em] uppercase mt-4 md:mt-5 3xl:mt-[1.4vw]">
             Designed. Modeled. Rendered. Sold.
           </p>
 
-          <p className="text-xs lg:text-base xl:text-lg 3xl:text-[1.25vw] font-light text-[#4A4A4A] text-justify hyphens-auto mt-6 md:mt-8 3xl:mt-[2.2vw] max-w-md 3xl:max-w-[31vw]">
+                   <p className="text-xs lg:text-base xl:text-lg 3xl:text-[1.1vw] 3xl:leading-[1.75] font-light text-[#4A4A4A] text-justify hyphens-auto mt-6 md:mt-8 3xl:mt-[2.2vw] max-w-md 3xl:max-w-[31vw]">
             Photorealistic renders, animations, and immersive experiences that
             win approvals, impress clients, and sell projects off-plan, backed
             by a design and BIM team that knows how buildings are made.
