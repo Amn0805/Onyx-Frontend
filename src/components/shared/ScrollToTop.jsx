@@ -20,7 +20,7 @@ export default function ScrollToTop() {
   };
 
   return (
-    <button
+   <button
   onClick={scrollToTop}
   className={`fixed
     bottom-2 right-2
@@ -28,7 +28,7 @@ export default function ScrollToTop() {
     3xl:bottom-10 3xl:right-10
     bg-[#114046] text-white
     p-3
-    3xl:p-4
+    3xl:p-5
     rounded-full
     shadow-lg
     transition-opacity duration-300
@@ -40,7 +40,7 @@ export default function ScrollToTop() {
     }
   `}
 >
-  <ArrowUp className="w-6 h-6 3xl:w-7 3xl:h-7" />
+  <ArrowUp className="w-6 h-6 3xl:w-8 3xl:h-8" />
 </button>
   );
 }
