@@ -57,9 +57,6 @@ export default function Header() {
             className="w-8 h-8 lg:w-11 lg:h-11 3xl:w-20 3xl:h-20"
             unoptimized
           />
-          <span className="hidden sm:block text-small tracking-[0.15em] uppercase">
-            Onyx Renders
-          </span>
         </Link>
 
         {/* Desktop navigation */}
