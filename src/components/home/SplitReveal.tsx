@@ -208,10 +208,10 @@ export default function SplitReveal() {
               />
             </div>
 
-            <span className="absolute bottom-4 left-4 3xl:bottom-[1.1vw] 3xl:left-[1.1vw] bg-black/70 text-white text-xs xl:text-sm 3xl:text-[0.97vw] font-light px-3 py-1 3xl:px-[0.85vw] 3xl:py-[0.3vw] rounded-full pointer-events-none">
+             <span className="absolute bottom-4 left-4 3xl:bottom-[1.1vw] 3xl:left-[1.1vw] bg-[#114046]/85 text-white text-xs xl:text-sm 3xl:text-[0.8vw] font-light px-3 py-1 3xl:px-[0.7vw] 3xl:py-[0.25vw] rounded-full pointer-events-none">
               Clay model
             </span>
-            <span className="absolute bottom-4 right-4 3xl:bottom-[1.1vw] 3xl:right-[1.1vw] bg-black/70 text-white text-xs xl:text-sm 3xl:text-[0.97vw] font-light px-3 py-1 3xl:px-[0.85vw] 3xl:py-[0.3vw] rounded-full pointer-events-none">
+            <span className="absolute bottom-4 right-4 3xl:bottom-[1.1vw] 3xl:right-[1.1vw] bg-[#114046]/85 text-white text-xs xl:text-sm 3xl:text-[0.8vw] font-light px-3 py-1 3xl:px-[0.7vw] 3xl:py-[0.25vw] rounded-full pointer-events-none">
               Final render
             </span>
 
