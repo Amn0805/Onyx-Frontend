@@ -125,7 +125,7 @@ export default function Header() {
             Sign in
           </Link>
           <Link href="/studio/#scheduleCall">
-             <button className="bg-[#114046] text-white px-5 py-3 3xl:px-7 3xl:py-4 rounded-full hover:bg-[#0e3035] transition-colors">
+        <button className="bg-[#114046] text-white rounded-full hover:bg-[#0e3035] transition-colors px-5 py-3 text-sm 3xl:px-8 3xl:py-4 3xl:text-lg">
               Get a free quote
             </button>
           </Link>
