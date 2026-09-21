@@ -11,10 +11,10 @@ import { serviceGroups, services } from "@/components/shared/nav/navigation";
 
 /** Temporary — one per group, in order. Replace with real artwork. */
 const groupImages: Record<string, string> = {
-  "Architectural renders": "/home/exterior-visualization.svg",
-  "Plans & modeling": "/home/M2.svg",
-  "Animation & tours": "/home/architecturalWalkthrough.webp",
-  "Product & furniture": "/home/interior-visualization.svg",
+  "Architecture & Design": "/home/M2.svg",
+  "Visualization & CGI": "/home/exterior-visualization.svg",
+  "3D Modeling & BIM": "/home/interior-visualization.svg",
+  "Immersive & Digital": "/home/architecturalWalkthrough.webp",
 };
 
 export default function ServicesOverview() {

@@ -62,50 +62,56 @@ export const navItems: NavItem[] = [
   },
   { label: "Contact", href: "/studio/#scheduleCall" },
 ];
-
 /** Grouped into the four columns of the Services mega menu. */
 export const serviceGroups: ServiceGroup[] = [
   {
-    title: "Architectural renders",
+    title: "Architecture & Design",
     services: [
-      { label: "Exterior 3D Renderings", href: "/services/exterior-3d-renderings", description: "Facades, landscaping and light studied together, so a building is judged the way it will actually be seen from the street.", image: "/services/exterior-3d-renderings.svg" },
-      { label: "Interior 3D Visualization", href: "/services/interior-3d-visualization", description: "Rooms built to the drawing and lit to the hour, with materials detailed enough to sell the space before it exists.", image: "/services/interior-3d-visualization.svg" },
-      { label: "Residential Rendering", href: "/services/residential-rendering", description: "Homes presented the way buyers picture living in them, from single dwellings to full schemes.", image: "/services/residential-rendering.svg" },
-      { label: "Real Estate Rendering", href: "/services/real-estate-rendering", description: "Marketing imagery built for listings and brochures, ready well before the first brick is laid.", image: "/services/real-estate-rendering.svg" },
-      { label: "Aerial View Rendering", href: "/services/aerial-view-rendering", description: "The whole development and its surroundings in one convincing view.", image: "/services/aerial-view-rendering.svg" },
-       { label: "Commercial 3D Visualization", href: "/services/commercial-3d-visualization", description: "Offices, retail and hospitality shown at the scale investors and tenants need to judge a space properly.", image: "/services/commercial-3d-visualization.svg" },
+      { label: "Architectural Design", href: "/services/architectural-design", description: "Building design from first sketch to a scheme ready for approval and construction.", image: "/services/architectural-design.svg" },
+      { label: "Interior Design", href: "/services/interior-design", description: "Layouts, materials and furnishings designed together, so the space works as well as it looks.", image: "/services/interior-design.svg" },
+      { label: "Renovation & Remodeling", href: "/services/renovation-remodeling", description: "Rework an existing space and see the result before any wall comes down.", image: "/services/renovation-remodeling.svg" },
+      { label: "Space Planning", href: "/services/space-planning", description: "Layouts tested for flow, function and furniture before anything is built.", image: "/services/space-planning.svg" },
+      { label: "Concept Design", href: "/services/concept-design", description: "Early design directions developed fast, so the right idea is chosen before detail begins.", image: "/services/concept-design.svg" },
+      { label: "Master Planning", href: "/services/master-planning", description: "Site-wide plans for phasing, circulation and landscape across a whole development.", image: "/services/master-planning.svg" },
     ],
   },
   {
-    title: "Plans & modeling",
+    title: "Visualization & CGI",
     services: [
-      { label: "Floor Plans", href: "/services/floor-plan", description: "Rendered in full 3D with textures, furniture and lighting to show scale, flow and function at a glance.", image: "/services/floor-plan.svg" },
-      { label: "Site Plan Rendering", href: "/services/site-plan-rendering", description: "Masterplans rendered with real materials and planting, so circulation and phasing read at a glance.", image: "/services/site-plan-rendering.svg" },
+      { label: "Exterior Visualization", href: "/services/exterior-3d-renderings", description: "Facades, landscaping and light studied together, so a building is judged the way it will actually be seen from the street.", image: "/services/exterior-3d-renderings.svg" },
+      { label: "Interior Visualization", href: "/services/interior-3d-visualization", description: "Rooms built to the drawing and lit to the hour, with materials detailed enough to sell the space before it exists.", image: "/services/interior-3d-visualization.svg" },
+      { label: "Aerial & Masterplan Visualization", href: "/services/aerial-view-rendering", description: "The whole development and its surroundings in one convincing view.", image: "/services/aerial-view-rendering.svg" },
+      { label: "Real Estate Visualization", href: "/services/real-estate-rendering", description: "Marketing imagery built for listings and brochures, ready well before the first brick is laid.", image: "/services/real-estate-rendering.svg" },
+      { label: "3D & Marketing Floor Plans", href: "/services/marketing-floor-plans", description: "Furnished, textured floor plans that show buyers how a home lives, not just how it measures.", image: "/services/marketing-floor-plans.svg" },
+      { label: "Product & Furniture Visualization", href: "/services/3d-product-visualization", description: "Studio-quality imagery of products and furniture, in room sets or on clean backgrounds, without a studio.", image: "/services/3d-product-visualization.svg" },
+    ],
+  },
+  {
+    title: "3D Modeling & BIM",
+    services: [
       { label: "Architectural 3D Modeling", href: "/services/architectural-3d-modeling", description: "Accurate models built from your drawings, clean enough to render from and reliable enough to measure against.", image: "/services/architectural-3d-modeling.svg" },
+      { label: "Product & Furniture 3D Modeling", href: "/services/product-furniture-modeling", description: "Production-ready models with correct proportions and materials, reusable across every scene and configurator.", image: "/services/product-furniture-modeling.svg" },
+      { label: "BIM Modeling", href: "/services/bim-modeling", description: "Coordinated building information models your whole project team can work from.", image: "/services/bim-modeling.svg" },
+      { label: "CAD Drafting", href: "/services/cad-drafting", description: "Precise 2D drawings produced to your standards and ready to issue.", image: "/services/cad-drafting.svg" },
+      { label: "Floor Plans & Elevations", href: "/services/floor-plan", description: "Measured plans and elevations drawn accurately enough to design and build from.", image: "/services/floor-plan.svg" },
+      { label: "Construction Documentation", href: "/services/construction-documentation", description: "Complete drawing sets detailed enough for contractors to price and build from.", image: "/services/construction-documentation.svg" },
+      { label: "Permit Drawing Sets", href: "/services/permit-drawings", description: "Drawings prepared for submission, so approvals move without avoidable delays.", image: "/services/permit-drawings.svg" },
     ],
   },
   {
-    title: "Animation & tours",
+    title: "Immersive & Digital",
     services: [
-       { label: "3D Walkthroughs", href: "/services/walkthrough", description: "A continuous move through the finished space, cut to show the route a visitor would actually take.", image: "/services/walkthrough.svg" },
-      { label: "Architectural Animation", href: "/services/architectural-animation", description: "Cinematic sequences that decide which moments a viewer gets and in what order.", image: "/services/architectural-animation.svg" },    
-    ],
-  },
-  {
-    title: "Product & furniture",
-    services: [
-      { label: "Furniture Rendering", href: "/services/furniture-rendering", description: "Upholstery, grain and joinery rendered close enough to inspect, in room sets or on clean backgrounds.", image: "/services/furniture-rendering.svg" },
-      { label: "Furniture Modeling", href: "/services/furniture-modeling", description: "Production-ready furniture models with correct proportions and materials, reusable across every scene.", image: "/services/furniture-modeling.svg" },
-      { label: "Product Modeling", href: "/services/product-modeling", description: "Precise geometry built from specifications or samples, ready for rendering, configurators and web viewers.", image: "/services/product-modeling.svg" },
-      { label: "3D Product Visualization", href: "/services/3d-product-visualization", description: "Studio-quality product imagery without a studio. One model, every angle, every finish.", image: "/services/3d-product-visualization.svg" },
+      { label: "Architectural Animation & Walkthroughs", href: "/services/architectural-animation", description: "Cinematic sequences and continuous walkthroughs that show a space the way a visitor would move through it.", image: "/services/architectural-animation.svg" },
+      { label: "360° Virtual Tours", href: "/services/virtual-tours", description: "Look in every direction from any point, on any screen, with no app to install.", image: "/services/virtual-tours.svg" },
+      { label: "VR Experiences", href: "/services/vr-experiences", description: "Stand inside the finished space on a headset, at true scale, before it exists.", image: "/services/vr-experiences.svg" },
+      { label: "3D Web Configurators", href: "/services/web-configurators", description: "Let customers change finishes and options live, and see the result instantly.", image: "/services/web-configurators.svg" },
     ],
   },
 ];
 
 /**
- * How the groups are laid out in the mega menu: three columns, with Plans &
- * modeling and Animation & tours stacked in the third. Reordering here changes
- * the menu without touching the component.
+ * How the groups are laid out in the mega menu — one per column.
+ * Reordering here changes the menu without touching the component.
  */
 function group(title: string): ServiceGroup {
   const found = serviceGroups.find((g) => g.title === title);
@@ -114,9 +120,10 @@ function group(title: string): ServiceGroup {
 }
 
 export const serviceColumns: ServiceGroup[][] = [
-  [group("Architectural renders")],
-  [group("Product & furniture")],
-  [group("Plans & modeling"), group("Animation & tours")],
+  [group("Architecture & Design")],
+  [group("Visualization & CGI")],
+  [group("3D Modeling & BIM")],
+  [group("Immersive & Digital")],
 ];
 
 /** Flat list — /services/[slug] uses this for generateStaticParams. */

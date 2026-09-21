@@ -22,7 +22,7 @@ export default function ServicesMegaMenu({ onNavigate }: ServicesMegaMenuProps) 
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] max-h-[80vh] overflow-y-auto">
         {/* Grouped link columns */}
               {/* Three columns; the third stacks two groups vertically. */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-10 3xl:gap-x-20 gap-y-12 p-8 xl:p-12 3xl:p-24">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-x-10 3xl:gap-x-20 gap-y-12 p-8 xl:p-12 3xl:p-24">
           {serviceColumns.map((column, columnIdx) => (
             <div key={columnIdx} className="flex flex-col gap-10 3xl:gap-20">
               {column.map((group) => (
