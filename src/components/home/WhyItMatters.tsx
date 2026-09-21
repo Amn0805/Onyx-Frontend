@@ -55,12 +55,13 @@ export default function WhyItMatters() {
         </h2>
 
         <div className="lg:w-[45%] lg:border-l lg:border-black/15 lg:pl-12 xl:pl-16 3xl:pl-30">
-          <p className="text-lg text-[#7D7D7D]">
+         <p className="text-xs lg:text-base xl:text-lg 3xl:text-[1.1vw] 3xl:leading-[1.75] font-light text-[#4A4A4A] text-justify hyphens-auto mt-6 md:mt-8 3xl:mt-[2.2vw] max-w-md 3xl:max-w-[31vw]">
             Most people can&apos;t read a floor plan. When they can&apos;t
             picture the result, they hesitate, and hesitation costs you.
           </p>
         </div>
       </div>
+      
 
       <hr className="border-black/15 mt-12 md:mt-16 3xl:mt-28" />
 
