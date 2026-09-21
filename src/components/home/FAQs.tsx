@@ -3,33 +3,31 @@ import FAQ from "./FAQ";
 
 function FAQs() {
   return (
- <section className="p-5 md:p-10 lg:p-28 3xl:p-40">
+    <section className="p-5 md:p-10 lg:p-28 3xl:p-40">
+      {/* Heading left, questions right. items-stretch lets both columns share
+          a height so the heading can centre itself against the list. */}
+      <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 3xl:gap-40 items-stretch">
+        <div className="w-full lg:w-3/5 flex flex-col justify-center">
+          <h2 className="heading max-lg:text-center">
+            <span>
+              Everything you need{" "}
+            </span>
+            to
+            <span className="ml-4 heading-bold text-[#4a5f66]">
+              know.
+            </span>
+          </h2>
+        </div>
+  
 
-  {/* Heading */}
-  <div className="w-full max-w-4xl mx-auto text-center">
-    <h2 className="heading">
-      <span>
-        Everything you need{" "}
-      </span>
-      to
-      <span className="ml-4 heading-bold text-[#4a5f66]">
-        know.
-      </span>
-    </h2>
-  </div>
 
-  {/* FAQs */}
-  <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-12 3xl:gap-10 mt-12 md:mt-16 lg:mt-20">
-    {FAQData.map((item, index) => (
-      <FAQ
-        key={index}
-        question={item.question}
-        answer={item.answer}
-      />
-    ))}
-  </div>
-
-</section>
+        <div className="w-full lg:w-3/5 flex flex-col gap-5 3xl:gap-10">
+          {FAQData.map((item, index) => (
+            <FAQ key={index} question={item.question} answer={item.answer} />
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 

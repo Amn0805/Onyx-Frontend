@@ -29,7 +29,7 @@ export default function ServicesOverview() {
           <span className="heading-bold text-white">one studio</span>
         </h2>
 
-        <p className="text-lg text-white/70 lg:w-1/2 max-w-md 3xl:max-w-xl pt-4 tracking-wide">
+        <p className="text-lg text-white/70 lg:w-1/2 max-w-md 3xl:max-w-2xl pt-4 tracking-wide">
           {services.length} services in four groups. Pick one, or combine them
           into a full launch package.
         </p>
