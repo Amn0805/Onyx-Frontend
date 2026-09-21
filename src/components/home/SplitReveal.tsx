@@ -116,7 +116,7 @@ export default function SplitReveal() {
       <div className="flex flex-col lg:flex-row lg:items-center gap-12 lg:gap-24 xl:gap-32 3xl:gap-[6vw]">
         {/* Copy */}
         <div className="w-full lg:w-[45%]">
-          <h2 className="text-3xl md:text-5xl 3xl:text-[3vw] flex flex-col gap-3 md:gap-5 3xl:gap-[1vw] [word-spacing:0.025em] tracking-wide">
+          <h2 className="text-3xl md:text-5xl 3xl:text-[3.4vw] flex flex-col gap-3 md:gap-5 3xl:gap-[1vw] [word-spacing:0.025em] tracking-wide">
             <span>
               From first{" "}
               <span className="font-bold text-[#4a5f66]">Sketch</span> to

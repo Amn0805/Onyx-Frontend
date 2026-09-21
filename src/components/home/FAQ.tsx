@@ -9,25 +9,32 @@ function FAQ({ question, answer }: { question: string; answer: string }) {
       className="w-full border border-black/15 hover:border-[#114046]/40 transition-colors cursor-pointer"
       onClick={() => setIsOpen(!isOpen)}
     >
-      <div className="flex items-center justify-between gap-6 p-6 md:p-8 3xl:p-16">
-        <h5
-          className={`para transition-colors duration-300 ${
-            isOpen ? "text-[#114046]" : "text-black"
-          }`}
-        >
-          {question}
-        </h5>
+<div className="flex items-center justify-between gap-3 p-3 md:p-4 lg:p-5 3xl:p-6">
+  <h5
+    className={`para flex-1 transition-colors duration-300 ${
+      isOpen ? "text-[#114046]" : "text-black"
+    }`}
+  >
+    {question}
+  </h5>
 
-        {/* Circular +, rotating to × when open. */}
-        <span
-          aria-hidden="true"
-          className={`shrink-0 flex items-center justify-center rounded-full bg-black/5 w-8 h-8 3xl:w-16 3xl:h-16 text-lg 3xl:text-3xl leading-none transition-transform duration-300 ${
-            isOpen ? "rotate-45 text-[#114046]" : "rotate-0"
-          }`}
-        >
-          +
-        </span>
-      </div>
+  {/* Circular + */}
+  <span
+    aria-hidden="true"
+    className={`shrink-0 flex items-center justify-center rounded-full bg-black/5
+      w-5 h-5
+      md:w-6 md:h-6
+      lg:w-7 lg:h-7
+      3xl:w-9 3xl:h-9
+      text-sm md:text-base 3xl:text-lg
+      leading-none
+      transition-transform duration-300
+      ${isOpen ? "rotate-45 text-[#114046]" : "rotate-0"}
+    `}
+  >
+    +
+  </span>
+</div>
 
       {/* grid-rows animates from 0 to the content's true height. The previous
           max-h-40 silently clipped any answer taller than 160px — several of

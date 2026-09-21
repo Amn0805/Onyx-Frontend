@@ -36,7 +36,7 @@ const stats = [
 ];
 
 /** Also shown in the section heading, so it lives in one place. */
-const CLIENT_COUNT = 156;
+const CLIENT_COUNT = 225;
 
 const Statistics = async () => {
   const logos: Logo[] = await getLogos();
@@ -44,11 +44,10 @@ const Statistics = async () => {
 
   return (
     <div className="py-10 xl:pt-[8%] xl:py-0 overflow-x-hidden">
-      <div className="w-11/12 mx-auto">
+      <div className="w-9/12 mx-auto">
         <h2 className="heading text-center">
-          A Studio Built on Excellence - Trusted by{" "}
-          <span className="text-[#114046]">{CLIENT_COUNT}</span> Clients
-          Worldwide for 3D Modeling and Visualization.
+       Trusted by{" "}
+          <span className="text-[#114046] font-bold">{CLIENT_COUNT}</span>+ Clients clients, developers, and project teams  
         </h2>
       </div>
 
