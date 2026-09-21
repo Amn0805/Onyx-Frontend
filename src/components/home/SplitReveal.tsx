@@ -3,6 +3,9 @@
 //
 // Before/after comparison. Click anywhere to glide the divider there; hold and
 // drag to move it directly; or focus the handle and use the arrow keys.
+//
+// Spacing carries 4xl variants alongside 3xl: the 3xl values were sized for
+// 2048px, and without these the layout stays that size on a 3840px screen.
 
 import Image from "next/image";
 import Link from "next/link";
@@ -80,43 +83,55 @@ export default function SplitReveal() {
     : "transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none";
 
   return (
-    <section className="px-6 md:px-16 lg:px-20 3xl:px-32 py-12 md:py-20 lg:py-24 3xl:py-40">
-      {/* items-start so the heading's top edge aligns with the image's, rather
-          than the shorter column floating mid-height. */}
-      <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-24 xl:gap-32 3xl:gap-48">
+    <section className="px-6 md:px-16 lg:px-20 3xl:px-32 4xl:px-56 py-12 md:py-20 lg:py-24 3xl:py-40 4xl:py-72">
+      {/* lg:items-center centres the copy against the image, so the text block
+          sits level with it instead of hugging the top while the image runs
+          far below. */}
+      <div className="flex flex-col lg:flex-row lg:items-center gap-12 lg:gap-24 xl:gap-32 3xl:gap-48 4xl:gap-80">
         {/* Copy */}
         <div className="w-full lg:w-[45%]">
-          <h2 className="heading flex flex-col gap-3 md:gap-5 3xl:gap-10 [word-spacing:0.25em] tracking-wide">
-            <span>See it Before it&apos;s</span>
-            <span>Built.</span>
+                   <h2 className="heading flex flex-col gap-3 md:gap-5 3xl:gap-10 4xl:gap-16 [word-spacing:0.25em] tracking-wide">
+            <span>
+              From first{" "}
+              <span className="font-bold text-[#4a5f66]">Sketch</span> to
+            </span>
+            <span>
+              final <span className="font-bold text-[#4a5f66]">Sale.</span>
+            </span>
           </h2>
 
-          <p className="text-small text-[#7D7D7D] mt-10 md:mt-14 3xl:mt-24 max-w-md 3xl:max-w-2xl">
-            Photorealistic renders and walkthroughs that win approvals, impress
-            clients and sell projects off-plan. Send your drawings today and get
-            a quote within 24 hours.
+          {/* Tight to the heading, so it reads as part of the same statement. */}
+           <p className="text-x-small md:text-small text-[#4a5f66] tracking-[0.25em] uppercase mt-4 md:mt-5 3xl:mt-8 4xl:mt-12">
+            Designed. Modeled. Rendered. Sold.
           </p>
 
-          <div className="flex flex-wrap gap-4 3xl:gap-8 mt-10 md:mt-14 3xl:mt-24">
+          {/* Larger gap, so the body copy reads as a separate block. */}
+                    <p className="text-small text-[#4A4A4A] text-justify hyphens-auto mt-6 md:mt-8 3xl:mt-12 4xl:mt-20 max-w-md 3xl:max-w-2xl 4xl:max-w-5xl">
+            Photorealistic renders, animations, and immersive experiences that
+            win approvals, impress clients, and sell projects off-plan, backed
+            by a design and BIM team that knows how buildings are made.
+          </p>
+
+          <div className="flex flex-wrap gap-4 3xl:gap-8 4xl:gap-12 mt-4 md:mt-10 3xl:mt-22 4xl:mt-38">
             <Link href="/studio/#scheduleCall">
               <button className="bg-[#114046] text-white btn-pill btn-theme hover:bg-[#0e3035]">
-                Get a free quote
+               Request a proposal
               </button>
             </Link>
             <Link href="/gallery">
               <button className="btn-pill border border-[#114046] text-[#114046] hover:bg-[#114046] hover:text-white">
-                See our work
+              Explore our Work
               </button>
             </Link>
           </div>
 
-          <ul className="flex flex-wrap md:flex-nowrap gap-x-6 gap-y-3 lg:gap-x-8 3xl:gap-x-16 mt-10 md:mt-14 3xl:mt-24">
+          <ul className="flex flex-wrap md:flex-nowrap gap-x-6 gap-y-3 lg:gap-x-8 3xl:gap-x-16 4xl:gap-x-24 mt-10 md:mt-14 3xl:mt-24 4xl:mt-40">
             {points.map((point) => (
               <li
                 key={point}
-                className="text-x-small text-[#7D7D7D] whitespace-nowrap"
+                className="text-x-small text-[#4A4A4A] whitespace-nowrap"
               >
-                <span aria-hidden="true" className="text-[#114046] mr-2">
+                <span aria-hidden="true" className="text-[#114046] mr-2 4xl:mr-4">
                   ✓
                 </span>
                 {point}
@@ -133,7 +148,7 @@ export default function SplitReveal() {
             onPointerMove={onPointerMove}
             onPointerUp={endDrag}
             onPointerCancel={endDrag}
-            className={`relative w-full aspect-[4/3] overflow-hidden rounded-xl 3xl:rounded-3xl bg-[#bac3c833] select-none touch-pan-y ${
+            className={`relative w-full aspect-[4/3] overflow-hidden rounded-xl 3xl:rounded-3xl 4xl:rounded-[2.5rem] bg-[#bac3c833] select-none touch-pan-y ${
               dragging ? "cursor-grabbing" : "cursor-pointer"
             }`}
           >
@@ -165,17 +180,17 @@ export default function SplitReveal() {
               />
             </div>
 
-            <span className="absolute bottom-4 left-4 3xl:bottom-8 3xl:left-8 bg-black/70 text-white text-x-small px-3 py-1 3xl:px-6 3xl:py-3 rounded-full pointer-events-none">
+            <span className="absolute bottom-4 left-4 3xl:bottom-8 3xl:left-8 4xl:bottom-14 4xl:left-14 bg-black/70 text-white text-x-small px-3 py-1 3xl:px-6 3xl:py-3 4xl:px-10 4xl:py-5 rounded-full pointer-events-none">
               Clay model
             </span>
-            <span className="absolute bottom-4 right-4 3xl:bottom-8 3xl:right-8 bg-black/70 text-white text-x-small px-3 py-1 3xl:px-6 3xl:py-3 rounded-full pointer-events-none">
+            <span className="absolute bottom-4 right-4 3xl:bottom-8 3xl:right-8 4xl:bottom-14 4xl:right-14 bg-black/70 text-white text-x-small px-3 py-1 3xl:px-6 3xl:py-3 4xl:px-10 4xl:py-5 rounded-full pointer-events-none">
               Final render
             </span>
 
             {/* Divider line */}
             <div
               aria-hidden="true"
-              className={`absolute inset-y-0 w-0.5 3xl:w-1 -translate-x-1/2 bg-white pointer-events-none ${motion}`}
+              className={`absolute inset-y-0 w-0.5 3xl:w-1 4xl:w-1.5 -translate-x-1/2 bg-white pointer-events-none ${motion}`}
               style={{ left: `${position}%` }}
             />
 
@@ -189,7 +204,7 @@ export default function SplitReveal() {
               aria-valuemax={100}
               aria-valuenow={Math.round(position)}
               onKeyDown={onKeyDown}
-              className={`absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 3xl:w-24 3xl:h-24 rounded-full bg-white shadow-lg flex items-center justify-center text-[#114046] text-lg 3xl:text-3xl focus:outline-none focus-visible:ring-2 focus-visible:ring-[#114046] focus-visible:ring-offset-2 hover:scale-110 ${
+              className={`absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 3xl:w-24 3xl:h-24 4xl:w-40 4xl:h-40 rounded-full bg-white shadow-lg flex items-center justify-center text-[#114046] text-lg 3xl:text-3xl 4xl:text-6xl focus:outline-none focus-visible:ring-2 focus-visible:ring-[#114046] focus-visible:ring-offset-2 hover:scale-110 ${
                 dragging ? "scale-110 cursor-grabbing" : "cursor-grab"
               } ${motion}`}
               style={{ left: `${position}%` }}
@@ -198,7 +213,7 @@ export default function SplitReveal() {
             </button>
           </div>
 
-          <p className="text-x-small text-[#7D7D7D] mt-4 3xl:mt-8">
+          <p className="text-x-small text-[#7D7D7D] mt-4 3xl:mt-8 4xl:mt-14">
             Click or drag to see how a model becomes a selling image.
           </p>
         </div>
