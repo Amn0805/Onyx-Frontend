@@ -48,13 +48,14 @@ export default function WhyItMatters() {
       <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-12 xl:gap-16 3xl:gap-24">
                <h2 className="heading lg:w-[55%] flex flex-col gap-2 md:gap-4 3xl:gap-8 [word-spacing:0.15em]">
           <span>
-            Drawings don&apos;t sell.
+            Drawings don&apos;t sell.{" "}
+            <span className="heading-bold text-[#4a5f66]"></span>
           </span>
           <span className="heading-bold text-[#4a5f66]"> Images do.</span>
         </h2>
 
         <div className="lg:w-[45%] lg:border-l lg:border-black/15 lg:pl-12 xl:pl-16 3xl:pl-80">
-             <p className="text-lg lg:text-base xl:text-lg 3xl:text-[1.1vw] 3xl:leading-[1.75] font-light text-[#4A4A4A] text-justify hyphens-auto mt-3 md:mt-2 3xl:mt-[2vw] max-w-md 3xl:max-w-[31vw]">
+             <p className="text-lg lg:text-base xl:text-lg 3xl:text-[1.1vw] 3xl:leading-[1.75] font-light text-[#4A4A4A] text-justify hyphens-auto mt-3 md:mt-2 3xl:mt-[2.2vw] max-w-md 3xl:max-w-[31vw]">
             Most people can&apos;t read a floor plan. When they can&apos;t
             picture the result, they hesitate, and hesitation costs you.
           </p>
