@@ -24,6 +24,13 @@ const points = [
 /** Where the divider starts, as a percentage from the left. */
 const START = 25;
 
+/**
+ * Same as .btn-pill below 3xl. Above it, .btn-pill jumps to px-20 py-8
+ * text-2xl, which is oversized at 4K — these are scaled down instead.
+ */
+const PILL =
+  "px-8 py-2 lg:px-10 lg:py-4 3xl:px-12 3xl:py-5 4xl:px-16 4xl:py-6 rounded-full lg:text-sm 3xl:text-lg 4xl:text-2xl min-w-[210px] 3xl:min-w-[240px] 4xl:min-w-[300px] shadow-2xl transition-colors";
+
 /** Pixels a held pointer must travel before it counts as a drag, not a click. */
 const DRAG_THRESHOLD = 4;
 
@@ -115,7 +122,7 @@ export default function SplitReveal() {
       <div className="flex flex-col lg:flex-row lg:items-center gap-12 lg:gap-24 xl:gap-32 3xl:gap-48 4xl:gap-80">
         {/* Copy */}
         <div className="w-full lg:w-[45%]">
-                   <h2 className="heading 4xl:text-[3.5vw] flex flex-col gap-3 md:gap-5 3xl:gap-10 4xl:gap-16 [word-spacing:0.25em] tracking-wide">
+                   <h2 className="heading flex flex-col gap-3 md:gap-5 3xl:gap-10 4xl:gap-16 [word-spacing:0.25em] tracking-wide">
             <span>
               From first{" "}
               <span className="font-bold text-[#4a5f66]">Sketch</span> to
@@ -131,21 +138,23 @@ export default function SplitReveal() {
           </p>
 
           {/* Larger gap, so the body copy reads as a separate block. */}
-                    <p className="text-small text-[#4A4A4A] text-justify hyphens-auto mt-6 md:mt-8 3xl:mt-12 4xl:mt-20 max-w-md 3xl:max-w-2xl 4xl:max-w-5xl">
+            <p className="text-small text-[#4A4A4A] text-justify hyphens-auto mt-6 md:mt-8 3xl:mt-12 4xl:mt-20 max-w-md 3xl:max-w-2xl 4xl:max-w-5xl">
             Photorealistic renders, animations, and immersive experiences that
             win approvals, impress clients, and sell projects off-plan, backed
             by a design and BIM team that knows how buildings are made.
           </p>
 
-          <div className="flex flex-wrap gap-4 3xl:gap-8 4xl:gap-12 mt-4 md:mt-10 3xl:mt-22 4xl:mt-38">
+          {/* More room above the buttons, so the paragraph and the actions read
+              as separate blocks. */}
+          <div className="flex flex-wrap gap-4 3xl:gap-6 4xl:gap-10 mt-8 md:mt-12 3xl:mt-16 4xl:mt-24">
             <Link href="/studio/#scheduleCall">
-              <button className="bg-[#114046] text-white btn-pill btn-theme hover:bg-[#0e3035]">
-               Request a proposal
+              <button className={`${PILL} bg-[#114046] text-white border border-[#114046] hover:bg-[#0e3035]`}>
+                Request a proposal
               </button>
             </Link>
             <Link href="/gallery">
-              <button className="btn-pill border border-[#114046] text-[#114046] hover:bg-[#114046] hover:text-white">
-              Explore our Work
+              <button className={`${PILL} border border-[#114046] text-[#114046] hover:bg-[#114046] hover:text-white`}>
+                Explore our Work
               </button>
             </Link>
           </div>
@@ -154,7 +163,7 @@ export default function SplitReveal() {
             {points.map((point) => (
               <li
                 key={point}
-                className="text-x-small xl:text-sm 3xl:text-[0.85vw] font-light text-[#4A4A4A]"
+                className="text-small xl:text-sm 3xl:text-[0.85vw] font-light text-[#4A4A4A]"
               >
                 <span aria-hidden="true" className="text-[#114046] mr-2 3xl:mr-[0.5vw]">
                   ✓
