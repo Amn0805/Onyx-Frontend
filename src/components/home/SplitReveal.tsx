@@ -23,7 +23,11 @@ const points = [
 ];
 /** Where the divider starts, as a percentage from the left. */
 const START = 25;
-
+/**
+ * Same as .btn-pill below 3xl, so desktop is unchanged. From 3xl up, matches
+ * the header's "Get a free quote" button instead of .btn-pill's oversized
+ * 4K values.
+ */
 const PILL =
   "rounded-full shadow-2xl transition-colors px-8 py-2 lg:px-10 lg:py-4 lg:text-sm min-w-[210px] 3xl:px-8 3xl:py-4 3xl:text-lg 3xl:min-w-0";
 
@@ -111,7 +115,7 @@ export default function SplitReveal() {
     : "transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none";
 
   return (
-    <section className="px-6 md:px-16 lg:px-20 3xl:px-32 4xl:px-56 py-12 md:py-20 lg:py-24 3xl:py-40 4xl:py-72">
+        <section className="px-6 md:px-16 lg:px-20 3xl:px-32 4xl:px-56 py-12 md:py-20 lg:py-24 3xl:py-24 4xl:py-40">
       {/* lg:items-center centres the copy against the image, so the text block
           sits level with it instead of hugging the top while the image runs
           far below. */}
@@ -134,7 +138,7 @@ export default function SplitReveal() {
           </p>
 
           {/* Larger gap, so the body copy reads as a separate block. */}
-            <p className="text-small text-[#4A4A4A] text-justify hyphens-auto mt-6 md:mt-8 3xl:mt-12 4xl:mt-20 max-w-md 3xl:max-w-2xl 4xl:max-w-5xl">
+            <p className="text-xs lg:text-base xl:text-lg 3xl:text-2xl 4xl:text-[2.75rem] font-light text-[#4A4A4A] text-justify hyphens-auto mt-6 md:mt-8 3xl:mt-12 4xl:mt-20 max-w-md 3xl:max-w-2xl 4xl:max-w-5xl">
             Photorealistic renders, animations, and immersive experiences that
             win approvals, impress clients, and sell projects off-plan, backed
             by a design and BIM team that knows how buildings are made.
@@ -243,7 +247,7 @@ export default function SplitReveal() {
             </button>
           </div>
 
-          <p className="text-x-small text-[#7D7D7D] mt-4 3xl:mt-8 4xl:mt-14">
+            <p className="3xl:absolute 3xl:top-full 3xl:left-0 text-x-small text-[#7D7D7D] mt-4 3xl:mt-8 4xl:mt-14">
             Click or drag to see how a model becomes a selling image.
           </p>
         </div>
