@@ -31,8 +31,8 @@ export default function FooterCTA() {
       />
 
       <div className="relative z-10 text-center text-white px-5 md:px-12 3xl:px-24">
-        <p className="text-x-small tracking-[0.3em] uppercase text-white/70">
-          Now Accepting New Projects
+        <p className="text-x-small tracking-[0.1em] uppercase text-white/70">
+          Now Accepting . 05  Projects for 2027
         </p>
 
         <h2 className="heading mt-5 3xl:mt-10 max-w-3xl 3xl:max-w-6xl mx-auto">

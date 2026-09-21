@@ -19,7 +19,7 @@ export default function OurVision() {
       />
 
       {/* Darkens the photograph so the statement stays readable over any crop. */}
-      <div aria-hidden="true" className="absolute inset-0 bg-black/40" />
+      <div aria-hidden="true" className="absolute inset-0 bg-black/50" />
 
       {/* Still centred, then shifted up and right from that position.
           The offsets only apply from lg — on smaller screens there isn't
@@ -36,9 +36,7 @@ export default function OurVision() {
         </h2>
 
         <p className="text-small text-white/80 mt-8 3xl:mt-16 max-w-2xl 3xl:max-w-4xl mx-auto">
-          Our vision is to transform architectural concepts into immersive
-          visual experiences that help people see, understand, and feel a space
-          before it exists.
+          Our vision is for every project to carry its original purpose through every stage of design. We bring architecture, interiors, and visualization into one continuous conversation—where how a space works, how it feels, and how it is seen are considered together.
         </p>
 
         <p className="text-small text-white/60 mt-10 3xl:mt-20">
