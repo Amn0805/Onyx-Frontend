@@ -74,7 +74,7 @@ export default function ServicesOverview() {
         ))}
       </div>
 
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mt-12 md:mt-16 3xl:mt-28">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mt-12 md:mt-6 3xl:mt-28">
         <p className="text-small text-white/70">
           Not sure which service fits your project?
         </p>
