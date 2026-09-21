@@ -24,12 +24,8 @@ const points = [
 /** Where the divider starts, as a percentage from the left. */
 const START = 25;
 
-/**
- * Same as .btn-pill below 3xl. Above it, .btn-pill jumps to px-20 py-8
- * text-2xl, which is oversized at 4K — these are scaled down instead.
- */
 const PILL =
-  "px-8 py-2 lg:px-10 lg:py-4 3xl:px-12 3xl:py-5 4xl:px-16 4xl:py-6 rounded-full lg:text-sm 3xl:text-lg 4xl:text-2xl min-w-[210px] 3xl:min-w-[240px] 4xl:min-w-[300px] shadow-2xl transition-colors";
+  "rounded-full shadow-2xl transition-colors px-8 py-2 lg:px-10 lg:py-4 lg:text-sm min-w-[210px] 3xl:px-8 3xl:py-4 3xl:text-lg 3xl:min-w-0";
 
 /** Pixels a held pointer must travel before it counts as a drag, not a click. */
 const DRAG_THRESHOLD = 4;
@@ -159,7 +155,7 @@ export default function SplitReveal() {
             </Link>
           </div>
 
-                   <ul className="grid grid-cols-2 gap-x-6 gap-y-3 lg:gap-x-8 3xl:gap-x-[2vw] 3xl:gap-y-[0.8vw] mt-10 md:mt-14 3xl:mt-[3vw]">
+          <ul className="grid grid-cols-2 gap-x-6 gap-y-3 lg:gap-x-8 3xl:gap-x-[2vw] 3xl:gap-y-[0.8vw] mt-10 md:mt-14 3xl:mt-[3vw]">
             {points.map((point) => (
               <li
                 key={point}
