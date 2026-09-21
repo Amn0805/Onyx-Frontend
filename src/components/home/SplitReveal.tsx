@@ -15,13 +15,38 @@ import { blurDataURL } from "@/constants";
 const BEFORE_IMAGE = "/home/before.webp";
 const AFTER_IMAGE = "/home/after.webp";
 
-const points = ["Quote within 24 hours", "Revisions included", "NDA on request"];
-
+const points = [
+  "Quote within 24 hours",
+  "[1100+] projects delivered",
+  "Clients in [30+] countries",
+  "NDA on request",
+];
 /** Where the divider starts, as a percentage from the left. */
 const START = 25;
 
 /** Pixels a held pointer must travel before it counts as a drag, not a click. */
 const DRAG_THRESHOLD = 4;
+
+/**
+ * Renders a point, emphasising any text wrapped in [square brackets].
+ * split() with a capture group puts the bracketed parts at odd indices.
+ */
+function Point({ text }: { text: string }) {
+  const parts = text.split(/\[(.+?)\]/);
+  return (
+    <>
+      {parts.map((part, i) =>
+        i % 2 === 1 ? (
+          <span key={i} className="font-bold text-[#114046]">
+            {part}
+          </span>
+        ) : (
+          part
+        )
+      )}
+    </>
+  );
+}
 
 export default function SplitReveal() {
   const [position, setPosition] = useState(START);
@@ -90,7 +115,7 @@ export default function SplitReveal() {
       <div className="flex flex-col lg:flex-row lg:items-center gap-12 lg:gap-24 xl:gap-32 3xl:gap-48 4xl:gap-80">
         {/* Copy */}
         <div className="w-full lg:w-[45%]">
-                   <h2 className="heading flex flex-col gap-3 md:gap-5 3xl:gap-10 4xl:gap-16 [word-spacing:0.25em] tracking-wide">
+                   <h2 className="heading 4xl:text-[3.5vw] flex flex-col gap-3 md:gap-5 3xl:gap-10 4xl:gap-16 [word-spacing:0.25em] tracking-wide">
             <span>
               From first{" "}
               <span className="font-bold text-[#4a5f66]">Sketch</span> to
@@ -125,16 +150,16 @@ export default function SplitReveal() {
             </Link>
           </div>
 
-          <ul className="flex flex-wrap md:flex-nowrap gap-x-6 gap-y-3 lg:gap-x-8 3xl:gap-x-16 4xl:gap-x-24 mt-10 md:mt-14 3xl:mt-24 4xl:mt-40">
+                   <ul className="grid grid-cols-2 gap-x-6 gap-y-3 lg:gap-x-8 3xl:gap-x-[2vw] 3xl:gap-y-[0.8vw] mt-10 md:mt-14 3xl:mt-[3vw]">
             {points.map((point) => (
               <li
                 key={point}
-                className="text-x-small text-[#4A4A4A] whitespace-nowrap"
+                className="text-x-small xl:text-sm 3xl:text-[0.85vw] font-light text-[#4A4A4A]"
               >
-                <span aria-hidden="true" className="text-[#114046] mr-2 4xl:mr-4">
+                <span aria-hidden="true" className="text-[#114046] mr-2 3xl:mr-[0.5vw]">
                   ✓
                 </span>
-                {point}
+                <Point text={point} />
               </li>
             ))}
           </ul>
