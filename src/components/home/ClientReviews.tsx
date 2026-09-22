@@ -40,7 +40,7 @@ export default async function ClientReviews() {
   return (
     <section className="p-5 md:p-10 3xl:p-24 flex flex-col gap-6 3xl:gap-20 overflow-x-hidden">
       <h2 className={`${HEADING} text-center`}>
-       <span className="font-bold text-[#4a5f66]">Words</span>  from Our Esteemed  <span className="font-bold text-[#4a5f66]">Partners</span> 
+       <span className="font-bold text-[#4a5f66]">Discover </span> the impact we've  made for our <span className="font-bold text-[#4a5f66]">Clients</span> 
       </h2>
 
       <div className="flex items-center gap-2 3xl:gap-4 rounded-[0.78vw] border border-black w-fit px-4 py-2 3xl:px-6 3xl:py-4 mx-auto">

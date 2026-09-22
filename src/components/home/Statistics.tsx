@@ -15,10 +15,10 @@ const ROW_COUNT = 3;
 const CLIENT_COUNT = 225;
 
 const stats = [
-  { target: 1100, suffix: "+", label: "Projects Completed" },
-  { target: 156, suffix: "", label: "Clients Won" },
-  { target: 98, suffix: "%", label: "Repeat & Preferred" },
-  { target: 9, suffix: "+ Years", label: "Practice" },
+  { target: 1100, suffix: "+", label: "Successful Projects " },
+  { target: 225, suffix: "+", label: "Happy Clients" },
+  { target: 93, suffix: "%", label: "Repeat & Preferred" },
+  { target: 9, suffix: "+ Years", label: "Practice"},
 ];
 
 /**
