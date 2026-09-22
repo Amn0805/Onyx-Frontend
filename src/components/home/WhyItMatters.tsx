@@ -56,8 +56,8 @@ export default function WhyItMatters() {
           <span className="font-bold text-[#4a5f66]">Images do.</span>
         </h2>
 
-        <div className="lg:w-[45%] lg:border-l lg:border-black/15 lg:pl-12 xl:pl-16 3xl:pl-80">
-          <p className={`${BODY} text-[#4A4A4A] text-justify hyphens-auto mt-3 md:mt-2 3xl:mt-[2.2vw] max-w-md 3xl:max-w-[31vw]`}>
+         <div className="lg:w-[45%] lg:border-l lg:border-black/15 lg:pl-12 xl:pl-16 3xl:pl-[3vw]">
+          <p className={`${BODY} text-[#4A4A4A] text-justify hyphens-auto max-w-md 3xl:max-w-[31vw]`}>
             Most people can&apos;t read a floor plan. When they can&apos;t
             picture the result, they hesitate, and hesitation costs you.
           </p>

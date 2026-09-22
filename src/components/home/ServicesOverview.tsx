@@ -8,6 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { blurDataURL } from "@/constants";
 import { serviceGroups, services } from "@/components/shared/nav/navigation";
+import { HEADING, BODY } from "@/components/shared/typography";
 
 /** Temporary — one per group, in order. Replace with real artwork. */
 const groupImages: Record<string, string> = {
@@ -15,6 +16,7 @@ const groupImages: Record<string, string> = {
   "Visualization & CGI": "/home/exterior-visualization.svg",
   "3D Modeling & BIM": "/home/interior-visualization.svg",
   "Immersive & Digital": "/home/architecturalWalkthrough.webp",
+  
 };
 
 export default function ServicesOverview() {
@@ -29,7 +31,7 @@ export default function ServicesOverview() {
           <span className="heading-bold text-white">one Studio</span>
         </h2>
 
-        <p className="text-lg text-white/70 lg:w-1/2 max-w-md 3xl:max-w-2xl pt-4 tracking-wide">
+            <p className={`${BODY} text-white/70 lg:w-[45%] max-w-md 3xl:max-w-[31vw]`}>
           {services.length} services in four groups. Pick one, or combine them
           into a full launch package.
         </p>
