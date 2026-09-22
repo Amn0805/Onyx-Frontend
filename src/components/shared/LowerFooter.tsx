@@ -43,7 +43,7 @@ const WORDMARK_SIZE = `${(110 / WORDMARK.length).toFixed(1)}vw`;
 export default function LowerFooter() {
   return (
     <footer className="bg-black text-white poppins overflow-hidden">
-         <div className="px-[6vw] pt-8 3xl:pt-16 pb-8 3xl:pb-16 flex flex-col lg:flex-row gap-12 lg:gap-16 3xl:gap-32 justify-between">
+         <div className="px-[6vw] pt-8 3xl:pt-10 pb-8 3xl:pb-16 flex flex-col lg:flex-row gap-12 lg:gap-16 3xl:gap-32 justify-between">
         {/* Logo + address */}
         <div className="flex flex-col gap-4 3xl:gap-8 max-lg:items-center max-lg:text-center">
           <Link href="/" className="w-fit">
