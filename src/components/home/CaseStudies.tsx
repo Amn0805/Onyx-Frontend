@@ -7,6 +7,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { blurDataURL } from "@/constants";
 import styles from "./home.module.css";
+import { HEADING, BODY, SMALL } from "@/components/shared/typography";
+import { PILL } from "@/components/shared/buttonStyles";
 
 interface CaseStudy {
   tag: string;
@@ -55,9 +57,12 @@ const thumbnails = [
   "/home/3.webp",
 ];
 
+/** Shared by both "Read case study" links. */
+const READ_MORE = `${SMALL} text-[#7D7D7D] group-hover:text-[#114046] underline underline-offset-4 inline-block mt-3 3xl:mt-6 transition-colors`;
+
 function Tag({ label }: { label: string }) {
   return (
-    <span className="absolute top-4 left-4 3xl:top-8 3xl:left-8 bg-black/70 text-white text-x-small px-3 py-1 3xl:px-6 3xl:py-3 rounded-full">
+    <span className={`${SMALL} absolute top-4 left-4 3xl:top-8 3xl:left-8 bg-black/70 text-white px-3 py-1 3xl:px-6 3xl:py-3 rounded-full`}>
       {label}
     </span>
   );
@@ -66,13 +71,18 @@ function Tag({ label }: { label: string }) {
 export default function CaseStudies() {
   return (
     <section className="px-6 md:px-16 lg:px-20 3xl:px-32 py-16 md:py-24 3xl:py-40">
-      <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-16 3xl:gap-32">
-          <h2 className="sub-heading lg:w-1/2 flex flex-col gap-2 md:gap-4 [word-spacing:0.25em] tracking-wide">
-          <span>Work that moved projects</span>
-          <span className="heading-bold text-[#4a5f66]">forward</span>
+          {/* Stacked below xl; side by side from xl, where there's room for the
+          heading's natural width plus the paragraph. The heading takes its full
+          width (shrink-0) and the paragraph fills what's left. */}
+         <div className="flex flex-col xl:flex-row xl:items-start xl:justify-between gap-6 md:gap-8 xl:gap-16 3xl:gap-32">
+        <h2 className={`${HEADING} xl:shrink-0 flex flex-col gap-2 md:gap-4 [word-spacing:0.25em] tracking-wide`}>
+          {/* nowrap from lg, the first width where the line fits. Below that
+              it wraps naturally rather than running off the screen. */}
+          <span className="lg:whitespace-nowrap">Work that moved projects</span>
+          <span className="font-bold text-[#4a5f66]">forward</span>
         </h2>
 
-        <p className="text-small text-[#7D7D7D] lg:w-1/2 max-w-md 3xl:max-w-2xl">
+        <p className={`${BODY} text-[#7D7D7D] max-w-md 3xl:max-w-[31vw]`}>
           Every project starts with a goal. Here&apos;s what we delivered and
           what it achieved.
         </p>
@@ -98,32 +108,30 @@ export default function CaseStudies() {
           </div>
 
           <div className="p-6 3xl:p-12 flex flex-col flex-1">
-            <h3 className="text-small-bold group-hover:text-[#114046] transition-colors">
+            <h3 className={`${BODY} font-bold group-hover:text-[#114046] transition-colors`}>
               {feature.title}
             </h3>
 
             <dl className="mt-5 3xl:mt-10 flex flex-col gap-3 3xl:gap-6">
               <div className="flex gap-4 3xl:gap-8">
-                <dt className="text-x-small text-[#7D7D7D] w-20 3xl:w-40 shrink-0">
+                <dt className={`${SMALL} text-[#7D7D7D] w-20 3xl:w-40 shrink-0`}>
                   Challenge
                 </dt>
-                <dd className="text-x-small">{feature.challenge}</dd>
+                <dd className={BODY}>{feature.challenge}</dd>
               </div>
               <div className="flex gap-4 3xl:gap-8">
-                <dt className="text-x-small text-[#7D7D7D] w-20 3xl:w-40 shrink-0">
+                <dt className={`${SMALL} text-[#7D7D7D] w-20 3xl:w-40 shrink-0`}>
                   Delivered
                 </dt>
-                <dd className="text-x-small">{feature.delivered}</dd>
+                <dd className={BODY}>{feature.delivered}</dd>
               </div>
             </dl>
 
             <div className="mt-auto pt-8 3xl:pt-16">
-              <p className="text-small-bold border-t border-black/10 pt-5 3xl:pt-10">
+              <p className={`${BODY} font-bold border-t border-black/10 pt-5 3xl:pt-10`}>
                 {feature.result}
               </p>
-              <span className="text-x-small text-[#7D7D7D] group-hover:text-[#114046] underline underline-offset-4 inline-block mt-3 3xl:mt-6 transition-colors">
-                Read case study
-              </span>
+              <span className={READ_MORE}>Read case study</span>
             </div>
           </div>
         </Link>
@@ -136,7 +144,7 @@ export default function CaseStudies() {
               href={study.href}
               className="group bg-[#bac3c833] rounded-xl 3xl:rounded-3xl overflow-hidden flex flex-col flex-1"
             >
-              <div className="relative w-full aspect-[16/9] overflow-hidden">
+              <div className="relative w-full aspect-video overflow-hidden">
                 <Image
                   src={study.image}
                   alt=""
@@ -150,13 +158,11 @@ export default function CaseStudies() {
               </div>
 
               <div className="p-6 3xl:p-12">
-                <h3 className="text-small-bold group-hover:text-[#114046] transition-colors">
+                <h3 className={`${BODY} font-bold group-hover:text-[#114046] transition-colors`}>
                   {study.title}
                 </h3>
-                <p className="text-small-bold mt-4 3xl:mt-8">{study.result}</p>
-                <span className="text-x-small text-[#7D7D7D] group-hover:text-[#114046] underline underline-offset-4 inline-block mt-3 3xl:mt-6 transition-colors">
-                  Read case study
-                </span>
+                <p className={`${BODY} font-bold mt-4 3xl:mt-8`}>{study.result}</p>
+                <span className={READ_MORE}>Read case study</span>
               </div>
             </Link>
           ))}
@@ -166,19 +172,20 @@ export default function CaseStudies() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mt-10 md:mt-14 3xl:mt-24">
         <Link
           href="/case-studies"
-          className="text-small underline underline-offset-4 hover:text-[#114046] transition-colors"
+          className={`${BODY} underline underline-offset-4 hover:text-[#114046] transition-colors`}
         >
           All case studies
         </Link>
         <Link href="/studio/#scheduleCall">
-          <button className="bg-[#114046] text-white btn-pill btn-theme hover:bg-[#0e3035]">
+          <button className={`${PILL} bg-[#114046] text-white border border-[#114046] hover:bg-[#0e3035]`}>
             Get results like these
           </button>
         </Link>
       </div>
 
-           {/* Marquee — the strip is tripled so the -33.333% translate resets to an
-          identical position. Reuses the keyframe from the logo rows. */}
+      {/* Marquee — the strip is tripled so the -33.333% translate resets to an
+          identical position. Reuses the keyframe from the logo rows.
+          Thumbnails are in vw from 3xl up so they keep desktop proportions. */}
       <div className="overflow-x-hidden mt-12 md:mt-16 3xl:mt-28">
         <div
           style={{ animationDuration: "30s" }}
@@ -188,13 +195,13 @@ export default function CaseStudies() {
             <Link
               key={idx}
               href="/gallery"
-              className="relative w-[280px] md:w-[360px] 3xl:w-[640px] aspect-video shrink-0 overflow-hidden rounded-lg 3xl:rounded-xl"
+              className="relative w-[280px] md:w-[360px] 3xl:w-[25vw] aspect-video shrink-0 overflow-hidden rounded-lg 3xl:rounded-xl"
             >
               <Image
                 src={src}
                 alt=""
                 fill
-                sizes="360px"
+                sizes="(max-width: 768px) 280px, (max-width: 2048px) 360px, 25vw"
                 className="object-cover hover:scale-105 transition-transform duration-500"
               />
             </Link>
@@ -204,7 +211,7 @@ export default function CaseStudies() {
 
       <Link
         href="/gallery"
-        className="text-small underline underline-offset-4 hover:text-[#114046] transition-colors inline-block mt-6 3xl:mt-12"
+        className={`${BODY} underline underline-offset-4 hover:text-[#114046] transition-colors inline-block mt-6 3xl:mt-12`}
       >
         Browse the full gallery
       </Link>

@@ -1,20 +1,13 @@
-
 // src/components/home/WhoWeHelp.tsx
 //
-// Four audience cards, each with an image, a badge icon and an outcome line.
+// Four audience cards, each with an image, a description and an outcome line.
 // Server component — no state.
-//
-// Every spacing, type and icon value carries a 3xl variant at roughly double
-// its desktop value, so a 4K screen shows the same proportions at twice the
-// size rather than large type in small boxes.
 
 import Image from "next/image";
 import Link from "next/link";
 import { blurDataURL } from "@/constants";
-import {
-  ArrowRight,
-  GraduationCap,
-} from "lucide-react";
+import { ArrowRight, GraduationCap } from "lucide-react";
+import { HEADING, BODY } from "@/components/shared/typography";
 
 interface Audience {
   title: string;
@@ -22,7 +15,7 @@ interface Audience {
   outcome: string;
   href: string;
   image: string;
-  /** Badge, top-right of the image. */
+  /** Colour of the outcome line — one per audience. */
   tint: string;
 }
 
@@ -65,14 +58,14 @@ export default function WhoWeHelp() {
   return (
     <section className="px-6 md:px-16 lg:px-20 3xl:px-40 pt-8 pb-16 md:pb-24 3xl:pb-48">
       <div className="flex flex-wrap items-baseline justify-between gap-4 3xl:gap-8">
-               <h2 className="text-3xl md:text-5xl 3xl:text-[3.4vw] tracking-wide [word-spacing:0.025em]">
+        <h2 className={`${HEADING} tracking-wide [word-spacing:0.025em]`}>
           What are you{" "}
           <span className="font-bold text-[#4a5f66]">working</span> on?
         </h2>
 
         <Link
           href="/who-we-help/developers"
-          className="group text-small inline-flex items-center gap-2 3xl:gap-4 underline underline-offset-4 hover:text-[#114046] transition-colors whitespace-nowrap"
+          className={`${BODY} group inline-flex items-center gap-2 3xl:gap-4 underline underline-offset-4 hover:text-[#114046] transition-colors whitespace-nowrap`}
         >
           See how we help
           <ArrowRight className="w-4 h-4 3xl:w-8 3xl:h-8 group-hover:translate-x-1 transition-transform" />
@@ -80,13 +73,13 @@ export default function WhoWeHelp() {
       </div>
 
       <div className="mt-8 md:mt-12 3xl:mt-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 3xl:gap-8">
-        {audiences.map(({  ...audience }) => (
+        {audiences.map((audience) => (
           <Link
             key={audience.href}
             href={audience.href}
-       className="group bg-white/60 border border-black/10 rounded-2xl 3xl:rounded-[2rem] overflow-hidden flex flex-col hover:border-black/25 transition-colors"
+            className="group bg-white/60 border border-black/10 rounded-2xl 3xl:rounded-[2rem] overflow-hidden flex flex-col hover:border-black/25 transition-colors"
           >
-             <div className="relative w-full aspect-[4/3] overflow-hidden bg-[#bac3c833]">
+            <div className="relative w-full aspect-[4/3] overflow-hidden bg-[#bac3c833]">
               <Image
                 src={audience.image}
                 alt=""
@@ -98,36 +91,34 @@ export default function WhoWeHelp() {
               />
             </div>
 
-                <div className="p-5 3xl:p-10 flex flex-col flex-1">
-              <h3 className="text-small !font-bold group-hover:text-[#114046] transition-colors">
+            <div className="p-5 3xl:p-10 flex flex-col flex-1">
+              <h3 className={`${BODY} font-bold group-hover:text-[#114046] transition-colors`}>
                 {audience.title}
               </h3>
 
-              <p className="text-x-small text-[#7D7D7D] mt-3 3xl:mt-6">
+              <p className={`${BODY} text-[#7D7D7D] mt-3 3xl:mt-6`}>
                 {audience.body}
               </p>
 
               {/* mt-auto pins the outcome to the bottom, so all four align
                   across the row despite different body lengths. */}
-              <div className="flex items-center gap-3 3xl:gap-6 mt-auto pt-6 3xl:pt-12">
-                <p
-                  className="text-small !font-medium"
-                  style={{ color: audience.tint }}
-                >
-                  {audience.outcome}
-                </p>
-              </div>
+              <p
+                className={`${BODY} font-medium mt-auto pt-6 3xl:pt-12`}
+                style={{ color: audience.tint }}
+              >
+                {audience.outcome}
+              </p>
             </div>
           </Link>
         ))}
       </div>
 
-      <p className="text-small text-[#7D7D7D] mt-6 3xl:mt-12 flex flex-wrap items-center gap-3 3xl:gap-6">
+      <p className={`${BODY} text-[#7D7D7D] mt-6 3xl:mt-12 flex flex-wrap items-center gap-3 3xl:gap-6`}>
         <GraduationCap className="w-6 h-6 3xl:w-12 3xl:h-12 text-[#7D7D7D] shrink-0" />
         Architecture or interior design student?
         <Link
           href="/who-we-help/students"
-          className="group text-black text-small-bold inline-flex items-center gap-2 3xl:gap-4 underline underline-offset-4 hover:text-[#114046] transition-colors"
+          className="group text-black font-bold inline-flex items-center gap-2 3xl:gap-4 underline underline-offset-4 hover:text-[#114046] transition-colors"
         >
           See student packages
           <ArrowRight className="w-4 h-4 3xl:w-8 3xl:h-8 group-hover:translate-x-1 transition-transform" />

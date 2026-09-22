@@ -2,12 +2,10 @@
 //
 // Statement plus three problem columns, each with one image.
 // Server component — no state.
-//
-// Every spacing, type and rule value carries a 3xl variant at roughly double
-// its desktop value, so 4K shows the same proportions at twice the size.
 
 import Image from "next/image";
 import { blurDataURL } from "@/constants";
+import { HEADING, BODY, SMALL } from "@/components/shared/typography";
 
 interface Problem {
   number: string;
@@ -41,27 +39,30 @@ const problems: Problem[] = [
   },
 ];
 
+/** Outer columns pad only on their inner side; the middle pads both. */
+function columnPadding(i: number) {
+  if (i === 0) return "md:pr-8 3xl:pr-16";
+  if (i === problems.length - 1) return "md:pl-8 3xl:pl-16";
+  return "md:px-8 3xl:px-16";
+}
+
 export default function WhyItMatters() {
   return (
     <section className="px-6 md:px-16 lg:px-20 3xl:px-32 pt-4 md:pt-8 pb-16 md:pb-24 3xl:pb-40">
       {/* A vertical rule separates the statement from the supporting line. */}
       <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-12 xl:gap-16 3xl:gap-24">
-               <h2 className="heading lg:w-[55%] flex flex-col gap-2 md:gap-4 3xl:gap-8 [word-spacing:0.15em]">
-          <span>
-            Drawings don&apos;t sell.{" "}
-            <span className="heading-bold text-[#4a5f66]"></span>
-          </span>
-          <span className="heading-bold text-[#4a5f66]"> Images do.</span>
+        <h2 className={`${HEADING} lg:w-[55%] flex flex-col gap-2 md:gap-4 3xl:gap-8 [word-spacing:0.15em]`}>
+          <span>Drawings don&apos;t sell.</span>
+          <span className="font-bold text-[#4a5f66]">Images do.</span>
         </h2>
 
         <div className="lg:w-[45%] lg:border-l lg:border-black/15 lg:pl-12 xl:pl-16 3xl:pl-80">
-             <p className="text-lg lg:text-base xl:text-lg 3xl:text-[1.1vw] 3xl:leading-[1.75] font-light text-[#4A4A4A] text-justify hyphens-auto mt-3 md:mt-2 3xl:mt-[2.2vw] max-w-md 3xl:max-w-[31vw]">
+          <p className={`${BODY} text-[#4A4A4A] text-justify hyphens-auto mt-3 md:mt-2 3xl:mt-[2.2vw] max-w-md 3xl:max-w-[31vw]`}>
             Most people can&apos;t read a floor plan. When they can&apos;t
             picture the result, they hesitate, and hesitation costs you.
           </p>
         </div>
       </div>
-   
 
       <hr className="border-black/15 mt-12 md:mt-16 3xl:mt-28" />
 
@@ -70,25 +71,16 @@ export default function WhyItMatters() {
         {problems.map((problem, i) => (
           <div
             key={problem.title}
-            className={`flex flex-col pb-10 md:pb-0 ${
-              i === 0
-                ? "md:pr-8 3xl:md:pr-16"
-                : i === problems.length - 1
-                ? "md:pl-8 3xl:md:pl-16"
-                : "md:px-8 3xl:md:px-16"
-            }`}
+            className={`flex flex-col pb-10 md:pb-0 ${columnPadding(i)}`}
           >
             <div className="flex items-start gap-5 3xl:gap-10">
-              <span
-                aria-hidden="true"
-                className="sub-heading text-black/20 leading-none shrink-0"
-              >
+              <span aria-hidden="true" className={`${HEADING} text-black/20 shrink-0`}>
                 {problem.number}
               </span>
 
               <div className="border-l border-black/15 pl-5 3xl:pl-10">
-                <h3 className="text-small-bold">{problem.title}</h3>
-                <p className="text-small text-[#7D7D7D] mt-2 3xl:mt-4">
+                <h3 className={`${BODY} font-bold`}>{problem.title}</h3>
+                <p className={`${BODY} text-[#7D7D7D] mt-2 3xl:mt-4`}>
                   {problem.body}
                 </p>
               </div>
@@ -106,7 +98,7 @@ export default function WhyItMatters() {
                   blurDataURL={blurDataURL}
                 />
               </div>
-              <figcaption className="text-x-small uppercase tracking-[0.15em] text-[#7D7D7D] text-center mt-3 3xl:mt-6">
+              <figcaption className={`${SMALL} uppercase tracking-[0.15em] text-[#7D7D7D] text-center mt-3 3xl:mt-6`}>
                 {problem.caption}
               </figcaption>
             </figure>

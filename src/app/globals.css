@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 * {
-  /* font-family: var(--font-raleway); */
   font-family: var(--font-century-gothic);
   padding: 0px;
   margin: 0px;
@@ -14,9 +13,7 @@ body {
   background-color: #bac3c833;
 }
 
-/* Poppins retired — every `poppins` class now resolves to Century Gothic.
-   The class usages are left in place rather than removed across 25 files;
-   they can be cleaned up gradually. */
+/* Poppins retired — every `poppins` class now resolves to Century Gothic. */
 .poppins {
   font-family: var(--font-century-gothic);
 }
@@ -40,49 +37,45 @@ body {
   @apply bg-[#114046] text-white border border-[#114046];
 }
 
-/* ─── Type scale ──────────────────────────────────────────────────────────
-   3xl (2048px) values were tuned for that width. 4xl (3840px) values are
-   roughly 1.85× those — the ratio between the two widths — so a 4K screen
-   shows the same layout scaled up rather than 2048-sized text on a much
-   wider canvas.
+/* ─── Site type scale ───────────────────────────────────────────────────────
+   Three sizes only, used everywhere: heading, body, small.
 
-   Bold variants exist as separate classes rather than `.heading font-bold`:
-   both would be utilities of equal specificity, and the font-light built
-   into the base classes would win depending on emit order. Use a bold
-   variant on its own — never alongside its base class. */
+   Inside @layer components so Tailwind utilities override them — font-bold,
+   md:, 3xl: and the rest all work alongside these classes without `!`.
 
-.heading {
-  @apply text-3xl md:text-5xl 3xl:text-7xl 4xl:text-[8.5rem];
-}
+   From 3xl up each size is in vw (the *-4k tokens in tailwind.config.ts), so
+   large screens keep desktop proportions. */
+@layer components {
+  /* Headings. .sub-heading is kept as an alias so existing markup keeps
+     working, but it is now the same size as .heading. */
+  .heading,
+  .sub-heading {
+    @apply text-3xl md:text-5xl 3xl:text-heading-4k;
+  }
 
-.heading-bold {
-  @apply text-3xl md:text-5xl 3xl:text-7xl 4xl:text-[8.5rem] font-bold;
-}
+  /* Body text. .para is kept as an alias for the same reason. */
+  .text-small,
+  .para {
+    @apply text-xs lg:text-base xl:text-lg 3xl:text-body-4k font-light;
+  }
 
-.sub-heading {
-  @apply text-2xl md:text-4xl 3xl:text-6xl 4xl:text-[7rem];
-}
+  /* Small text — captions, labels, taglines. */
+  .text-x-small {
+    @apply text-xs xl:text-sm 3xl:text-label-4k font-light;
+  }
 
-.sub-heading-bold {
-  @apply text-2xl md:text-4xl 3xl:text-6xl 4xl:text-[7rem] font-bold;
-}
+  /* Bold variants. No longer strictly needed — `heading font-bold` now works —
+     but kept so existing markup doesn't break. */
+  .heading-bold,
+  .sub-heading-bold {
+    @apply text-3xl md:text-5xl 3xl:text-heading-4k font-bold;
+  }
 
-.para {
-  @apply lg:text-lg xl:text-xl 3xl:text-3xl 4xl:text-[3.5rem] font-light;
-}
+  .text-small-bold {
+    @apply text-xs lg:text-base xl:text-lg 3xl:text-body-4k font-bold;
+  }
 
-.text-small {
-  @apply text-xs lg:text-base xl:text-lg 3xl:text-xl 4xl:text-[2.25rem] font-light;
-}
-
-.text-small-bold {
-  @apply text-xs lg:text-base xl:text-lg 3xl:text-xl 4xl:text-[2.25rem] font-bold;
-}
-
-.text-x-small {
-  @apply text-xs xl:text-sm 3xl:text-base 4xl:text-[1.875rem] font-light;
-}
-
-.text-x-small-bold {
-  @apply text-xs xl:text-sm 3xl:text-base 4xl:text-[1.875rem] font-bold;
+  .text-x-small-bold {
+    @apply text-xs xl:text-sm 3xl:text-label-4k font-bold;
+  }
 }

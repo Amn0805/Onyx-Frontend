@@ -16,6 +16,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useRef, useState } from "react";
 import { blurDataURL } from "@/constants";
+import { PILL } from "@/components/shared/buttonStyles";
 
 const BEFORE_IMAGE = "/home/before.webp";
 const AFTER_IMAGE = "/home/after.webp";
@@ -32,10 +33,6 @@ const START = 25;
 
 /** Pixels a held pointer must travel before it counts as a drag, not a click. */
 const DRAG_THRESHOLD = 4;
-
-/** Identical to .btn-pill below 3xl; desktop proportions in vw above. */
-const PILL =
-  "rounded-full shadow-2xl transition-colors px-8 py-2 lg:px-10 lg:py-4 lg:text-sm min-w-[210px] 3xl:px-[2.8vw] 3xl:py-[1.1vw] 3xl:text-[0.97vw] 3xl:min-w-[14.5vw]";
 
 /** Emphasises any text wrapped in [square brackets]. */
 function Point({ text }: { text: string }) {
@@ -116,26 +113,25 @@ export default function SplitReveal() {
       <div className="flex flex-col lg:flex-row lg:items-center gap-12 lg:gap-24 xl:gap-32 3xl:gap-[6vw]">
         {/* Copy */}
         <div className="w-full lg:w-[45%]">
-          <h2 className="text-3xl md:text-5xl 3xl:text-[3.4vw] flex flex-col gap-3 md:gap-5 3xl:gap-[1vw] [word-spacing:0.025em] tracking-wide">
-            <span>
-              From first{" "}
-              <span className="font-bold text-[#4a5f66]">Sketch</span> to
-            </span>
-            <span>
-              final <span className="font-bold text-[#4a5f66]">Sale.</span>
-            </span>
-          </h2>
+         <h2 className="text-3xl md:text-5xl 3xl:text-heading-4k flex flex-col gap-3 md:gap-5 3xl:gap-[1vw] [word-spacing:0.025em] tracking-wide">
+  <span>
+    From first{" "}
+    <span className="font-bold text-[#4a5f66]">Sketch</span> to
+  </span>
+  <span>
+    final <span className="font-bold text-[#4a5f66]">Sale.</span>
+  </span>
+</h2>
 
-          {/* Tight to the heading, so it reads as part of the same statement. */}
-                   <p className="text-x-small text-[#4a5f66] tracking-[0.25em] uppercase mt-4 md:mt-5 3xl:mt-[1.4vw]">
-            Designed. Modeled. Rendered. Sold.
-          </p>
+<p className="text-xs xl:text-sm 3xl:text-label-4k font-light text-[#4a5f66] tracking-[0.25em] uppercase mt-4 md:mt-5 3xl:mt-[1.4vw]">
+  Designed. Modeled. Rendered. Sold.
+</p>
 
-           <p className="text-xs lg:text-base xl:text-lg 3xl:text-[1.1vw] 3xl:leading-[1.75] font-light text-[#4A4A4A] text-justify hyphens-auto mt-6 md:mt-8 3xl:mt-[2.2vw] max-w-md 3xl:max-w-[31vw]">
-            Photorealistic renders, animations, and immersive experiences that
-            win approvals, impress clients, and sell projects off-plan, backed
-            by a design and BIM team that knows how buildings are made.
-          </p>
+<p className="text-xs lg:text-base xl:text-lg 3xl:text-body-4k font-light text-[#4A4A4A] text-justify hyphens-auto mt-6 md:mt-8 3xl:mt-[2.2vw] max-w-md 3xl:max-w-[31vw]">
+  Photorealistic renders, animations, and immersive experiences that
+  win approvals, impress clients, and sell projects off-plan, backed
+  by a design and BIM team that knows how buildings are made.
+</p>
 
           <div className="flex flex-wrap gap-4 3xl:gap-[1.1vw] mt-8 md:mt-12 3xl:mt-[3.3vw]">
             <Link href="/studio/#scheduleCall">

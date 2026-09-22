@@ -5,6 +5,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { blurDataURL } from "@/constants";
+import { HEADING, SMALL } from "@/components/shared/typography";
+import { PILL } from "@/components/shared/buttonStyles";
 
 export default function FooterCTA() {
   return (
@@ -20,7 +22,6 @@ export default function FooterCTA() {
       />
 
       {/* Keeps the heading readable over any crop of the photograph. */}
-            {/* Keeps the heading readable over any crop of the photograph. */}
       <div aria-hidden="true" className="absolute inset-0 bg-black/70" />
 
       {/* Fades the lower edge into LowerFooter's black background so the two
@@ -31,21 +32,24 @@ export default function FooterCTA() {
       />
 
       <div className="relative z-10 text-center text-white px-5 md:px-12 3xl:px-24">
-        <p className="text-x-small tracking-[0.1em] uppercase text-white/70">
-          Now Accepting . 05  Projects for 2027
+        <p className={`${SMALL} tracking-[0.25em] uppercase text-white/70`}>
+          Now accepting · 05 projects for 2027
         </p>
 
-        <h2 className="heading mt-5 3xl:mt-10 max-w-3xl 3xl:max-w-6xl mx-auto">
-          Have a project, a brief,
-          <br />
-          or a quiet ambition?
+        {/* Two spans with a gap rather than a <br />, matching how every other
+            heading on the site breaks its lines. */}
+        <h2 className={`${HEADING} flex flex-col items-center gap-2 md:gap-4 3xl:gap-8 mt-5 3xl:mt-10`}>
+          <span>Have a project, a brief,</span>
+          <span>or a quiet ambition?</span>
         </h2>
 
-        <Link href="/studio/#scheduleCall">
-          <button className="bg-white text-[#114046] hover:bg-transparent hover:text-white border border-white btn-pill mt-8 md:mt-12 3xl:mt-[3vw]">
-            Book a Call
-          </button>
-        </Link>
+        <div className="mt-8 md:mt-12 3xl:mt-[3vw]">
+          <Link href="/studio/#scheduleCall">
+            <button className={`${PILL} bg-white text-[#114046] border border-white hover:bg-transparent hover:text-white`}>
+              Book a Call
+            </button>
+          </Link>
+        </div>
       </div>
     </section>
   );

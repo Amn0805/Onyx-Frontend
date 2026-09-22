@@ -10,6 +10,8 @@
 
 import Image from "next/image";
 import { blurDataURL } from "@/constants";
+import { HEADING, BODY } from "@/components/shared/typography";
+import Highlight from "@/components/shared/Highlight";
 
 export interface ProcessStep {
   title: string;
@@ -22,26 +24,33 @@ export default function ProcessSteps({
   steps,
   heading,
   intro,
-  /** Per-page override — the service pages and Home use different ratios. */
   aspect = "aspect-[4/5]",
 }: {
   steps: readonly ProcessStep[];
+  /**
+   * Use \n for a line break and [brackets] to highlight words, e.g.
+   * "From drawings to final\nimages in [four steps]".
+   */
   heading?: string;
   intro?: string;
+  /** Per-page override — the service pages and Home use different ratios. */
   aspect?: string;
 }) {
   return (
-        <section className="px-6 md:px-16 lg:px-20 3xl:px-32 pt-4 md:pt-8 pb-16 md:pb-24 3xl:pb-40">
-        {(heading || intro) && (
-        <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-24 xl:gap-32 3xl:gap-48 mb-12 md:mb-20 3xl:mb-32">
-          {heading &&             <h2
-              className="sub-heading lg:w-1/2 tracking-wide"
-              style={{ lineHeight: 1.5 }}
-            >
-              {heading}
-            </h2>}
+    <section className="px-6 md:px-16 lg:px-20 3xl:px-32 pt-4 md:pt-8 pb-16 md:pb-24 3xl:pb-40">
+      {(heading || intro) && (
+        <div className="flex flex-col lg:flex-row lg:items-start gap-6 md:gap-8 lg:gap-24 xl:gap-32 3xl:gap-48 mb-12 md:mb-20 3xl:mb-32">
+          {heading && (
+            <h2 className={`${HEADING} lg:w-1/2 flex flex-col gap-2 md:gap-4 tracking-wide leading-[1.15]`}>
+              {heading.split("\n").map((line) => (
+                <span key={line}>
+                  <Highlight text={line} />
+                </span>
+              ))}
+            </h2>
+          )}
           {intro && (
-            <p className="text-small text-[#7D7D7D] lg:w-1/2 max-w-2xl 3xl:max-w-4xl pt-4 3xl:pt-8">
+            <p className={`${BODY} text-[#7D7D7D] lg:w-1/2 max-w-2xl 3xl:max-w-[35vw]`}>
               {intro}
             </p>
           )}
@@ -73,16 +82,12 @@ export default function ProcessSteps({
               <figcaption
                 className={
                   textFirst
-                    ? "order-2 lg:order-1 mt-4 lg:mt-0 lg:mb-6 3xl:lg:mb-10"
+                    ? "order-2 lg:order-1 mt-4 lg:mt-0 lg:mb-6 3xl:mb-10"
                     : "order-2 mt-4 3xl:mt-8"
                 }
               >
-                <h3 className="text-small text-[#114046] font-normal">
-                  {step.title}
-                </h3>
-                <p className="text-x-small text-[#7D7D7D] mt-2 3xl:mt-4">
-                  {step.body}
-                </p>
+                <h3 className={`${BODY} font-normal text-[#114046]`}>{step.title}</h3>
+                <p className={`${BODY} text-[#7D7D7D] mt-2 3xl:mt-4`}>{step.body}</p>
               </figcaption>
             </figure>
           );

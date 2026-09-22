@@ -26,7 +26,7 @@ export default function ServicesOverview() {
             Every visual you need,{" "}
             <span className="heading-bold text-white">from</span>
           </span>
-          <span className="heading-bold text-white">one studio</span>
+          <span className="heading-bold text-white">one Studio</span>
         </h2>
 
         <p className="text-lg text-white/70 lg:w-1/2 max-w-md 3xl:max-w-2xl pt-4 tracking-wide">

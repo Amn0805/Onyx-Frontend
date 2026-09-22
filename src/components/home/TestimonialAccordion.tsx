@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Star } from "@/icons";
 import { blurDataURL } from "@/constants";
+import { BODY, SMALL } from "@/components/shared/typography";
 
 export interface TestimonialCard {
   name: string;
@@ -14,6 +15,13 @@ export interface TestimonialCard {
 }
 
 const VISIBLE = 5;
+
+/** Five stars, built once rather than on every render. */
+const STARS = [0, 1, 2, 3, 4];
+
+/** Prev / next page buttons share every class. */
+const NAV_BUTTON =
+  "w-10 h-10 3xl:w-20 3xl:h-20 rounded-full border border-[#114046] text-[#114046] hover:bg-[#114046] hover:text-white transition-colors disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-[#114046]";
 
 /** Splits reviews into pages; the last page may be shorter. */
 function paginate<T>(items: T[], size: number): T[][] {
@@ -55,7 +63,10 @@ export default function TestimonialAccordion({
               <div
                 key={pageIdx}
                 aria-hidden={pageIdx !== page}
-                className="w-full shrink-0 flex flex-col lg:flex-row gap-2 3xl:gap-4 h-[700px] lg:h-[75vh] 3xl:h-[1000px]"
+                // Height stays in vh at every desktop size. A fixed 3xl height
+                // let width outgrow it, turning panels landscape at 4K and
+                // cropping the tops of the portraits.
+                className="w-full shrink-0 flex flex-col lg:flex-row gap-2 3xl:gap-4 h-[700px] lg:h-[75vh]"
               >
                 {pageItems.map((item, i) => {
                   const isActive = i === active;
@@ -70,7 +81,7 @@ export default function TestimonialAccordion({
                       }
                       aria-label={`Read ${item.name}'s review`}
                       aria-expanded={isActive}
-                      className={`relative overflow-hidden text-left transition-all duration-700 ease-in-out ${
+                      className={`relative overflow-hidden text-left transition-[flex-grow] duration-700 ease-in-out ${
                         isActive ? "grow-[3]" : "grow hover:grow-[1.4]"
                       }`}
                       style={{ flexBasis: 0 }}
@@ -82,18 +93,19 @@ export default function TestimonialAccordion({
                         sizes="(max-width: 1024px) 100vw, 50vw"
                         placeholder="blur"
                         blurDataURL={blurDataURL}
-                        className={`object-cover object-[50%_15%] transition-all duration-700 ${
+                        className={`object-cover object-[50%_15%] transition-[filter] duration-700 ${
                           isActive ? "grayscale-0" : "grayscale"
                         }`}
                       />
 
-                      {/* Darkens the lower half so the quote stays readable. */}
+                      {/* Two layers: a constant dim, plus a gradient that fades
+                          in when open. A single layer swapping backgrounds
+                          can't animate, so the change used to snap. */}
+                      <div aria-hidden="true" className="absolute inset-0 bg-black/40" />
                       <div
                         aria-hidden="true"
-                        className={`absolute inset-0 transition-opacity duration-700 ${
-                          isActive
-                            ? "bg-gradient-to-t from-black/85 via-black/40 to-black/50"
-                            : "bg-black/40"
+                        className={`absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/20 transition-opacity duration-700 ${
+                          isActive ? "opacity-100" : "opacity-0"
                         }`}
                       />
 
@@ -106,36 +118,43 @@ export default function TestimonialAccordion({
                             align rather than being positioned separately. */}
                         <div className="flex items-start justify-between gap-6 3xl:gap-12">
                           <div>
-                            <h3 className="text-x-small uppercase tracking-wider">
+                            <h3 className={`${SMALL} uppercase tracking-wider`}>
                               {item.name}
                             </h3>
-                            <p className="text-x-small text-white/60 mt-1 3xl:mt-3">
+                            <p className={`${SMALL} text-white/60 mt-1 3xl:mt-3`}>
                               {item.designation}
                             </p>
                           </div>
 
-                          <div className="relative w-32 md:w-44 3xl:w-[26rem] aspect-[3/1] shrink-0">
+                          <div className="relative w-32 md:w-44 3xl:w-[12vw] aspect-[3/1] shrink-0">
                             <Image
                               src={item.logoUrl}
                               alt=""
                               fill
-                              sizes="416px"
+                              sizes="(max-width: 768px) 128px, 12vw"
                               className="object-contain object-right-top brightness-0 invert"
                             />
                           </div>
                         </div>
 
                         <div>
-                          <div className="flex gap-1 mb-3 3xl:mb-6">
-                            {Array.from({ length: 5 }, (_, k) => (
-                              <Star key={k} size={16} />
+                          {/* Star takes a fixed pixel size, so each sits in a
+                              sized box that scales at 4K instead. */}
+                          <div className="flex gap-1 3xl:gap-2 mb-3 3xl:mb-6">
+                            {STARS.map((k) => (
+                              <span
+                                key={k}
+                                className="w-4 h-4 3xl:w-[1vw] 3xl:h-[1vw] [&>svg]:w-full [&>svg]:h-full"
+                              >
+                                <Star size={16} />
+                              </span>
                             ))}
                           </div>
 
                           <div className="border-t border-white/30 pt-4 3xl:pt-8">
                             {/* Reviews run to 500 chars, so this scrolls rather
                                 than overflowing the panel. */}
-                            <p className="text-x-small max-h-32 3xl:max-h-64 overflow-y-auto pr-2 leading-relaxed">
+                            <p className={`${BODY} max-h-32 3xl:max-h-[9vw] overflow-y-auto pr-2`}>
                               &ldquo;{item.review}&rdquo;
                             </p>
                           </div>
@@ -157,7 +176,7 @@ export default function TestimonialAccordion({
             onClick={() => setPage((p) => Math.max(0, p - 1))}
             disabled={page === 0}
             aria-label="Previous reviews"
-            className="w-10 h-10 3xl:w-20 3xl:h-20 rounded-full border border-[#114046] text-[#114046] hover:bg-[#114046] hover:text-white transition-colors disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-[#114046]"
+            className={NAV_BUTTON}
           >
             &lsaquo;
           </button>
@@ -184,7 +203,7 @@ export default function TestimonialAccordion({
             onClick={() => setPage((p) => Math.min(pages.length - 1, p + 1))}
             disabled={page === pages.length - 1}
             aria-label="More reviews"
-            className="w-10 h-10 3xl:w-20 3xl:h-20 rounded-full border border-[#114046] text-[#114046] hover:bg-[#114046] hover:text-white transition-colors disabled:opacity-30 disabled:hover:bg-transparent disabled:hover:text-[#114046]"
+            className={NAV_BUTTON}
           >
             &rsaquo;
           </button>
