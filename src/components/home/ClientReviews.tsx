@@ -22,13 +22,13 @@ export default async function ClientReviews() {
   // URLs resolved here so the interactive child stays a thin client component.
   // Square crop respects each image's hotspot, so faces survive both the
   // narrow collapsed state and the wide expanded one.
-  const cards: TestimonialCard[] = testimonials.map((t) => ({
-    name: t.name,
-    designation: t.designation,
-    review: t.review,
-    imgUrl: urlFor(t.img).width(2000).height(2000).fit("crop").auto("format").url(),
-    logoUrl: urlFor(t.logo).width(800).auto("format").url(),
-  }));
+ const cards: TestimonialCard[] = testimonials.map((t) => ({
+  name: t.name,
+  designation: t.designation,
+  review: t.review,
+  imgUrl: urlFor(t.img).width(2000).fit("max").auto("format").url(),
+  logoUrl: urlFor(t.logo).width(800).auto("format").url(),
+}));
 
   // Separate, tiny crops for the badge — the portraits above are 2000px, far
   // too large to download for a 30px circle.
