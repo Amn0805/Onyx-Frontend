@@ -44,7 +44,7 @@ export default function Header() {
           : `bg-transparent ${isHomePage ? "text-white" : "text-black"}`
       }`}
     >
-          <div className="flex justify-between items-center h-12 lg:h-16 3xl:h-28 4xl:h-40 px-4 md:px-8 3xl:px-16 4xl:px-24">
+      <div className="flex justify-between items-center h-12 lg:h-16 3xl:h-28 4xl:h-40 px-4 md:px-8 3xl:px-16 4xl:px-24">
         {/* Logo + wordmark */}
         <Link href="/" className="relative z-10 flex items-center gap-3 3xl:gap-6">
           <Image
@@ -122,8 +122,8 @@ export default function Header() {
             Sign in
           </Link>
           <Link href="/studio/#scheduleCall">
-        <button className="bg-[#114046] text-white rounded-full hover:bg-[#0e3035] transition-colors px-5 py-3 text-sm 3xl:px-8 3xl:py-4 3xl:text-lg">
-              Get a free quote
+            <button className="bg-[#114046] text-white rounded-full hover:bg-[#0e3035] transition-colors px-5 py-3 text-xs lg:text-base xl:text-lg">
+              Request a Proposal
             </button>
           </Link>
         </div>

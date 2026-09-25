@@ -93,7 +93,7 @@ export default function TestimonialAccordion({
                         sizes="(max-width: 1024px) 100vw, 50vw"
                         placeholder="blur"
                         blurDataURL={blurDataURL}
-                        className={`object-cover object-[50%_15%] transition-[filter] duration-700 ${
+                        className={`object-cover object-[50%_40%] transition-[filter] duration-700 ${
                           isActive ? "grayscale-0" : "grayscale"
                         }`}
                       />

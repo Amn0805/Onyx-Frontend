@@ -1,12 +1,13 @@
 // src/components/shared/LowerFooter.tsx
 //
-// Rendered on every non-dashboard page via AppWrapper. Server component —
-// the previous version was "use client" without needing to be.
+// OPTION 1: TEXT LABELS ONLY (No icons)
+//
+// Social links shown as text names instead of icons
 
 import Image from "next/image";
 import Link from "next/link";
 import { blurDataURL } from "@/constants";
-import { FacebookIcon, Instagram, LinkedinIcon, Mail, Phone, YoutubeIcon } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 
 const MAPS_URL =
   "https://www.google.com/maps/place/5900+Balcones+Dr+Suit+100,+Austin,+TX+78731,+USA/@30.3415589,-97.7549546,17z";
@@ -26,24 +27,16 @@ const legalLinks = [
 ];
 
 const socialLinks = [
-  { label: "Instagram", href: "https://www.instagram.com/onyxrender", Icon: Instagram },
-  { label: "YouTube", href: "https://www.youtube.com/channel/UCQFBS73Re0F3bVWtfGvnfhQ", Icon: YoutubeIcon },
-  { label: "LinkedIn", href: "https://www.linkedin.com/company/106947372", Icon: LinkedinIcon },
-  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61574497564060", Icon: FacebookIcon },
+  { label: "Instagram", href: "https://www.instagram.com/onyxrender" },
+  { label: "YouTube", href: "https://www.youtube.com/channel/UCQFBS73Re0F3bVWtfGvnfhQ" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/106947372" },
+  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61574497564060" },
 ];
-
-/**
- * Rendered letter by letter so alternating characters can carry different
- * weights — O bold, N light, Y bold, and so on. The space keeps its index,
- * so the alternation continues unbroken across both words.
- */
-const WORDMARK = "ONYX RENDERS";
-const WORDMARK_SIZE = `${(110 / WORDMARK.length).toFixed(1)}vw`;
 
 export default function LowerFooter() {
   return (
-    <footer className="bg-black text-white poppins overflow-hidden">
-         <div className="px-[6vw] pt-8 3xl:pt-8 pb-8 3xl:pb-16 flex flex-col lg:flex-row gap-12 lg:gap-16 3xl:gap-32 justify-between">
+    <footer className="bg-black text-white overflow-hidden">
+      <div className="px-[6vw] pt-12 md:pt-16 3xl:pt-20 pb-10 3xl:pb-16 flex flex-col lg:flex-row gap-12 lg:gap-16 3xl:gap-32 justify-between">
         {/* Logo + address */}
         <div className="flex flex-col gap-4 3xl:gap-8 max-lg:items-center max-lg:text-center">
           <Link href="/" className="w-fit">
@@ -54,12 +47,12 @@ export default function LowerFooter() {
               alt="Onyx Renders"
               width={120}
               height={50}
-               className="w-10 3xl:w-20 h-auto"
+              className="w-10 3xl:w-20 h-auto"
             />
           </Link>
 
-          <address className="not-italic text-xs 3xl:text-base text-[#BCBCBC] leading-relaxed">
-            <Link href={MAPS_URL} target="_blank" className="hover:text-white transition-colors block">
+          <address className="text-x-small not-italic text-[#BCBCBC] leading-relaxed">
+            <Link href={MAPS_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors block">
               5900 Balcones Drive, Suite 100
               <br />
               Austin, TX 78731
@@ -71,21 +64,21 @@ export default function LowerFooter() {
             >
               <Mail className="w-3 3xl:w-5 shrink-0" /> info@onyxrenders.com
             </Link>
-            <span className="flex items-center gap-2 mt-2 3xl:mt-4 max-lg:justify-center">
+            <div className="flex items-center gap-2 mt-2 3xl:mt-4 max-lg:justify-center">
               <Phone className="w-3 3xl:w-5 shrink-0" /> +1 512 325 5121
-            </span>
+            </div>
           </address>
         </div>
 
-        {/* Link columns */}
+        {/* Link columns - Studio & Legal only */}
         <div className="flex flex-wrap gap-10 md:gap-16 3xl:gap-32 max-lg:justify-center max-lg:text-center">
           <nav className="flex flex-col gap-2 3xl:gap-4">
-            <h2 className="text-xs 3xl:text-base font-medium">Studio</h2>
+            <h2 className="text-small font-bold text-white">Studio</h2>
             {studioLinks.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
-                className="text-xs 3xl:text-base text-[#BCBCBC] hover:text-white transition-colors"
+                className="text-x-small text-[#BCBCBC] hover:text-white transition-colors"
               >
                 {link.label}
               </Link>
@@ -93,39 +86,21 @@ export default function LowerFooter() {
           </nav>
 
           <nav className="flex flex-col gap-2 3xl:gap-4">
-            <h2 className="text-xs 3xl:text-base font-medium">Legal</h2>
+            <h2 className="text-small font-bold text-white">Legal</h2>
             {legalLinks.map((link) => (
               <Link
                 key={link.label}
                 href={link.href}
-                className="text-xs 3xl:text-base text-[#BCBCBC] hover:text-white transition-colors"
+                className="text-x-small text-[#BCBCBC] hover:text-white transition-colors"
               >
                 {link.label}
-              </Link>
-            ))}
-          </nav>
-
-          <nav className="flex flex-col gap-2 3xl:gap-4">
-            <h2 className="text-xs 3xl:text-base font-medium">Social</h2>
-            {socialLinks.map(({ label, href, Icon }) => (
-              <Link
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 3xl:gap-3 text-xs 3xl:text-base text-[#BCBCBC] hover:text-white transition-colors max-lg:justify-center"
-              >
-                <Icon className="w-3 3xl:w-5 shrink-0" />
-                {label}
               </Link>
             ))}
           </nav>
         </div>
       </div>
-         {/* Oversized wordmark, aligned to the bottom-right corner. The only
-          text-only logo available is the theme (teal) version, so it is
-          inverted to read against black. Drop `brightness-0 invert` if the
-          teal is wanted. */}
+
+      {/* Oversized wordmark, aligned to the bottom-right corner */}
       <div className="relative flex justify-end pr-[4vw]">
         <Image
           src="/logo/logo1-text-only-theme.svg"
@@ -137,10 +112,27 @@ export default function LowerFooter() {
         />
       </div>
 
-      <div className="px-[6vw] pb-6 3xl:pb-12">
-        <p className="text-[0.7rem] 3xl:text-base text-[#BCBCBC]">
+      {/* Copyright and Social Links (TEXT) on same line */}
+      <div className="px-[6vw] pt-8 3xl:pt-12 pb-8 3xl:pb-12 flex items-center justify-between gap-6 flex-wrap">
+        {/* Copyright text - left side */}
+        <p className="text-x-small text-[#BCBCBC]">
           © {new Date().getFullYear()} Onyx Renders LLC. All rights reserved.
         </p>
+
+        {/* Social Links as TEXT - right side */}
+        <div className="flex items-center gap-5 3xl:gap-10 flex-wrap">
+          {socialLinks.map(({ label, href }) => (
+            <Link
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-x-small text-[#BCBCBC] hover:text-white transition-colors "
+            >
+              {label}
+            </Link>
+          ))}
+        </div>
       </div>
     </footer>
   );

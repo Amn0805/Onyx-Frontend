@@ -53,7 +53,7 @@ export default function WhyItMatters() {
       <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-12 xl:gap-16 3xl:gap-24">
         <h2 className={`${HEADING} lg:w-[55%] flex flex-col gap-2 md:gap-4 3xl:gap-8 [word-spacing:0.15em]`}>
           <span>Drawings don&apos;t sell.</span>
-          <span className="font-bold text-[#4a5f66]">Images do.</span>
+          <span >Images do.</span>
         </h2>
 
          <div className="lg:w-[45%] lg:border-l lg:border-black/15 lg:pl-12 xl:pl-16 3xl:pl-[3vw]">

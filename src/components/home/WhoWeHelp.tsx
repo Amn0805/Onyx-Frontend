@@ -21,7 +21,7 @@ interface Audience {
 
 const audiences: Audience[] = [
   {
-    title: "Developers & construction",
+    title: "Real Estate Developers",
     body: "For real estate developers and construction companies launching off-plan.",
     outcome: "Visuals that sell units",
     href: "/who-we-help/developers",
@@ -56,11 +56,11 @@ const audiences: Audience[] = [
 
 export default function WhoWeHelp() {
   return (
-    <section className="px-6 md:px-16 lg:px-20 3xl:px-40 pt-10 pb-16 md:pb-24 3xl:pb-48">
+    <section className="px-6 md:px-16 lg:px-20 3xl:px-40 pt-9 pb-16 md:pb-24 3xl:pb-48">
       <div className="flex flex-wrap items-baseline justify-between gap-4 3xl:gap-8">
         <h2 className={`${HEADING} tracking-wide [word-spacing:0.025em]`}>
-          What are you{" "}
-          <span className="font-bold text-[#4a5f66]">working</span> on?
+          What are you working on?
+          
         </h2>
 
         <Link
@@ -120,7 +120,7 @@ export default function WhoWeHelp() {
           href="/who-we-help/students"
           className="group text-black font-bold inline-flex items-center gap-2 3xl:gap-4 underline underline-offset-4 hover:text-[#114046] transition-colors"
         >
-          See student packages
+          Get a Student Quote
           <ArrowRight className="w-4 h-4 3xl:w-8 3xl:h-8 group-hover:translate-x-1 transition-transform" />
         </Link>
       </p>

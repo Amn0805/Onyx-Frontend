@@ -1,10 +1,23 @@
 // src/components/shared/buttonStyles.ts
 //
-// Pill button geometry. Identical to .btn-pill below 3xl; from 3xl up it
-// scales in vw instead of .btn-pill's fixed, oversized 4K values.
+// Button styling constants and helpers.
 //
-// .btn-pill can't be used alongside 3xl utilities — it sits outside @layer in
-// globals.css and always overrides them — hence this constant.
+// PRIMARY BUTTON CLASS: Use .btn-pill directly in JSX
+//
+// Example usage:
+//   <button className="btn-pill bg-[#114046] text-white border border-[#114046] hover:bg-[#0e3035]">
+//     Click me
+//   </button>
+//
+// The .btn-pill class is defined in globals.css inside @layer components,
+// ensuring it works seamlessly with Tailwind utilities and color classes.
+//
+// Color/state variants can be added with standard Tailwind classes:
+//   - bg-[#114046] for background
+//   - text-white for text color
+//   - border border-[#114046] for borders
+//   - hover:bg-[#0e3035] for hover states
 
-export const PILL =
-  "rounded-full shadow-2xl transition-colors px-8 py-2 lg:px-10 lg:py-4 lg:text-sm min-w-[210px] 3xl:px-[2.8vw] 3xl:py-[1.1vw] 3xl:text-[0.97vw] 3xl:min-w-[14.5vw]";
+export const BUTTON_THEME = "bg-[#114046] text-white border border-[#114046] hover:bg-[#0e3035]";
+export const BUTTON_OUTLINE = "border border-[#114046] text-[#114046] hover:bg-[#114046] hover:text-white";
+export const BUTTON_WHITE = "bg-white text-[#114046] border border-white hover:bg-transparent hover:text-white";

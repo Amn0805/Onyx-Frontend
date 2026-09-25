@@ -1,12 +1,11 @@
 // src/components/shared/FooterCTA.tsx
 //
 // Full-bleed band that sits directly above LowerFooter. Server component.
+// Uses standardized typography and button styles.
 
 import Image from "next/image";
 import Link from "next/link";
 import { blurDataURL } from "@/constants";
-import { HEADING, SMALL } from "@/components/shared/typography";
-import { PILL } from "@/components/shared/buttonStyles";
 
 export default function FooterCTA() {
   return (
@@ -32,20 +31,20 @@ export default function FooterCTA() {
       />
 
       <div className="relative z-10 text-center text-white px-5 md:px-12 3xl:px-24">
-        <p className={`${SMALL} tracking-[0.25em] uppercase text-white/70`}>
+        <p className="text-x-small tracking-[0.25em] uppercase text-white/70">
           Now accepting · 05 projects for 2027
         </p>
 
         {/* Two spans with a gap rather than a <br />, matching how every other
             heading on the site breaks its lines. */}
-        <h2 className={`${HEADING} flex flex-col items-center gap-2 md:gap-4 3xl:gap-8 mt-5 3xl:mt-10`}>
+        <h2 className="heading flex flex-col items-center gap-2 md:gap-4 3xl:gap-8 mt-5 3xl:mt-10">
           <span>Have a project, a brief,</span>
           <span>or a quiet ambition?</span>
         </h2>
 
         <div className="mt-8 md:mt-12 3xl:mt-[3vw]">
           <Link href="/studio/#scheduleCall">
-            <button className={`${PILL} bg-white text-[#114046] border border-white hover:bg-transparent hover:text-white`}>
+            <button className="btn-pill bg-white text-[#114046] border border-white hover:bg-transparent hover:text-white">
               Book a Call
             </button>
           </Link>

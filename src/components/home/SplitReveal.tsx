@@ -8,15 +8,11 @@
 // every value is in vw, set to the same fraction of screen width it occupies on
 // a 1440px desktop — so large screens reproduce the desktop layout, scaled,
 // rather than 2048-sized content stranded on a wider canvas.
-//
-// Type classes (.heading, .text-small, .btn-pill) are written out because they
-// sit outside @layer in globals.css and override any 3xl utility beside them.
 
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useRef, useState } from "react";
 import { blurDataURL } from "@/constants";
-import { PILL } from "@/components/shared/buttonStyles";
 
 const BEFORE_IMAGE = "/home/before.webp";
 const AFTER_IMAGE = "/home/after.webp";
@@ -113,46 +109,45 @@ export default function SplitReveal() {
       <div className="flex flex-col lg:flex-row lg:items-center gap-12 lg:gap-24 xl:gap-32 3xl:gap-[6vw]">
         {/* Copy */}
         <div className="w-full lg:w-[45%]">
-         <h2 className="text-3xl md:text-5xl 3xl:text-heading-4k flex flex-col gap-3 md:gap-5 3xl:gap-[1vw] [word-spacing:0.025em] tracking-wide">
-  <span>
-    From first{" "}
-    <span className="font-bold text-[#4a5f66]">Sketch</span> to
-  </span>
-  <span>
-    final <span className="font-bold text-[#4a5f66]">Sale.</span>
-  </span>
-</h2>
+          <h2 className="heading flex flex-col gap-3 md:gap-5 3xl:gap-[1vw] [word-spacing:0.025em] tracking-wide max-w-2xl 3xl:max-w-[35vw]">
+            <span>
+              From first{" "}
+              <span className="font-bold text-[#4a5f66]">Sketch</span> to
+            </span>
+            <span>
+              final <span className="font-bold text-[#4a5f66]">Sale.</span>
+            </span>
+          </h2>
 
-<p className="text-xs xl:text-sm 3xl:text-label-4k font-light text-[#4a5f66] tracking-[0.25em] uppercase mt-4 md:mt-5 3xl:mt-[1.4vw]">
-  Designed. Modeled. Rendered. Sold.
-</p>
+          <p className="text-x-small text-[#4a5f66] tracking-[0.25em] uppercase mt-4 md:mt-5 3xl:mt-[1.4vw]">
+            Designed. Modeled. Rendered. Sold.
+          </p>
 
-<p className="text-xs lg:text-base xl:text-lg 3xl:text-body-4k font-light text-[#4A4A4A] text-justify hyphens-auto mt-6 md:mt-8 3xl:mt-[2.2vw] max-w-md 3xl:max-w-[31vw]">
-  Photorealistic renders, animations, and immersive experiences that
-  win approvals, impress clients, and sell projects off-plan, backed
-  by a design and BIM team that knows how buildings are made.
-</p>
+          <p className="text-small text-[#4A4A4A] text-justify hyphens-auto mt-6 md:mt-8 3xl:mt-[2.2vw] max-w-md 3xl:max-w-[31vw]">
+            Photorealistic renders, animations, and immersive experiences that
+            win approvals, impress clients, and sell projects off-plan, backed
+            by a design and BIM team that knows how buildings are made.
+          </p>
 
           <div className="flex flex-wrap gap-4 3xl:gap-[1.1vw] mt-8 md:mt-12 3xl:mt-[3.3vw]">
             <Link href="/studio/#scheduleCall">
-              <button className={`${PILL} bg-[#114046] text-white border border-[#114046] hover:bg-[#0e3035]`}>
+              <button className="btn-pill bg-[#114046] text-white border border-[#114046] hover:bg-[#0e3035]">
                 Request a proposal
               </button>
             </Link>
             <Link href="/gallery">
-              <button className={`${PILL} border border-[#114046] text-[#114046] hover:bg-[#114046] hover:text-white`}>
+              <button className="btn-pill border border-[#114046] text-[#114046] hover:bg-[#114046] hover:text-white">
                 Explore our Work
               </button>
             </Link>
           </div>
 
-          {/* 1.1vw sits just under the paragraph's 1.25vw, restoring the
-              hierarchy that the fixed 3xl sizes had inverted. */}
+          {/* Stats list */}
           <ul className="grid grid-cols-2 gap-x-6 gap-y-3 lg:gap-x-8 3xl:gap-x-[2.2vw] 3xl:gap-y-[0.8vw] mt-10 md:mt-14 3xl:mt-[3.3vw]">
             {points.map((point) => (
               <li
                 key={point}
-                className="text-xs lg:text-base xl:text-lg 3xl:text-[1.1vw] font-light text-[#4A4A4A]"
+                className="text-small 3xl:text-[1.1vw] text-[#4A4A4A]"
               >
                 <span aria-hidden="true" className="text-[#114046] mr-2 3xl:mr-[0.55vw]">
                   ✓
@@ -204,7 +199,6 @@ export default function SplitReveal() {
               />
             </div>
 
-
             {/* Divider line */}
             <div
               aria-hidden="true"
@@ -231,7 +225,7 @@ export default function SplitReveal() {
             </button>
           </div>
 
-          <p className="3xl:absolute 3xl:top-full 3xl:left-0 text-xs xl:text-sm 3xl:text-[0.97vw] font-light text-[#7D7D7D] mt-4 3xl:mt-[1.1vw]">
+          <p className="3xl:absolute 3xl:top-full 3xl:left-0 text-x-small font-light text-[#7D7D7D] mt-4 3xl:mt-[1.1vw]">
             Click or drag to see how a model becomes a selling image.
           </p>
         </div>

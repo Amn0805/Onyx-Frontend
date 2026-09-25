@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Link from "next/link";
 
@@ -24,7 +23,7 @@ export default function Banner() {
       {/* Padding matches the rest of the site's sections, so the headline lines
           up with the content below it rather than hugging the screen edge. */}
       <div className="relative h-full flex flex-col justify-end px-6 md:px-16 lg:px-20 3xl:px-40 pb-16 md:pb-24 lg:pb-28 3xl:pb-48">
-        <h1 className="text-white leading-[1.05] tracking-tight text-4xl sm:text-5xl md:text-6xl xl:text-7xl 3xl:text-9xl">
+        <h1 className="heading text-white leading-[1.05] tracking-tight">
           <span className="block font-light">We make ideas</span>
           <span className="block font-bold">impossible to ignore.</span>
         </h1>

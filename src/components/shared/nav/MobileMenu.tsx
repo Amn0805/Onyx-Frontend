@@ -102,7 +102,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           </Link>
           <Link href="/studio/#scheduleCall" onClick={close}>
             <button className="bg-[#114046] rounded-full text-white w-full py-3 hover:bg-[#0e3035] transition-colors">
-              Get a free quote
+              Request a Proposal
             </button>
           </Link>
         </div>

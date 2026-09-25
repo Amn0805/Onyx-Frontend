@@ -29,53 +29,116 @@ body {
   @apply flex gap-2 md:gap-8 justify-center;
 }
 
-.btn-pill {
-  @apply px-8 py-2 lg:px-10 lg:py-4 3xl:px-20 3xl:py-8 rounded-full poppins lg:text-sm 3xl:text-2xl min-w-[210px] 3xl:min-w-[320px] shadow-2xl transition-colors;
-}
-
-.btn-theme {
-  @apply bg-[#114046] text-white border border-[#114046];
-}
-
-/* ─── Site type scale ───────────────────────────────────────────────────────
+/* ─── Typography System ───────────────────────────────────────────────────────
    Three sizes only, used everywhere: heading, body, small.
 
    Inside @layer components so Tailwind utilities override them — font-bold,
-   md:, 3xl: and the rest all work alongside these classes without `!`.
+   md:, and the rest all work alongside these classes without `!`.
 
-   From 3xl up each size is in vw (the *-4k tokens in tailwind.config.ts), so
-   large screens keep desktop proportions. */
+   For 3xl (4K) we use direct CSS media queries instead of @apply to avoid
+   Tailwind's arbitrary value limitations. */
 @layer components {
-  /* Headings. .sub-heading is kept as an alias so existing markup keeps
-     working, but it is now the same size as .heading. */
+  /* Headings. .sub-heading is kept as an alias so existing markup keeps working. */
   .heading,
   .sub-heading {
-    @apply text-3xl md:text-5xl 3xl:text-heading-4k;
+    @apply text-3xl md:text-5xl;
   }
 
   /* Body text. .para is kept as an alias for the same reason. */
   .text-small,
   .para {
-    @apply text-xs lg:text-base xl:text-lg 3xl:text-body-4k font-light;
+    @apply text-xs lg:text-base xl:text-lg font-light;
   }
 
   /* Small text — captions, labels, taglines. */
   .text-x-small {
-    @apply text-xs xl:text-sm 3xl:text-label-4k font-light;
+    @apply text-xs xl:text-sm font-light;
   }
 
-  /* Bold variants. No longer strictly needed — `heading font-bold` now works —
-     but kept so existing markup doesn't break. */
+  /* Bold variants. */
   .heading-bold,
   .sub-heading-bold {
-    @apply text-3xl md:text-5xl 3xl:text-heading-4k font-bold;
+    @apply text-3xl md:text-5xl font-bold;
   }
 
   .text-small-bold {
-    @apply text-xs lg:text-base xl:text-lg 3xl:text-body-4k font-bold;
+    @apply text-xs lg:text-base xl:text-lg font-bold;
   }
 
   .text-x-small-bold {
-    @apply text-xs xl:text-sm 3xl:text-label-4k font-bold;
+    @apply text-xs xl:text-sm font-bold;
   }
+
+  /* ─── Pill Button ───────────────────────────────────────────────────────
+     Standardized button geometry. Scales responsively and works with Tailwind
+     utilities. Use this class instead of inline button styling. */
+  .btn-pill {
+    @apply rounded-full shadow-2xl transition-colors px-8 py-2 lg:px-10 lg:py-4 lg:text-sm min-w-[210px];
+  }
+
+  /* Theme color variant — can be used with .btn-pill */
+  .btn-theme {
+    @apply bg-[#114046] text-white border border-[#114046];
+  }
+}
+
+/* ─── 4K Display Scaling (3xl breakpoint: 2048px) ────────────────────────────
+   Direct media queries for 4K support. Using arbitrary vw values ensures
+   text scales proportionally on ultra-wide displays. */
+@media (min-width: 2048px) {
+  .heading,
+  .sub-heading {
+    font-size: 3.4vw;
+  }
+
+  .text-small,
+  .para {
+    font-size: 1.1vw;
+  }
+
+  .text-x-small {
+    font-size: 0.85vw;
+  }
+
+  .heading-bold,
+  .sub-heading-bold {
+    font-size: 3.4vw;
+  }
+
+  .text-small-bold {
+    font-size: 1.1vw;
+  }
+
+  .text-x-small-bold {
+    font-size: 0.85vw;
+  }
+
+  /* 4K Button sizing */
+  .btn-pill {
+    padding-left: 2.8vw;
+    padding-right: 2.8vw;
+    padding-top: 1.1vw;
+    padding-bottom: 1.1vw;
+    font-size: 0.97vw;
+    min-width: 14.5vw;
+  }
+}
+
+/* ─── Animations ────────────────────────────────────────────────────────────
+   Reusable animation definitions for sliders and marquees. */
+@keyframes slide {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-33.3333%);
+  }
+}
+
+.slider {
+  animation: slide linear infinite;
+}
+
+.slider:hover {
+  animation-play-state: paused;
 }

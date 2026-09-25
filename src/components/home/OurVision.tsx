@@ -1,10 +1,10 @@
 // src/components/home/OurVision.tsx
 //
 // Full-bleed vision statement. Server component — no state, no client JS.
+// Uses standardized typography system with proper 4K scaling.
 
 import Image from "next/image";
 import { blurDataURL } from "@/constants";
-import { HEADING, BODY, SMALL } from "@/components/shared/typography";
 
 export default function OurVision() {
   return (
@@ -26,26 +26,25 @@ export default function OurVision() {
           The offsets only apply from lg — on smaller screens there isn't
           room to give away. */}
       <div className="relative z-10 text-center text-white px-5 md:px-12 3xl:px-24 py-20 3xl:py-40 lg:-translate-y-12 lg:translate-x-32 3xl:-translate-y-24 3xl:translate-x-64">
-        <p className={`${SMALL} tracking-[0.3em] uppercase text-white/70`}>
+        <p className="text-x-small tracking-[0.3em] uppercase text-white/70">
           Our Vision
         </p>
 
-        {/* Width caps are in vw from 3xl up. The heading scales with the
-            screen there, and a fixed cap would force it onto extra lines. */}
-        <h2 className={`${HEADING} mt-6 3xl:mt-12 max-w-4xl 3xl:max-w-[62vw] mx-auto`}>
+        {/* Width caps scale on 4K */}
+        <h2 className="heading mt-6 3xl:mt-12 max-w-4xl 3xl:max-w-[62vw] mx-auto">
           We don&apos;t just visualize spaces.
           <br />
           We bring ideas to life.
         </h2>
 
-        <p className={`${BODY} text-white/80 mt-8 3xl:mt-16 max-w-2xl 3xl:max-w-[47vw] mx-auto`}>
+        <p className="text-small text-white/80 mt-8 3xl:mt-16 max-w-2xl 3xl:max-w-[47vw] mx-auto">
           Our vision is for every project to carry its original purpose through
           every stage of design. We bring architecture, interiors, and
           visualization into one continuous conversation—where how a space
           works, how it feels, and how it is seen are considered together.
         </p>
 
-        <p className={`${SMALL} text-white/60 mt-10 3xl:mt-20`}>— OnyxRenders</p>
+        <p className="text-x-small text-white/60 mt-10 3xl:mt-20">— OnyxRenders</p>
       </div>
     </section>
   );
