@@ -30,25 +30,23 @@ export default function FooterCTA() {
         className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-b from-transparent to-black"
       />
 
-      <div className="relative z-10 text-center text-white px-5 md:px-12 3xl:px-24">
-        <p className="text-x-small tracking-[0.25em] uppercase text-white/70">
+      <div className="relative z-10 text-center text-white px-6 xl:px-20 3xl:px-40">
+        <p className="text-xs md:text-sm lg:text-base 3xl:text-lg uppercase tracking-widest text-white/70 mb-6 md:mb-8 3xl:mb-10">
           Now accepting · 05 projects for 2027
         </p>
 
         {/* Two spans with a gap rather than a <br />, matching how every other
             heading on the site breaks its lines. */}
-        <h2 className="heading flex flex-col items-center gap-2 md:gap-4 3xl:gap-8 mt-5 3xl:mt-10">
+        <h2 className="heading flex flex-col items-center gap-2 md:gap-4 3xl:gap-8 mb-10 md:mb-14 3xl:mb-20">
           <span>Have a project, a brief,</span>
           <span>or a quiet ambition?</span>
         </h2>
 
-        <div className="mt-8 md:mt-12 3xl:mt-[3vw]">
-          <Link href="/studio/#scheduleCall">
-            <button className="btn-pill bg-white text-[#114046] border border-white hover:bg-transparent hover:text-white">
-              Book a Call
-            </button>
-          </Link>
-        </div>
+        <Link href="/studio/#scheduleCall">
+          <button className="btn-pill bg-white text-black border border-white hover:bg-transparent hover:text-white transition-colors text-xs lg:text-sm xl:text-base 3xl:text-lg font-semibold min-w-[210px]">
+            Book a Call
+          </button>
+        </Link>
       </div>
     </section>
   );

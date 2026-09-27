@@ -11,7 +11,7 @@ function AvailablePositions() {
   ];
 
   return (
-    <section className='py-10 lg:py-32 flex flex-col gap-6 items-center'>
+    <section className='py-10 lg:py-32 flex flex-col gap-6 items-center'  id='openpositions'>
       <h2 className="text-center lg:my-10 heading">
         Open Positions
       </h2>

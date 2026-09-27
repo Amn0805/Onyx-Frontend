@@ -1,10 +1,5 @@
 // src/components/home/CaseStudies.tsx
-//
-// One feature case study beside two stacked, then a thumbnail strip.
-// Server component — no state.
-//
-// Typography: All section headings use the .heading class with consistent styling.
-// Max-width constraints ensure proper scaling on 4K displays.
+// OPTIMIZED: Consistent universal spacing, removed unnecessary code
 
 import Image from "next/image";
 import Link from "next/link";
@@ -24,8 +19,7 @@ interface CaseStudy {
 const feature: CaseStudy = {
   tag: "Developer",
   title: "Luxury villa community, off-plan launch",
-  challenge:
-    "Launch sales before construction started, with nothing built to show buyers.",
+  challenge: "Launch sales before construction started, with nothing built to show buyers.",
   delivered: "12 exterior renders, 6 interiors and a 60-second film.",
   result: "Result: first phase sold before groundbreaking",
   image: "/home/exterior-visualization.svg",
@@ -58,12 +52,11 @@ const thumbnails = [
   "/home/3.webp",
 ];
 
-/** Shared by both "Read case study" links. */
 const READ_MORE = "text-x-small text-[#7D7D7D] group-hover:text-[#114046] underline underline-offset-4 inline-block mt-3 3xl:mt-6 transition-colors";
 
 function Tag({ label }: { label: string }) {
   return (
-    <span className="text-x-small absolute top-4 left-4 3xl:top-8 3xl:left-8 bg-black/70 text-white px-3 py-1 3xl:px-6 3xl:py-3 rounded-full">
+    <span className="text-x-small absolute top-4 left-4 md:top-6 md:left-6 3xl:top-8 3xl:left-8 bg-black/70 text-white px-3 py-1 md:px-4 md:py-2 3xl:px-6 3xl:py-3 rounded-full">
       {label}
     </span>
   );
@@ -71,26 +64,23 @@ function Tag({ label }: { label: string }) {
 
 export default function CaseStudies() {
   return (
-    <section className="px-6 md:px-16 lg:px-20 3xl:px-32 py-16 md:py-24 3xl:py-40">
-      {/* Section heading with consistent spacing */}
-      <div className="flex flex-col xl:flex-row xl:items-start xl:justify-between gap-6 md:gap-8 xl:gap-16 3xl:gap-32">
-        <h2 className="heading xl:shrink-0 flex flex-col gap-2 md:gap-4 [word-spacing:0.25em] tracking-wide max-w-2xl 3xl:max-w-[35vw]">
+    <section className="px-6 xl:px-20 3xl:px-40 py-10 md:py-16 lg:py-20 3xl:py-28">
+      {/* Section heading */}
+      <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 md:gap-8 3xl:gap-12">
+        <h2 className="heading xl:shrink-0 flex flex-col gap-2 md:gap-4 3xl:gap-6 [word-spacing:0.25em] tracking-wide max-w-2xl 3xl:max-w-[35vw]">
           <span className="lg:whitespace-nowrap">Work that moved projects</span>
           <span>forward</span>
         </h2>
 
-        <p className="text-small text-[#7D7D7D] max-w-md 3xl:max-w-[31vw]">
-          Every project starts with a goal. Here&apos;s what we delivered and
-          what it achieved.
+        <p className="text-small  max-w-md 3xl:max-w-[31vw]">
+          Every project starts with a goal. Here&apos;s what we delivered and what it achieved.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 3xl:gap-10 mt-12 md:mt-16 3xl:mt-28">
-        {/* Feature — taller image, full challenge and delivered detail. */}
-        <Link
-          href={feature.href}
-          className="group bg-[#bac3c833] rounded-xl 3xl:rounded-3xl overflow-hidden flex flex-col"
-        >
+      {/* Grid: Feature left, two stacked right */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6 3xl:gap-10 mt-12 md:mt-16 3xl:mt-24">
+        {/* FEATURE CASE STUDY */}
+        <Link href={feature.href} className="group bg-[#bac3c833] rounded-xl 3xl:rounded-3xl overflow-hidden flex flex-col">
           <div className="relative w-full aspect-[16/10] overflow-hidden">
             <Image
               src={feature.image}
@@ -104,28 +94,24 @@ export default function CaseStudies() {
             <Tag label={feature.tag} />
           </div>
 
-          <div className="p-6 3xl:p-12 flex flex-col flex-1">
+          <div className="p-6 md:p-8 3xl:p-12 flex flex-col flex-1 gap-4 md:gap-6 3xl:gap-8">
             <h3 className="text-small font-bold group-hover:text-[#114046] transition-colors">
               {feature.title}
             </h3>
 
-            <dl className="mt-5 3xl:mt-10 flex flex-col gap-3 3xl:gap-6">
+            <dl className="flex flex-col gap-3 3xl:gap-6">
               <div className="flex gap-4 3xl:gap-8">
-                <dt className="text-x-small text-[#7D7D7D] w-20 3xl:w-40 shrink-0">
-                  Challenge
-                </dt>
+                <dt className="text-x-small  w-20 3xl:w-32 shrink-0">Challenge</dt>
                 <dd className="text-small">{feature.challenge}</dd>
               </div>
               <div className="flex gap-4 3xl:gap-8">
-                <dt className="text-x-small text-[#7D7D7D] w-20 3xl:w-40 shrink-0">
-                  Delivered
-                </dt>
+                <dt className="text-x-small  w-20 3xl:w-32 shrink-0">Delivered</dt>
                 <dd className="text-small">{feature.delivered}</dd>
               </div>
             </dl>
 
-            <div className="mt-auto pt-8 3xl:pt-16">
-              <p className="text-small font-bold border-t border-black/10 pt-5 3xl:pt-10">
+            <div className="mt-auto pt-6 md:pt-8 3xl:pt-10">
+              <p className="text-small font-bold border-t border-black/10 pt-4 md:pt-5 3xl:pt-6">
                 {feature.result}
               </p>
               <span className={READ_MORE}>Read case study</span>
@@ -133,14 +119,10 @@ export default function CaseStudies() {
           </div>
         </Link>
 
-        {/* Two stacked, sharing the feature's height. */}
-        <div className="flex flex-col gap-5 3xl:gap-10">
+        {/* SECONDARY (TWO STACKED) */}
+        <div className="flex flex-col gap-5 md:gap-6 3xl:gap-10">
           {secondary.map((study) => (
-            <Link
-              key={study.title}
-              href={study.href}
-              className="group bg-[#bac3c833] rounded-xl 3xl:rounded-3xl overflow-hidden flex flex-col flex-1"
-            >
+            <Link key={study.title} href={study.href} className="group bg-[#bac3c833] rounded-xl 3xl:rounded-3xl overflow-hidden flex flex-col flex-1">
               <div className="relative w-full aspect-video overflow-hidden">
                 <Image
                   src={study.image}
@@ -154,11 +136,11 @@ export default function CaseStudies() {
                 <Tag label={study.tag} />
               </div>
 
-              <div className="p-6 3xl:p-12">
+              <div className="p-6 md:p-8 3xl:p-12 flex flex-col flex-1 gap-3 md:gap-4 3xl:gap-6">
                 <h3 className="text-small font-bold group-hover:text-[#114046] transition-colors">
                   {study.title}
                 </h3>
-                <p className="text-small font-bold mt-4 3xl:mt-8">{study.result}</p>
+                <p className="text-small font-bold mt-auto">{study.result}</p>
                 <span className={READ_MORE}>Read case study</span>
               </div>
             </Link>
@@ -166,11 +148,9 @@ export default function CaseStudies() {
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mt-10 md:mt-14 3xl:mt-24">
-        <Link
-          href="/case-studies"
-          className="text-small underline underline-offset-4 hover:text-[#114046] transition-colors"
-        >
+      {/* CTA + Gallery link */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 md:gap-8 3xl:gap-12 mt-10 md:mt-14 3xl:mt-20">
+        <Link href="/case-studies" className="text-small underline underline-offset-4 hover:text-[#114046] transition-colors">
           All case studies
         </Link>
         <Link href="/studio/#scheduleCall">
@@ -180,13 +160,9 @@ export default function CaseStudies() {
         </Link>
       </div>
 
-      {/* Marquee — the strip is tripled so the -33.333% translate resets to an
-          identical position. Thumbnails are in vw from 3xl up so they keep desktop proportions. */}
-      <div className="overflow-x-hidden mt-12 md:mt-16 3xl:mt-28">
-        <div
-          style={{ animationDuration: "30s" }}
-          className={`flex w-fit items-center gap-4 3xl:gap-8 ${styles.slider}`}
-        >
+      {/* GALLERY STRIP - Marquee */}
+      <div className="overflow-x-hidden mt-12 md:mt-16 3xl:mt-24">
+        <div style={{ animationDuration: "30s" }} className={`flex w-fit items-center gap-4 md:gap-6 3xl:gap-8 ${styles.slider}`}>
           {[...thumbnails, ...thumbnails, ...thumbnails].map((src, idx) => (
             <Link
               key={idx}
@@ -205,10 +181,7 @@ export default function CaseStudies() {
         </div>
       </div>
 
-      <Link
-        href="/gallery"
-        className="text-small underline underline-offset-4 hover:text-[#114046] transition-colors inline-block mt-6 3xl:mt-12"
-      >
+      <Link href="/gallery" className="text-small underline underline-offset-4 hover:text-[#114046] transition-colors inline-block mt-6 md:mt-8 3xl:mt-10">
         Browse the full gallery
       </Link>
     </section>

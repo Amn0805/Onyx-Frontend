@@ -1,34 +1,39 @@
-import { blurDataURL } from '@/constants';
-import Image from 'next/image';
-import React from 'react';
+import { blurDataURL } from "@/constants";
+import Image from "next/image";
+import React from "react";
 
 function OurStory() {
   return (
-    <section className='flex flex-col gap-10 px-6 xl:px-20 3xl:px-40  py-10'>
-      <h1 className="text-center heading 3xl:mb-[2%]">Our Story</h1>
-      <div className='flex w-full  '>
-        <div className='w-full lg:w-[60%] flex flex-col gap-5 3xl:gap-10 text-justify text-[10px] 2xl:text-xl  4xl:text-5xl   text-[#00000099]  '>
-          <p className='leading-normal'>
-            It all started with one visionary architect. <span className='font-bold'>AWAIS KHALID</span>, an artist at heart, saw 3D visualization as more than just a technical skill—it was an art form, a way to craft experiences that could be seen, felt, and lived. With a deep passion for design and an obsession with detail, he founded <span className='font-bold'>ONYX RENDERS</span> in 2020, determined to push the boundaries of architectural storytelling.
-          </p>
-          <span className='font-bold'></span>
-          <p className='leading-normal'>
-            What began as a personal pursuit soon grew into a global creative powerhouse. Today, <span className='font-bold'>ONYX RENDERS collaborates with architects, designers, and developers in over 25 countries</span>, bringing their visions to life with unparalleled realism and emotion. With <span className='font-bold'>1,000+ COMPLETED PROJECTS</span> and thousands of high-end renders in our portfolio, we have earned a reputation for <span className='font-bold'>speed, precision, and seamless communication</span>—key pillars of our brand.
-          </p>
-          <p className='leading-normal'>
-            But beyond the numbers, what truly defines us is our mindset: a relentless commitment to <span className='font-bold'>innovation, refinement, and perfection.</span> We believe that every project tells a story, and our mission is to <span className='font-bold'>visualize that story with breathtaking clarity and impact.</span>
-          </p>
-          <div className='w-full h-[1px] bg-[#1e1e1e]'></div>
-          <div className='space-y-2 3xl:space-y-5'>
-            <h2 className='text-[20px]  2xl:text-xl  4xl:text-5xl !font-bold'>{'Looking Ahead: The Future of Onyx Renders'.toUpperCase()}</h2>
-            <p className='leading-normal'>The world of architectural visualization is evolving, and so are we. At <span className='font-bold'> ONYX RENDERS</span>, we are driven by the future—exploring <span className='font-bold'>AI-enhanced rendering, real-time visualization, and immersive experiences</span> that transform how spaces are envisioned and experienced.
+    <section className="w-full bg-white px-6 xl:px-20 3xl:px-40 py-10 md:py-16 lg:py-20 3xl:py-28">
+      <div className="flex flex-col lg:flex-row gap-6 md:gap-8 3xl:gap-10 w-full items-start">
+        {/* LEFT: Heading + Text */}
+        <div className="w-full lg:w-[60%] flex flex-col gap-6 md:gap-8 3xl:gap-10">
+          <h2 className="heading text-center lg:text-center mb-6 md:mb-8 3xl:mb-10 flex flex-col gap-2 md:gap-4 3xl:gap-8">
+            <span>Our Story</span>
+          </h2>
+          <div className="flex flex-col gap-6 md:gap-8 3xl:gap-10 text-justify">
+            <p className="text-xs md:text-sm lg:text-base 3xl:text-lg ">
+              <span className="font-bold">ONYX RENDERS was founded in 2020.</span> The work behind it started four years earlier, in 2016, when Awais Khalid modeled his first wall in SketchUp on an aging desktop. By any technical measure it was poor work. His father treated it as the beginning of something and started sitting with his son in the evenings: let's try the next one. Not praise for what had been made, but interest in what could be made next.
             </p>
-            <p className='leading-normal'>
-              But we are more than just a rendering studio. <span className='font-bold'>We are a creative hub.</span> A place where <span className='font-bold'>art meets technology</span>, where <span className='font-bold'>vision meets execution</span>, and where we continue to shape the future of architectural storytelling. As we grow, we seek out the best talent, refine our craft, and push the boundaries of what's possible—because for us, the journey of creation never stops.
+            <p className="text-xs md:text-sm lg:text-base 3xl:text-lg ">
+              A decade on, that is still how this studio develops people, and how we treat a client's first rough sketch.
             </p>
+            <div className="w-full h-[1px] bg-black/10"></div>
+            <div className="space-y-4 md:space-y-6 3xl:space-y-8">
+              <p className="text-xs md:text-sm lg:text-base 3xl:text-lg ">
+                What began with renders did not stay there. Since 2020 the studio has delivered more than <span className="font-bold">1,100 projects and over 12,000 renders</span> for architects, developers and design teams in more than <span className="font-bold">30 countries</span>, across architectural and interior design, visualization and CGI, animation and immersive experiences, 3D and BIM modeling with clash detection, material specification, and full construction and permit documentation.
+              </p>
+            </div>
+            <div className="space-y-4 md:space-y-6 3xl:space-y-8">
+              <p className="text-xs md:text-sm lg:text-base 3xl:text-lg ">
+                The studio is led and staffed by <span className="font-bold">architects, and that composition is deliberate.</span> We hire architects and teach them visualization, rather than hiring visualizers and hoping they absorb construction knowledge. It is the slower route, and it is why our drawings, models and images all hold up on site.
+              </p>
+            </div>
           </div>
         </div>
-        <div className="hidden w-[40%] lg:flex gap-2 3xl:gap-6 items-start justify-end">
+
+        {/* RIGHT: Images */}
+        <div className="hidden w-[40%] lg:flex gap-2 md:gap-4 3xl:gap-6 items-start justify-end">
           <div className="aspect-[561/1310] w-[14.6vw] relative">
             <Image
               placeholder="blur"
@@ -37,9 +42,10 @@ function OurStory() {
               alt="banner-img"
               className="object-cover"
               fill
+              unoptimized
             />
           </div>
-          <div className="aspect-[561/1310] w-[14.6vw] relative mt-20 3xl:mt-52">
+          <div className="aspect-[561/1310] w-[14.6vw] relative mt-20 3xl:mt-32">
             <Image
               placeholder="blur"
               blurDataURL={blurDataURL}
@@ -47,12 +53,13 @@ function OurStory() {
               alt="banner-img"
               className="object-cover"
               fill
+              unoptimized
             />
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
 
-export default OurStory
+export default OurStory;

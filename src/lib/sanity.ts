@@ -4,55 +4,72 @@ import imageUrlBuilder from "@sanity/image-url";
 import { PROJECT_ID, DATASET, API_VERSION } from "@/constants/env";
 
 export const client = createClient({
-  projectId: PROJECT_ID, // your actual project ID
+  projectId: PROJECT_ID,
   dataset: DATASET,
-  apiVersion: API_VERSION, // use a fixed date
-  useCdn: false, // set false if fresh content needed (e.g., for previews)
+  apiVersion: API_VERSION,
+  useCdn: false,
+  token: process.env.SANITY_API_TOKEN,
+  timeout: 30000, // ← ADD THIS (30 seconds instead of 10)
 });
 
 export async function getLogos() {
-  const data = await client.fetch(
-    `*[_type == "logos"]{
-      images[]{
-        asset->{
-          url
+  try {
+    const data = await client.fetch(
+      `*[_type == "logos"]{
+        images[]{
+          asset->{
+            url
+          }
         }
-      }
-    }`
-  );
+      }`
+    );
 
-  return data.flatMap((entry: any) =>
-    (entry.images || [])
-      .filter((img: any) => img?.asset?.url)
-      .map((img: any) => ({
-        logo: img.asset.url,
-      }))
-  );
+    return data.flatMap((entry: any) =>
+      (entry.images || [])
+        .filter((img: any) => img?.asset?.url)
+        .map((img: any) => ({
+          logo: img.asset.url,
+        }))
+    );
+  } catch (error) {
+    console.error('Failed to fetch logos:', error);
+    return [];
+  }
 }
 
 export async function getReviews() {
-  return client.fetch(
-    `*[_type == "clientReview"]{
-          name,
-          designation,
-          rating,
-          img,
-          logo,
-          review,
-        }`
-  );
+  try {
+    return await client.fetch(
+      `*[_type == "clientReview"]{
+            name,
+            designation,
+            rating,
+            img,
+            logo,
+            review,
+          }`
+    );
+  } catch (error) {
+    console.error('Failed to fetch reviews:', error);
+    return [];
+  }
 }
 
 export async function getTeamMembers() {
-  return client.fetch(
-    `*[_type == "teamMember"]{
-            id,
-            name,
-            designation,
-            image,
-            alt
-        }`
-  );
+  try {
+    return await client.fetch(
+      `*[_type == "teamMember"]{
+              id,
+              name,
+              designation,
+              image,
+              alt
+          }`
+    );
+  } catch (error) {
+    console.error('Failed to fetch team members:', error);
+    return [];
+  }
 }
 
 // Optional: define types
@@ -70,10 +87,15 @@ interface GalleryDoc {
 }
 
 export async function fetchGalleryData() {
-  return client.fetch(`*[_type == "gallery"]{
-    category,
-    images
-  }`)
+  try {
+    return await client.fetch(`*[_type == "gallery"]{
+      category,
+      images
+    }`);
+  } catch (error) {
+    console.error('Failed to fetch gallery data:', error);
+    return [];
+  }
 }
 
 export async function fetchMapData() {
@@ -97,11 +119,16 @@ export async function fetchMapData() {
 }
 
 export async function fetchFeedbackVideo() {
-  return client.fetch(
-    `*[_type == "feedbackVideo"]{
-      videoUrl
-    }`
-  )
+  try {
+    return await client.fetch(
+      `*[_type == "feedbackVideo"]{
+        videoUrl
+      }`
+    );
+  } catch (error) {
+    console.error('Failed to fetch feedback video:', error);
+    return [];
+  }
 }
 
 const builder = imageUrlBuilder(client);

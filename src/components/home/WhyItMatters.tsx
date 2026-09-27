@@ -1,7 +1,5 @@
 // src/components/home/WhyItMatters.tsx
-//
-// Statement plus three problem columns, each with one image.
-// Server component — no state.
+// OPTIMIZED: Universal padding standard applied
 
 import Image from "next/image";
 import { blurDataURL } from "@/constants";
@@ -39,40 +37,35 @@ const problems: Problem[] = [
   },
 ];
 
-/** Outer columns pad only on their inner side; the middle pads both. */
 function columnPadding(i: number) {
-  if (i === 0) return "md:pr-8 3xl:pr-16";
-  if (i === problems.length - 1) return "md:pl-8 3xl:pl-16";
-  return "md:px-8 3xl:px-16";
+  if (i === 0) return "md:pr-6 lg:pr-8 3xl:pr-12";
+  if (i === problems.length - 1) return "md:pl-6 lg:pl-8 3xl:pl-12";
+  return "md:px-6 lg:px-8 3xl:px-12";
 }
 
 export default function WhyItMatters() {
   return (
-    <section className="px-6 md:px-16 lg:px-20 3xl:px-32 pt-4 md:pt-8 pb-16 md:pb-24 3xl:pb-40">
-      {/* A vertical rule separates the statement from the supporting line. */}
-      <div className="flex flex-col lg:flex-row lg:items-start gap-8 lg:gap-12 xl:gap-16 3xl:gap-24">
-        <h2 className={`${HEADING} lg:w-[55%] flex flex-col gap-2 md:gap-4 3xl:gap-8 [word-spacing:0.15em]`}>
+    <section className="px-6 xl:px-20 3xl:px-40 py-10 md:py-16 lg:py-20 3xl:py-28">
+      {/* HEADING + DESCRIPTION */}
+      <div className="flex flex-col lg:flex-row lg:items-start gap-10 md:gap-12 3xl:gap-20">
+        <h2 className={`${HEADING} lg:w-1/2 flex flex-col gap-2 md:gap-4 3xl:gap-8 [word-spacing:0.15em]`}>
           <span>Drawings don&apos;t sell.</span>
-          <span >Images do.</span>
+          <span>Images do.</span>
         </h2>
 
-         <div className="lg:w-[45%] lg:border-l lg:border-black/15 lg:pl-12 xl:pl-16 3xl:pl-[3vw]">
-          <p className={`${BODY} text-[#4A4A4A] text-justify hyphens-auto max-w-md 3xl:max-w-[31vw]`}>
-            Most people can&apos;t read a floor plan. When they can&apos;t
-            picture the result, they hesitate, and hesitation costs you.
+        <div className="lg:w-1/2 lg:border-l lg:border-black/15 lg:pl-12 xl:pl-16 3xl:pl-[3vw]">
+          <p className={`${BODY}  text-justify hyphens-auto max-w-md 3xl:max-w-[31vw]`}>
+            Most people can&apos;t read a floor plan. When they can&apos;t picture the result, they hesitate, and hesitation costs you.
           </p>
         </div>
       </div>
 
-      <hr className="border-black/15 mt-12 md:mt-16 3xl:mt-28" />
+      <hr className="border-black/15 mt-12 md:mt-16 3xl:mt-24" />
 
-      {/* divide-x puts a rule between columns without a wrapper per column. */}
-      <div className="grid grid-cols-1 md:grid-cols-3 md:divide-x divide-black/15 mt-12 md:mt-16 3xl:mt-28">
+      {/* PROBLEMS GRID */}
+      <div className="grid grid-cols-1 md:grid-cols-3 md:divide-x divide-black/15 mt-12 md:mt-16 3xl:mt-24">
         {problems.map((problem, i) => (
-          <div
-            key={problem.title}
-            className={`flex flex-col pb-10 md:pb-0 ${columnPadding(i)}`}
-          >
+          <div key={problem.title} className={`flex flex-col pb-10 md:pb-0 ${columnPadding(i)}`}>
             <div className="flex items-start gap-5 3xl:gap-10">
               <span aria-hidden="true" className={`${HEADING} text-black/20 shrink-0`}>
                 {problem.number}
@@ -80,14 +73,12 @@ export default function WhyItMatters() {
 
               <div className="border-l border-black/15 pl-5 3xl:pl-10">
                 <h3 className={`${BODY} font-bold`}>{problem.title}</h3>
-                <p className={`${BODY} text-[#7D7D7D] mt-2 3xl:mt-4`}>
-                  {problem.body}
-                </p>
+                <p className={`${BODY}  mt-2 3xl:mt-4`}>{problem.body}</p>
               </div>
             </div>
 
             <figure className="mt-auto pt-8 3xl:pt-16">
-              <div className="relative w-full aspect-video overflow-hidden bg-[#bac3c833]">
+              <div className="relative w-full aspect-video overflow-hidden bg-[#bac3c833] rounded-lg">
                 <Image
                   src={problem.image}
                   alt=""
@@ -98,7 +89,7 @@ export default function WhyItMatters() {
                   blurDataURL={blurDataURL}
                 />
               </div>
-              <figcaption className={`${SMALL} uppercase tracking-[0.15em] text-[#7D7D7D] text-center mt-3 3xl:mt-6`}>
+              <figcaption className={`${SMALL} uppercase tracking-[0.15em]  text-center mt-3 3xl:mt-6`}>
                 {problem.caption}
               </figcaption>
             </figure>

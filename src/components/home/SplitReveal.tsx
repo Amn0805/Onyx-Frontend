@@ -1,13 +1,7 @@
-"use client";
 // src/components/home/SplitReveal.tsx
-//
-// Before/after comparison. Click anywhere to glide the divider there; hold and
-// drag to move it directly; or focus the handle and use the arrow keys.
-//
-// SIZING: below 3xl (2048px) every value is fixed and unchanged. From 3xl up
-// every value is in vw, set to the same fraction of screen width it occupies on
-// a 1440px desktop — so large screens reproduce the desktop layout, scaled,
-// rather than 2048-sized content stranded on a wider canvas.
+// OPTIMIZED: Consistent universal padding, responsive sizing
+
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -24,13 +18,9 @@ const points = [
   "NDA on request",
 ];
 
-/** Where the divider starts, as a percentage from the left. */
 const START = 25;
-
-/** Pixels a held pointer must travel before it counts as a drag, not a click. */
 const DRAG_THRESHOLD = 4;
 
-/** Emphasises any text wrapped in [square brackets]. */
 function Point({ text }: { text: string }) {
   const parts = text.split(/\[(.+?)\]/);
   return (
@@ -50,8 +40,6 @@ function Point({ text }: { text: string }) {
 
 export default function SplitReveal() {
   const [position, setPosition] = useState(START);
-  // Only true once a held pointer has actually moved. While false, changes
-  // animate; while true, the divider tracks the pointer with no lag.
   const [dragging, setDragging] = useState(false);
 
   const frameRef = useRef<HTMLDivElement>(null);
@@ -69,7 +57,6 @@ export default function SplitReveal() {
     pressed.current = true;
     startX.current = e.clientX;
     e.currentTarget.setPointerCapture(e.pointerId);
-    // dragging is still false here, so this glides rather than jumps.
     moveTo(e.clientX);
   };
 
@@ -105,51 +92,45 @@ export default function SplitReveal() {
     : "transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none";
 
   return (
-    <section className="px-6 md:px-16 lg:px-20 3xl:px-[5.5vw] py-12 md:py-20 lg:py-24 3xl:py-[4.5vw]">
-      <div className="flex flex-col lg:flex-row lg:items-center gap-12 lg:gap-24 xl:gap-32 3xl:gap-[6vw]">
-        {/* Copy */}
+    <section className="px-6 xl:px-20 3xl:px-40 py-10 md:py-16 lg:py-20 3xl:py-28">
+      <div className="flex flex-col lg:flex-row lg:items-center gap-12 md:gap-16 lg:gap-20 3xl:gap-32">
+        {/* COPY */}
         <div className="w-full lg:w-[45%]">
-          <h2 className="heading flex flex-col gap-3 md:gap-5 3xl:gap-[1vw] [word-spacing:0.025em] tracking-wide max-w-2xl 3xl:max-w-[35vw]">
+          <h2 className="heading flex flex-col gap-3 md:gap-5 3xl:gap-8 [word-spacing:0.025em] tracking-wide max-w-2xl 3xl:max-w-[35vw]">
             <span>
-              From first{" "}
-              <span className="font-bold text-[#4a5f66]">Sketch</span> to
+              From first <span className="font-bold text-[#4a5f66]">Sketch</span> to
             </span>
             <span>
               final <span className="font-bold text-[#4a5f66]">Sale.</span>
             </span>
           </h2>
 
-          <p className="text-x-small text-[#4a5f66] tracking-[0.25em] uppercase mt-4 md:mt-5 3xl:mt-[1.4vw]">
+          <p className="text-x-small text-[#4a5f66] tracking-[0.25em] uppercase mt-4 md:mt-6 3xl:mt-8">
             Designed. Modeled. Rendered. Sold.
           </p>
 
-          <p className="text-small text-[#4A4A4A] text-justify hyphens-auto mt-6 md:mt-8 3xl:mt-[2.2vw] max-w-md 3xl:max-w-[31vw]">
-            Photorealistic renders, animations, and immersive experiences that
-            win approvals, impress clients, and sell projects off-plan, backed
-            by a design and BIM team that knows how buildings are made.
+          <p className="text-small  text-justify hyphens-auto mt-6 md:mt-8 3xl:mt-10 max-w-md 3xl:max-w-[31vw]">
+            Photorealistic renders, animations, and immersive experiences that win approvals, impress clients, and sell projects off-plan, backed by a design and BIM team that knows how buildings are made.
           </p>
 
-          <div className="flex flex-wrap gap-4 3xl:gap-[1.1vw] mt-8 md:mt-12 3xl:mt-[3.3vw]">
+          <div className="flex flex-wrap gap-4 md:gap-6 3xl:gap-8 mt-8 md:mt-10 3xl:mt-12">
             <Link href="/studio/#scheduleCall">
               <button className="btn-pill bg-[#114046] text-white border border-[#114046] hover:bg-[#0e3035]">
                 Request a proposal
               </button>
             </Link>
             <Link href="/gallery">
-              <button className="btn-pill border border-[#114046] text-[#114046] hover:bg-[#114046] hover:text-white">
+              <button className="btn-pill border border-[#114046]  hover:bg-[#114046] hover:text-white">
                 Explore our Work
               </button>
             </Link>
           </div>
 
-          {/* Stats list */}
-          <ul className="grid grid-cols-2 gap-x-6 gap-y-3 lg:gap-x-8 3xl:gap-x-[2.2vw] 3xl:gap-y-[0.8vw] mt-10 md:mt-14 3xl:mt-[3.3vw]">
+          {/* STATS */}
+          <ul className="grid grid-cols-2 gap-x-6 md:gap-x-8 gap-y-4 md:gap-y-6 3xl:gap-x-10 3xl:gap-y-8 mt-10 md:mt-12 3xl:mt-16">
             {points.map((point) => (
-              <li
-                key={point}
-                className="text-small 3xl:text-[1.1vw] text-[#4A4A4A]"
-              >
-                <span aria-hidden="true" className="text-[#114046] mr-2 3xl:mr-[0.55vw]">
+              <li key={point} className="text-small 3xl:text-[1.1vw] ">
+                <span aria-hidden="true" className="text-[#114046] mr-2 3xl:mr-3">
                   ✓
                 </span>
                 <Point text={point} />
@@ -158,8 +139,7 @@ export default function SplitReveal() {
           </ul>
         </div>
 
-        {/* Comparison. relative so the caption can leave the flow at 3xl,
-            letting the copy centre on the image rather than image+caption. */}
+        {/* COMPARISON */}
         <div className="relative w-full lg:w-[55%]">
           <div
             ref={frameRef}
@@ -167,7 +147,7 @@ export default function SplitReveal() {
             onPointerMove={onPointerMove}
             onPointerUp={endDrag}
             onPointerCancel={endDrag}
-            className={`relative w-full aspect-[4/3] overflow-hidden rounded-xl 3xl:rounded-[0.85vw] bg-[#bac3c833] select-none touch-pan-y ${
+            className={`relative w-full aspect-[4/3] overflow-hidden rounded-xl 3xl:rounded-3xl bg-[#bac3c833] select-none touch-pan-y ${
               dragging ? "cursor-grabbing" : "cursor-pointer"
             }`}
           >
@@ -182,7 +162,6 @@ export default function SplitReveal() {
               blurDataURL={blurDataURL}
             />
 
-            {/* Clipped rather than resized, so both images stay aligned. */}
             <div
               className={`absolute inset-0 ${motion}`}
               style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
@@ -199,15 +178,14 @@ export default function SplitReveal() {
               />
             </div>
 
-            {/* Divider line */}
+            {/* DIVIDER */}
             <div
               aria-hidden="true"
-              className={`absolute inset-y-0 w-0.5 3xl:w-[0.14vw] -translate-x-1/2 bg-white pointer-events-none ${motion}`}
+              className={`absolute inset-y-0 w-0.5 3xl:w-1 -translate-x-1/2 bg-white pointer-events-none ${motion}`}
               style={{ left: `${position}%` }}
             />
 
-            {/* Handle — a real control, so it can be focused and moved with
-                the arrow keys as well as dragged. */}
+            {/* HANDLE */}
             <button
               type="button"
               role="slider"
@@ -216,7 +194,7 @@ export default function SplitReveal() {
               aria-valuemax={100}
               aria-valuenow={Math.round(position)}
               onKeyDown={onKeyDown}
-              className={`absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 3xl:w-[3.33vw] 3xl:h-[3.33vw] rounded-full bg-white shadow-lg flex items-center justify-center text-[#114046] text-lg 3xl:text-[1.25vw] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#114046] focus-visible:ring-offset-2 hover:scale-110 ${
+              className={`absolute top-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 3xl:w-[3.5vw] 3xl:h-[3.5vw] rounded-full bg-white shadow-lg flex items-center justify-center text-[#114046] text-lg 3xl:text-[1.2vw] leading-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#114046] focus-visible:ring-offset-2 hover:scale-110 ${
                 dragging ? "scale-110 cursor-grabbing" : "cursor-grab"
               } ${motion}`}
               style={{ left: `${position}%` }}
@@ -225,7 +203,7 @@ export default function SplitReveal() {
             </button>
           </div>
 
-          <p className="3xl:absolute 3xl:top-full 3xl:left-0 text-x-small font-light text-[#7D7D7D] mt-4 3xl:mt-[1.1vw]">
+          <p className="text-x-small font-light  mt-4 md:mt-6 3xl:mt-8">
             Click or drag to see how a model becomes a selling image.
           </p>
         </div>

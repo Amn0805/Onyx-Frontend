@@ -50,7 +50,7 @@ export default function ProcessSteps({
             </h2>
           )}
           {intro && (
-            <p className={`${BODY} text-[#7D7D7D] lg:w-1/2 max-w-2xl 3xl:max-w-[35vw]`}>
+            <p className={`${BODY}  lg:w-1/2 max-w-2xl 3xl:max-w-[35vw]`}>
               {intro}
             </p>
           )}
@@ -87,7 +87,7 @@ export default function ProcessSteps({
                 }
               >
                 <h3 className={`${BODY} font-normal text-[#114046]`}>{step.title}</h3>
-                <p className={`${BODY} text-[#7D7D7D] mt-2 3xl:mt-4`}>{step.body}</p>
+                <p className={`${BODY}  mt-2 3xl:mt-4`}>{step.body}</p>
               </figcaption>
             </figure>
           );

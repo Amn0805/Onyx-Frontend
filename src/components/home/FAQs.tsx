@@ -1,11 +1,5 @@
 // src/components/home/FAQs.tsx
-//
-// Heading centred on top with two question columns below; from 3xl, heading
-// on the left and questions on the right.
-//
-// Each column is its own stack rather than a grid row, so opening a question
-// only pushes down the questions below it in the same column — the item
-// beside it never stretches into an empty bordered box.
+// OPTIMIZED: Normalized padding to universal standard, consistent spacing
 
 import React from "react";
 import FAQ from "./FAQ";
@@ -53,35 +47,51 @@ const FAQData = [
   },
 ];
 
-/** First half in the left column, second half in the right. On phones the
-    columns stack, so the questions still read 1 to 8 in order. */
 const half = Math.ceil(FAQData.length / 2);
 const columns = [FAQData.slice(0, half), FAQData.slice(half)];
 
 function FAQs() {
   return (
-    <section className="px-5 md:px-10 lg:px-20 3xl:px-32 pt-6 md:pt-10 3xl:pt-16 pb-16 md:pb-24 3xl:pb-40">
-      <div className="flex flex-col items-center 3xl:flex-row 3xl:items-center gap-10 md:gap-14 3xl:gap-[5vw] 3xl:justify-center">
-  <div className="text-center 3xl:w-auto">
-    <h2 className="heading leading-[1.15] whitespace-nowrap">
-            Everything you need to{" "}
-            <span className="font-bold text-[#4a5f66]">know.</span>
+    <section className="px-6 xl:px-20 3xl:px-40 py-10 md:py-16 lg:py-20 3xl:py-28">
+      {/* HEADING & TEXT - CENTERED AT TOP (hidden on 4K) */}
+      <div className="flex flex-col items-center text-center mb-10 md:mb-14 3xl:hidden">
+        <h2 className="heading leading-[1.15]">
+          Everything you need to <span className="font-bold text-[#4a5f66]">know.</span>
+        </h2>
+        <p className="text-xs md:text-sm lg:text-base 3xl:text-lg text-[#4a5f66] tracking-widest uppercase mt-4 md:mt-6 3xl:mt-8">
+          Tell us what you're working on.
+        </p>
+      </div>
+
+      {/* ON 4K: LEFT TEXT, RIGHT FAQs SINGLE COLUMN */}
+      <div className="hidden 3xl:flex 3xl:flex-row 3xl:gap-10 3xl:items-start">
+        {/* LEFT: TEXT */}
+        <div className="3xl:w-1/3">
+          <h2 className="heading leading-[1.15]">
+            Everything you need to <span className="font-bold text-[#4a5f66]">know.</span>
           </h2>
-          <p className="text-x-small text-[#4a5f66] tracking-[0.25em] uppercase mt-4 md:mt-5 3xl:mt-[1.4vw]">
+          <p className="text-xs md:text-sm lg:text-base 3xl:text-lg text-[#4a5f66] tracking-widest uppercase mt-4 md:mt-6 3xl:mt-8">
             Tell us what you're working on.
           </p>
         </div>
 
-        {/* items-start keeps the two columns independent heights. */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 items-start gap-4 lg:gap-6 3xl:gap-8 3xl:flex-1">
-          {columns.map((column, c) => (
-            <div key={c} className="flex flex-col gap-4 3xl:gap-6">
-              {column.map((item) => (
-                <FAQ key={item.question} question={item.question} answer={item.answer} />
-              ))}
-            </div>
+        {/* RIGHT: ALL FAQs IN SINGLE COLUMN */}
+        <div className="3xl:w-2/3 flex flex-col gap-4 md:gap-6 3xl:gap-8">
+          {FAQData.map((item) => (
+            <FAQ key={item.question} question={item.question} answer={item.answer} />
           ))}
         </div>
+      </div>
+
+      {/* ON SMALLER SCREENS: 2 COLUMNS (4 LEFT, 4 RIGHT) */}
+      <div className="grid grid-cols-2 gap-4 md:gap-6 3xl:hidden">
+        {columns.map((column, c) => (
+          <div key={c} className="flex flex-col gap-4 md:gap-6 3xl:gap-8">
+            {column.map((item) => (
+              <FAQ key={item.question} question={item.question} answer={item.answer} />
+            ))}
+          </div>
+        ))}
       </div>
     </section>
   );

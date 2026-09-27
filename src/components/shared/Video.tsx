@@ -61,12 +61,12 @@ export const FeedbackVideo = async () => {
         <div className="w-full lg:w-1/2">
           <h2 className="heading tracking-wide [word-spacing:0.25em] flex flex-col gap-2 md:gap-4 leading-[1.15] max-w-2xl 3xl:max-w-[35vw]">
             <span>Clients trust us with</span>
-            <span className="font-bold text-[#4a5f66]">
+            <span className="font-bold ">
               launches, approvals and homes
             </span>
           </h2>
 
-          <p className="text-small text-[#7D7D7D] mt-6 3xl:mt-12 max-w-md 3xl:max-w-[31vw]">
+          <p className="text-small  mt-6 3xl:mt-12 max-w-md 3xl:max-w-[31vw]">
             Written reviews above stay visible for visitors who don&apos;t press
             play.
           </p>
@@ -78,7 +78,7 @@ export const FeedbackVideo = async () => {
               </button>
             </Link>
             <Link href="/client-reviews">
-              <button className="btn-pill border border-[#114046] text-[#114046] hover:bg-[#114046] hover:text-white">
+              <button className="btn-pill border border-[#114046]  hover:bg-[#114046] hover:text-white">
                 Read all reviews
               </button>
             </Link>
@@ -93,7 +93,7 @@ export const FeedbackVideo = async () => {
           <div key={title} className="p-6 3xl:p-12">
             <Icon className="w-6 h-6 3xl:w-[1.6vw] 3xl:h-[1.6vw] text-[#114046]" />
             <h3 className="text-small font-bold mt-4 3xl:mt-8">{title}</h3>
-            <p className="text-small text-[#7D7D7D] mt-2 3xl:mt-4">{body}</p>
+            <p className="text-small  mt-2 3xl:mt-4">{body}</p>
           </div>
         ))}
       </div>

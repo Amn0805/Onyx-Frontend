@@ -30,22 +30,29 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
       />
 
       <aside
-        className={`fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-[#F1F3F4] text-black shadow-lg transform transition-transform duration-300 z-50 overflow-y-auto lg:hidden ${
+        className={`fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white text-black shadow-lg transform transition-transform duration-300 z-50 overflow-y-auto lg:hidden ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex justify-between items-center p-5 border-b border-black/10">
-          <span className="font-medium">Menu</span>
+        {/* Header */}
+        <div className="flex justify-between items-center py-3 md:py-4 px-6 md:px-8 border-b border-black/10">
+          <span className="font-semibold text-sm md:text-base">Menu</span>
           <button onClick={close} className="rotate-45 text-xl leading-none" aria-label="Close menu">
             +
           </button>
         </div>
 
-        <nav className="flex flex-col p-5 gap-1">
+        {/* Navigation */}
+        <nav className="flex flex-col px-6 md:px-8 py-6 md:py-8 gap-0">
           {navItems.map((item) => {
             if (!item.menu) {
               return (
-                <Link key={item.label} href={item.href} onClick={close} className="py-3">
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  onClick={close}
+                  className="py-3 text-xs md:text-sm lg:text-base 3xl:text-lg hover:text-[#114046] transition-colors"
+                >
                   {item.label}
                 </Link>
               );
@@ -59,21 +66,26 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   type="button"
                   aria-expanded={isExpanded}
                   onClick={() => setExpanded(isExpanded ? null : item.label)}
-                  className="flex items-center justify-between gap-2 py-3 text-left"
+                  className="flex items-center justify-between gap-2 py-3 text-left text-xs md:text-sm lg:text-base 3xl:text-lg font-semibold"
                 >
                   <span>{item.label}</span>
                   <span className="text-xl leading-none">{isExpanded ? "−" : "+"}</span>
                 </button>
 
                 {isExpanded && item.menu === "services" && (
-                  <div className="flex flex-col gap-5 pl-4 pb-4">
+                  <div className="flex flex-col gap-6 md:gap-8 3xl:gap-10 pl-6 pb-4">
                     {serviceGroups.map((group) => (
-                      <div key={group.title} className="flex flex-col gap-2">
-                        <h3 className="text-x-small uppercase tracking-wider text-[#7D7D7D]">
+                      <div key={group.title} className="flex flex-col gap-6 md:gap-8 3xl:gap-10">
+                        <h3 className="text-xs md:text-sm lg:text-base 3xl:text-lg uppercase tracking-wider text-[#7D7D7D] font-bold">
                           {group.title}
                         </h3>
                         {group.services.map((service) => (
-                          <Link key={service.href} href={service.href} onClick={close} className="text-small">
+                          <Link
+                            key={service.href}
+                            href={service.href}
+                            onClick={close}
+                            className="text-xs md:text-sm lg:text-base 3xl:text-lg text-[#7D7D7D] hover:text-[#114046] transition-colors"
+                          >
                             {service.label}
                           </Link>
                         ))}
@@ -83,9 +95,14 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                 )}
 
                 {isExpanded && item.menu === "cards" && (
-                  <div className="flex flex-col gap-3 pl-4 pb-4">
+                  <div className="flex flex-col gap-6 md:gap-8 3xl:gap-10 pl-6 pb-4">
                     {item.cards.map((card) => (
-                      <Link key={card.href} href={card.href} onClick={close} className="text-small">
+                      <Link
+                        key={card.href}
+                        href={card.href}
+                        onClick={close}
+                        className="text-xs md:text-sm lg:text-base 3xl:text-lg text-[#7D7D7D] hover:text-[#114046] transition-colors"
+                      >
                         {card.label}
                       </Link>
                     ))}
@@ -96,12 +113,17 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
           })}
         </nav>
 
-        <div className="p-5 border-t border-black/10 flex flex-col gap-4">
-          <Link href="/dashboard/login" onClick={close} className="text-small">
+        {/* Footer */}
+        <div className="px-6 md:px-8 py-6 md:py-8 border-t border-black/10 flex flex-col gap-6 md:gap-8 3xl:gap-10">
+          <Link
+            href="/dashboard/login"
+            onClick={close}
+            className="text-xs md:text-sm lg:text-base 3xl:text-lg hover:text-[#114046] transition-colors"
+          >
             Sign in
           </Link>
           <Link href="/studio/#scheduleCall" onClick={close}>
-            <button className="bg-[#114046] rounded-full text-white w-full py-3 hover:bg-[#0e3035] transition-colors">
+            <button className="bg-[#114046] rounded-full text-white w-full py-3 hover:bg-[#0e3035] transition-colors text-xs md:text-sm lg:text-base 3xl:text-lg font-semibold">
               Request a Proposal
             </button>
           </Link>

@@ -1,30 +1,57 @@
-export const revalidate = 0;
+export const revalidate = 60; // Revalidate every 60 seconds
+
 import React from "react";
-import OurServices from "./OurServices";
 import OurTeam from "./OurTeam";
-import { ClientReviews, Statistics } from "@/components/home";
+import { Statistics } from "@/components/home";
+import {ClientReviews} from "@/components/home"
 import Header from "./Header";
 import OurStory from "./OurStory";
-import { InlineWidget } from "react-calendly";
-import ScheduleCall from "@/components/shared/ScheduleCall";
 import OurServicesImages from "./OurServicesImages";
-import Link from "next/link";
 import StudioSEO from "@/components/seo/StudioSEO";
-import { FeedbackVideo } from "@/components/shared/Video";
+import WhoWeAre from "./WhoWeAre";
+import TheDifference from "./TheDifference";
+import HowWeThink from "./Howwethink";
+import {ServicesOverview} from "@/components/home";
+import Standards from "./Standards";
+import Careers from "./Careers";
+import NextStep from "./Nextstep";
+import ErrorBoundary from "@/components/shared/ErrorBoundary";
 
 const Page = () => {
   return (
     <>
       <StudioSEO />
       <Header />
+      <WhoWeAre />
       <OurStory />
-      <OurServices />
       <OurServicesImages />
-      <OurTeam />
-      <Statistics />
-      <ClientReviews />
-      <ScheduleCall />
-      <FeedbackVideo />
+
+      {/* Statistics with dark variant */}
+      <ErrorBoundary componentName="Statistics">
+        <Statistics variant="dark" />
+      </ErrorBoundary>
+
+        <TheDifference />
+        
+        <HowWeThink/>
+        <ServicesOverview/>
+
+      {/* <OurServices /> */}
+
+      <ErrorBoundary componentName="Our Team">
+        <OurTeam />
+      </ErrorBoundary>
+
+      <Standards/>
+
+       <ErrorBoundary componentName="Client Reviews">
+        <ClientReviews />
+      </ErrorBoundary>
+      
+      <Careers/>
+    <NextStep/>
+
+
     </>
   );
 };

@@ -1,7 +1,5 @@
 // src/components/home/WhoWeHelp.tsx
-//
-// Four audience cards, each with an image, a description and an outcome line.
-// Server component — no state.
+// OPTIMIZED: Universal padding standard applied
 
 import Image from "next/image";
 import Link from "next/link";
@@ -15,7 +13,6 @@ interface Audience {
   outcome: string;
   href: string;
   image: string;
-  /** Colour of the outcome line — one per audience. */
   tint: string;
 }
 
@@ -56,11 +53,10 @@ const audiences: Audience[] = [
 
 export default function WhoWeHelp() {
   return (
-    <section className="px-6 md:px-16 lg:px-20 3xl:px-40 pt-9 pb-16 md:pb-24 3xl:pb-48">
-      <div className="flex flex-wrap items-baseline justify-between gap-4 3xl:gap-8">
+    <section className="px-6 xl:px-20 3xl:px-40 py-10 md:py-16 lg:py-20 3xl:py-28">
+      <div className="flex flex-wrap items-baseline justify-between gap-6 md:gap-8 3xl:gap-12">
         <h2 className={`${HEADING} tracking-wide [word-spacing:0.025em]`}>
           What are you working on?
-          
         </h2>
 
         <Link
@@ -72,12 +68,12 @@ export default function WhoWeHelp() {
         </Link>
       </div>
 
-      <div className="mt-8 md:mt-12 3xl:mt-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 3xl:gap-8">
+      <div className="mt-10 md:mt-14 3xl:mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 3xl:gap-10">
         {audiences.map((audience) => (
           <Link
             key={audience.href}
             href={audience.href}
-            className="group bg-white/60 border border-black/10 rounded-2xl 3xl:rounded-[2rem] overflow-hidden flex flex-col hover:border-black/25 transition-colors"
+            className="group bg-white/60 border border-black/10 rounded-2xl 3xl:rounded-3xl overflow-hidden flex flex-col hover:border-black/25 transition-colors"
           >
             <div className="relative w-full aspect-[4/3] overflow-hidden bg-[#bac3c833]">
               <Image
@@ -91,21 +87,16 @@ export default function WhoWeHelp() {
               />
             </div>
 
-            <div className="p-5 3xl:p-10 flex flex-col flex-1">
+            <div className="p-5 md:p-6 3xl:p-10 flex flex-col flex-1 gap-3 md:gap-4 3xl:gap-6">
               <h3 className={`${BODY} font-bold group-hover:text-[#114046] transition-colors`}>
                 {audience.title}
               </h3>
 
-              <p className={`${BODY} text-[#7D7D7D] mt-3 3xl:mt-6`}>
+              <p className={`${BODY} text-justify`}>
                 {audience.body}
               </p>
 
-              {/* mt-auto pins the outcome to the bottom, so all four align
-                  across the row despite different body lengths. */}
-              <p
-                className={`${BODY} font-medium mt-auto pt-6 3xl:pt-12`}
-                style={{ color: audience.tint }}
-              >
+              <p className={`${BODY} font-medium mt-auto pt-1 md:pt-3 3xl:pt-5`} >
                 {audience.outcome}
               </p>
             </div>
@@ -113,7 +104,7 @@ export default function WhoWeHelp() {
         ))}
       </div>
 
-      <p className={`${BODY} text-[#7D7D7D] mt-6 3xl:mt-12 flex flex-wrap items-center gap-3 3xl:gap-6`}>
+      <p className={`${BODY}  mt-6 md:mt-10 3xl:mt-16 flex flex-wrap items-center gap-3 3xl:gap-6`}>
         <GraduationCap className="w-6 h-6 3xl:w-12 3xl:h-12 text-[#7D7D7D] shrink-0" />
         Architecture or interior design student?
         <Link

@@ -38,19 +38,20 @@ export default function Header() {
   return (
     <header
       onMouseLeave={close}
-      className={`fixed top-0 left-0 w-full z-40 text-small transition-colors duration-300 ${
+      className={`fixed top-0 left-0 w-full z-40 transition-colors duration-300 ${
         solid
-          ? "bg-[#F1F3F4] text-black shadow-sm"
-          : `bg-transparent ${isHomePage ? "text-white" : "text-black"}`
+          ? "bg-white text-black shadow-sm"
+          : `bg-white ${isHomePage ? "text-black" : "text-black"}`
       }`}
     >
-      <div className="flex justify-between items-center h-12 lg:h-16 3xl:h-28 4xl:h-40 px-4 md:px-8 3xl:px-16 4xl:px-24">
+      {/* Desktop Header */}
+      <div className="hidden lg:flex justify-between items-center py-4 3xl:py-6 px-6 xl:px-20 3xl:px-40">
         {/* Logo + wordmark */}
         <Link href="/" className="relative z-10 flex items-center gap-3 3xl:gap-6">
           <Image
             placeholder="blur"
             blurDataURL={blurDataURL}
-            src={solid || !isHomePage ? "/logo/logo-without-text-theme.svg" : "/logo/logo-without-text-white.svg"}
+            src="/logo/logo-without-text-theme.svg"
             alt="Onyx Renders"
             width={40}
             height={40}
@@ -60,14 +61,14 @@ export default function Header() {
         </Link>
 
         {/* Desktop navigation */}
-        <nav className="hidden lg:flex items-stretch gap-6 xl:gap-8 3xl:gap-16 h-full">
+        <nav className="flex items-stretch gap-6 xl:gap-8 3xl:gap-16 h-full">
           {navItems.map((item) => {
             if (!item.menu) {
               return (
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="flex items-center hover:text-[#114046] transition-colors"
+                  className="flex items-center text-xs lg:text-sm xl:text-base 3xl:text-lg hover:text-[#114046] transition-colors"
                 >
                   {item.label}
                 </Link>
@@ -86,7 +87,7 @@ export default function Header() {
                   type="button"
                   aria-expanded={isMenuOpen}
                   onClick={() => setOpenMenu(isMenuOpen ? null : item.label)}
-                  className={`inline-flex items-center gap-1 transition-colors hover:text-[#114046] ${
+                  className={`inline-flex items-center gap-1 text-xs lg:text-sm xl:text-base 3xl:text-lg transition-colors hover:text-[#114046] ${
                     isMenuOpen ? "text-[#114046] underline underline-offset-8" : ""
                   }`}
                 >
@@ -114,23 +115,40 @@ export default function Header() {
         </nav>
 
         {/* Sign in + CTA */}
-        <div className="hidden lg:flex items-center gap-6 3xl:gap-12">
+        <div className="flex items-center gap-6 3xl:gap-12">
           <Link
             href="/dashboard/login"
-            className="hover:text-[#114046] transition-colors"
+            className="text-xs lg:text-sm xl:text-base 3xl:text-lg hover:text-[#114046] transition-colors"
           >
             Sign in
           </Link>
           <Link href="/studio/#scheduleCall">
-            <button className="bg-[#114046] text-white rounded-full hover:bg-[#0e3035] transition-colors px-5 py-3 text-xs lg:text-base xl:text-lg">
+            <button className="bg-[#114046] text-white rounded-full hover:bg-[#0e3035] transition-colors px-6 py-2 lg:px-8 lg:py-3 3xl:px-12 3xl:py-4 text-xs lg:text-sm xl:text-base 3xl:text-lg font-semibold">
               Request a Proposal
             </button>
           </Link>
         </div>
+      </div>
+
+      {/* Mobile Header */}
+      <div className="flex lg:hidden justify-between items-center py-3 md:py-4 px-6 md:px-8">
+        {/* Logo */}
+        <Link href="/" className="relative z-10 flex items-center gap-3">
+          <Image
+            placeholder="blur"
+            blurDataURL={blurDataURL}
+            src="/logo/logo-without-text-theme.svg"
+            alt="Onyx Renders"
+            width={32}
+            height={32}
+            className="w-7 h-7 md:w-8 md:h-8"
+            unoptimized
+          />
+        </Link>
 
         {/* Mobile toggle */}
         <button
-          className="text-3xl lg:hidden"
+          className="text-2xl md:text-3xl"
           onClick={() => setIsOpen(true)}
           aria-label="Open menu"
         >
