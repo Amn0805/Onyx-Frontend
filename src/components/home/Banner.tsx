@@ -22,7 +22,7 @@ export default function Banner() {
       {/* OPTIMIZED PADDING: Matches universal standard (px-6 xl:px-20 3xl:px-40) */}
       <div className="relative h-full flex flex-col justify-end px-6 xl:px-20 3xl:px-40 py-10 md:py-16 lg:py-20 3xl:py-28">
         {/* HEADING */}
-        <h1 className="heading text-white leading-[1.05] tracking-tight max-w-4xl 3xl:max-w-[65vw]">
+        <h1 className="heading text-white leading-[1.05] tracking-wide max-w-4xl 3xl:max-w-[65vw]">
           <span className="block font-light">We make ideas</span>
           <span className="block font-bold">impossible to ignore.</span>
         </h1>
