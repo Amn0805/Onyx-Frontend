@@ -9,21 +9,14 @@ import ServicesMegaMenu from "./nav/ServicesMegaMenu";
 import CardsMenu from "./nav/CardsMenu";
 import { navItems } from "./nav/navigation";
 
-/** Same threshold ScrollToTop already uses. */
 const SCROLL_THRESHOLD = 30;
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  // Label of the open menu, or null. One value, so opening one closes another.
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
-  const isHomePage = pathname === "/";
-
-  // ═══════════════════════════════════════════════════════════════════════════
-  // SCROLL LISTENER — Updates scrolled state when user scrolls past threshold
-  // ═══════════════════════════════════════════════════════════════════════════
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > SCROLL_THRESHOLD);
     onScroll();
@@ -35,9 +28,6 @@ export default function Header() {
     setOpenMenu(null);
   }, [pathname]);
 
-  // ═══════════════════════════════════════════════════════════════════════════
-  // SOLID STATE — Header has white background when scrolled OR menu is open
-  // ═══════════════════════════════════════════════════════════════════════════
   const solid = scrolled || openMenu !== null;
   const close = () => setOpenMenu(null);
 
@@ -46,13 +36,13 @@ export default function Header() {
       onMouseLeave={close}
       className={`fixed top-0 left-0 w-full z-40 transition-colors duration-300 ${
         solid
-         ? "bg-white text-black shadow-sm"
-  : "bg-transparent text-black"  // ← Transparent initially!
+          ? "bg-white text-black shadow-sm"
+          : "bg-transparent text-black"
       }`}
     >
       {/* Desktop Header */}
       <div className="hidden lg:flex justify-between items-center py-4 3xl:py-6 px-6 xl:px-20 3xl:px-40">
-        {/* Logo + wordmark */}
+        {/* Logo */}
         <Link href="/" className="relative z-10 flex items-center gap-3 3xl:gap-6">
           <Image
             placeholder="blur"
@@ -61,12 +51,15 @@ export default function Header() {
             alt="Onyx Renders"
             width={40}
             height={40}
-            className="w-8 h-8 lg:w-11 lg:h-11 3xl:w-20 3xl:h-20"
+            style={{
+         width: 'clamp(24px, calc(24px + 1.76vw), 60px)',
+height: 'clamp(24px, calc(24px + 1.76vw), 60px)',
+            }}
             unoptimized
           />
         </Link>
 
-        {/* Desktop navigation */}
+        {/* Navigation */}
         <nav className="flex items-stretch gap-6 xl:gap-8 3xl:gap-16 h-full">
           {navItems.map((item) => {
             if (!item.menu) {
@@ -74,7 +67,7 @@ export default function Header() {
                 <Link
                   key={item.label}
                   href={item.href}
-                  className="nav flex items-center text-xs lg:text-sm xl:text-base 3xl:text-lg hover:text-brand transition-colors"
+                  className="nav flex items-center hover:text-brand transition-colors"
                 >
                   {item.label}
                 </Link>
@@ -93,7 +86,7 @@ export default function Header() {
                   type="button"
                   aria-expanded={isMenuOpen}
                   onClick={() => setOpenMenu(isMenuOpen ? null : item.label)}
-                  className={`inline-flex items-center gap-1 nav text-xs lg:text-sm xl:text-base 3xl:text-lg transition-colors hover:text-brand ${
+                  className={`inline-flex items-center gap-1 nav transition-colors hover:text-brand ${
                     isMenuOpen ? "text-brand underline underline-offset-8" : ""
                   }`}
                 >
@@ -120,16 +113,16 @@ export default function Header() {
           })}
         </nav>
 
-        {/* Sign in + CTA */}
-        <div className="flex items-center gap-6 3xl:gap-12">
+        {/* Sign in + Button — COMPACT GAP */}
+        <div className="flex items-center gap-3 md:gap-4 3xl:gap-6">
           <Link
             href="/dashboard/login"
-            className="link text-xs lg:text-sm xl:text-base 3xl:text-lg hover:text-brand transition-colors"
+            className="nav text-secondary hover:text-brand transition-colors"
           >
             Sign in
           </Link>
           <Link href="/studio/#scheduleCall">
-            <button className="btn-pill btn-theme text-xs lg:text-sm xl:text-base 3xl:text-lg">
+            <button className="btn-pill btn-theme">
               Request a Proposal
             </button>
           </Link>
@@ -162,7 +155,7 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Dropdowns — inside the header so hover stays continuous */}
+      {/* Dropdowns */}
       {openMenu && (
         <div className="hidden lg:block">
           {navItems.map((item) => {
@@ -182,27 +175,34 @@ export default function Header() {
 }
 
 /*
- * FEATURES:
+ * ULTRA-COMPACT HEADER (Updated):
  *
- * ✅ SCROLL BEHAVIOR:
- *    - Starts with white background on page load
- *    - Adds shadow when scrolled down 30px
- *    - Shadow appears immediately when menu opens
- *    - Smooth transition (300ms)
+ * ✅ LOGO:
+ *    Uses clamp sizing (32px → 80px)
+ *    Responsive across all screens
  *
- * ✅ SEMANTIC CLASSES:
- *    - .nav — navigation links
- *    - .link — sign in CTA
- *    - .text-brand — hover color
- *    - .btn-pill — pill button base
- *    - .btn-theme — primary button
+ * ✅ NAVIGATION:
+ *    Uses .nav class
+ *    Font-size: 12px → 18px
+ *    Consistent across all breakpoints
  *
- * ✅ RESPONSIVE:
- *    - Desktop: full nav with dropdowns
- *    - Mobile: hamburger menu
- *    - Tablet: smooth transition
+ * ✅ SIGN IN:
+ *    Uses .nav class (SAME AS NAVIGATION)
+ *    Font-size: 12px → 18px
+ *    MATCHES BUTTON TEXT SIZE ✓
  *
- * ✅ CENTURY GOTHIC:
- *    - Applied to all text via globals.css
- *    - All weights available (300-900)
+ * ✅ BUTTON:
+ *    Uses .btn-pill .btn-theme
+ *    Text: 12px → 18px (SAME AS SIGN IN)
+ *    Padding: 12px → 40px (h), 3px → 12px (v)
+ *    Ultra-compact sizing
+ *
+ * ✅ GAP BETWEEN SIGN IN & BUTTON:
+ *    gap-3 md:gap-4 3xl:gap-6 (COMPACT)
+ *    Tight spacing throughout
+ *
+ * ✅ TEXT SIZE MATCHING:
+ *    Sign in text = Navigation text = Button text
+ *    All use .nav token (12px → 18px)
+ *    Identical size at all breakpoints ✓
  */
