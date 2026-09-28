@@ -10,7 +10,6 @@ const config: Config = {
     extend: {
       fontSize: {
         /* ─── 4K Scaling with Arbitrary Values ─────────────────────────────
-           
            From 3xl (2048px) up, sizes use arbitrary vw values (e.g., 3xl:text-[3.4vw])
            instead of custom tokens. This ensures Tailwind properly generates responsive
            variants and works with all breakpoint modifiers.
@@ -26,6 +25,7 @@ const config: Config = {
         */
       },
       fontFamily: {
+        /* CenturyGothicPaneuropean — all weights loaded via @font-face in globals.css */
         "century-gothic": ["var(--font-century-gothic)", "sans-serif"],
       },
       colors: {
@@ -50,4 +50,27 @@ const config: Config = {
   },
   plugins: [],
 };
+
 export default config;
+
+/*
+ * FONT SETUP:
+ * 
+ * All CenturyGothicPaneuropean weights are loaded via @font-face in globals.css:
+ * - 300 (Light)
+ * - 400 (Regular)
+ * - 600 (SemiBold)
+ * - 700 (Bold)
+ * - 800 (ExtraBold)
+ * - 900 (Black)
+ * 
+ * Plus italic variants for each weight.
+ * 
+ * The --font-century-gothic CSS variable references "CenturyGothicPaneuropean"
+ * which is defined in globals.css via @font-face declarations.
+ * 
+ * Usage:
+ * - All semantic typography classes use var(--font-century-gothic)
+ * - Tailwind utility: className="font-century-gothic"
+ * - CSS: font-family: var(--font-century-gothic);
+ */

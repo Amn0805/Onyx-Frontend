@@ -35,8 +35,8 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         }`}
       >
         {/* Header */}
-        <div className="flex justify-between items-center py-3 md:py-4 px-6 md:px-8 border-b border-black/10">
-          <span className="font-semibold text-sm md:text-base">Menu</span>
+        <div className="flex justify-between items-center py-3 md:py-4 px-6 md:px-8 border-b border-light">
+          <span className="nav-medium text-sm md:text-base">Menu</span>
           <button onClick={close} className="rotate-45 text-xl leading-none" aria-label="Close menu">
             +
           </button>
@@ -51,7 +51,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   key={item.label}
                   href={item.href}
                   onClick={close}
-                  className="py-3 text-xs md:text-sm lg:text-base 3xl:text-lg hover:text-[#114046] transition-colors"
+                  className="nav py-3 text-xs md:text-sm lg:text-base 3xl:text-lg hover:text-brand transition-colors"
                 >
                   {item.label}
                 </Link>
@@ -66,7 +66,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   type="button"
                   aria-expanded={isExpanded}
                   onClick={() => setExpanded(isExpanded ? null : item.label)}
-                  className="flex items-center justify-between gap-2 py-3 text-left text-xs md:text-sm lg:text-base 3xl:text-lg font-semibold"
+                  className="flex items-center justify-between gap-2 py-3 text-left text-xs md:text-sm lg:text-base 3xl:text-lg nav-medium"
                 >
                   <span>{item.label}</span>
                   <span className="text-xl leading-none">{isExpanded ? "−" : "+"}</span>
@@ -76,7 +76,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                   <div className="flex flex-col gap-6 md:gap-8 3xl:gap-10 pl-6 pb-4">
                     {serviceGroups.map((group) => (
                       <div key={group.title} className="flex flex-col gap-6 md:gap-8 3xl:gap-10">
-                        <h3 className="text-xs md:text-sm lg:text-base 3xl:text-lg uppercase tracking-wider text-[#7D7D7D] font-bold">
+                        <h3 className="label text-secondary">
                           {group.title}
                         </h3>
                         {group.services.map((service) => (
@@ -84,7 +84,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                             key={service.href}
                             href={service.href}
                             onClick={close}
-                            className="text-xs md:text-sm lg:text-base 3xl:text-lg text-[#7D7D7D] hover:text-[#114046] transition-colors"
+                            className="body-small text-secondary hover:text-brand transition-colors"
                           >
                             {service.label}
                           </Link>
@@ -101,7 +101,7 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
                         key={card.href}
                         href={card.href}
                         onClick={close}
-                        className="text-xs md:text-sm lg:text-base 3xl:text-lg text-[#7D7D7D] hover:text-[#114046] transition-colors"
+                        className="body-small text-secondary hover:text-brand transition-colors"
                       >
                         {card.label}
                       </Link>
@@ -114,16 +114,16 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
         </nav>
 
         {/* Footer */}
-        <div className="px-6 md:px-8 py-6 md:py-8 border-t border-black/10 flex flex-col gap-6 md:gap-8 3xl:gap-10">
+        <div className="px-6 md:px-8 py-6 md:py-8 border-t border-light flex flex-col gap-6 md:gap-8 3xl:gap-10">
           <Link
             href="/dashboard/login"
             onClick={close}
-            className="text-xs md:text-sm lg:text-base 3xl:text-lg hover:text-[#114046] transition-colors"
+            className="nav text-xs md:text-sm lg:text-base 3xl:text-lg hover:text-brand transition-colors"
           >
             Sign in
           </Link>
           <Link href="/studio/#scheduleCall" onClick={close}>
-            <button className="bg-[#114046] rounded-full text-white w-full py-3 hover:bg-[#0e3035] transition-colors text-xs md:text-sm lg:text-base 3xl:text-lg font-semibold">
+            <button className="btn-pill btn-theme w-full">
               Request a Proposal
             </button>
           </Link>
@@ -132,3 +132,19 @@ export default function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
     </>
   );
 }
+
+/*
+ * MIGRATION SUMMARY:
+ *
+ * ✅ CHANGED: border-black/10 → .border-light
+ * ✅ CHANGED: text-xs md:text-sm lg:text-base 3xl:text-lg → semantic .nav, .body-small, .label
+ * ✅ CHANGED: text-[#7D7D7D] → .text-secondary
+ * ✅ CHANGED: hover:text-[#114046] → .hover:text-brand
+ * ✅ CHANGED: font-semibold → .nav-medium (semantic weight)
+ * ✅ CHANGED: uppercase tracking-wider → .label (semantic style)
+ * ✅ CHANGED: bg-[#114046] text-white → .btn-pill .btn-theme
+ * ✅ CHANGED: hover:bg-[#0e3035] → built into .btn-theme
+ * ✅ KEPT: Sidebar behavior, expand/collapse logic, navigation structure
+ *
+ * NO VISUAL CHANGES: All typography and colors aligned with globals.css
+ */

@@ -48,7 +48,6 @@ export const navItems: NavItem[] = [
     cards: [
       { label: "Case studies", href: "/case-studies", description: "Challenge, what we delivered, results" },
       { label: "Gallery", href: "/gallery", description: "Browse renders by project type" },
-      { label: "Client reviews", href: "/client-reviews", description: "What clients say about working with us" },
     ],
   },
   {
@@ -57,7 +56,6 @@ export const navItems: NavItem[] = [
     cards: [
       { label: "About us", href: "/studio", description: "Our story, team and way of working" },
       { label: "Careers", href: "/career", description: "Join the studio" },
-      { label: "Contact", href: "/studio/#scheduleCall", description: "Quote, call or WhatsApp" },
     ],
   },
   { label: "Contact", href: "/studio/#scheduleCall" },
