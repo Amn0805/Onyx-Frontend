@@ -31,13 +31,17 @@ export default function Header() {
   const solid = scrolled || openMenu !== null;
   const close = () => setOpenMenu(null);
 
+  const isHomePage = pathname === "/";
+
   return (
     <header
       onMouseLeave={close}
       className={`fixed top-0 left-0 w-full z-40 transition-colors duration-300 ${
-        solid
-          ? "bg-white text-black shadow-sm"
-          : "bg-transparent text-black"
+        isHomePage
+          ? solid
+            ? "bg-white text-black shadow-sm"
+            : "bg-transparent text-black"
+          : "bg-white text-black shadow-sm"
       }`}
     >
       {/* Desktop Header */}
@@ -52,8 +56,8 @@ export default function Header() {
             width={40}
             height={40}
             style={{
-         width: 'clamp(24px, calc(24px + 1.76vw), 60px)',
-height: 'clamp(24px, calc(24px + 1.76vw), 60px)',
+              width: 'clamp(24px, calc(24px + 1.76vw), 60px)',
+              height: 'clamp(24px, calc(24px + 1.76vw), 60px)',
             }}
             unoptimized
           />

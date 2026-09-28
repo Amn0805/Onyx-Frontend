@@ -50,15 +50,15 @@ body {
   --type-text-x-small-fluid: calc(12px + 0.20vw);
   --type-text-x-small-max: 16px;
 
-  /* Navigation: 12px → 18px */
-  --type-nav-min: 12px;
-  --type-nav-fluid: calc(12px + 0.29vw);
-  --type-nav-max: 18px;
+  /* Navigation: 14px → 20px */
+  --type-nav-min: 14px;
+  --type-nav-fluid: calc(14px + 0.29vw);
+  --type-nav-max: 20px;
 
-  /* Button Text: SAME AS NAV (12px → 18px) - MATCHING SIGN IN */
-  --type-button-text-min: 12px;
-  --type-button-text-fluid: calc(12px + 0.29vw);
-  --type-button-text-max: 18px;
+  /* Button Text: SAME AS NAV (14px → 20px) - MATCHING SIGN IN */
+  --type-button-text-min: 14px;
+  --type-button-text-fluid: calc(14px + 0.29vw);
+  --type-button-text-max: 20px;
 
   /* ULTRA COMPACT Button Padding X: 12px → 40px (reduced from 14 → 48) */
   --button-px-min: 12px;
